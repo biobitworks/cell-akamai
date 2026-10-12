@@ -54,12 +54,27 @@ def default_agent_factory(cfg: dict, system_prompt: str, role: str, allow_contra
         from strands.models.openai import OpenAIModel
     except ImportError as e:
         raise RuntimeError("Install 'strands-agents[openai]' on the execution host") from e
+
+    class OpenAIModelOmittingEmptyTools(OpenAIModel):
+        """Keep tool-free requests compatible with vLLM's strict OpenAI schema."""
+        def format_request(self, messages, tool_specs=None, system_prompt=None, tool_choice=None, **kwargs):
+            request = super().format_request(messages, tool_specs, system_prompt, tool_choice, **kwargs)
+            if not tool_specs:
+                request.pop('tools', None)
+            return request
+
     base_url = cfg['base_url'].rstrip('/')
     if not base_url.endswith('/v1'):
         raise ValueError('Use an OpenAI-compatible /v1 endpoint')
     key = os.environ.get(cfg.get('api_key_env', 'VLLM_API_KEY'), 'not-needed')
-    model = OpenAIModel(client_args={'api_key': key, 'base_url': base_url}, model_id=cfg['model'],
-                        params={'max_tokens': cfg['max_tokens_per_call'], 'temperature': cfg['temperature']})
+    # Keep transient transport failures from silently multiplying inference calls.
+    params = {'max_tokens': cfg['max_tokens_per_call'], 'temperature': cfg['temperature']}
+    if cfg.get('extra_body') is not None:
+        if not isinstance(cfg['extra_body'], dict):
+            raise ValueError('extra_body must be an object')
+        params['extra_body'] = cfg['extra_body']
+    model = OpenAIModelOmittingEmptyTools(
+        client_args={'api_key': key, 'base_url': base_url, 'max_retries': 0}, model_id=cfg['model'], params=params)
     tools = []
     if allow_contract_tool:
         @tool
@@ -84,7 +99,39 @@ def make_chat(cfg: dict, *, agent_factory: Callable | None = None,
         # Use a fresh agent on every call; no cross-item/session carryover.
         agent = factory(cfg, messages[0]['content'], role, allow_contract_tool)
         start = time.perf_counter()
-        result = agent(messages[1]['content'])
+        try:
+            result = agent(messages[1]['content'])
+        except Exception as exc:
+            elapsed = time.perf_counter() - start
+            metrics = getattr(agent, 'event_loop_metrics', None)
+            accumulated = getattr(metrics, 'accumulated_usage', None) if metrics is not None else None
+            usage = dict(accumulated) if isinstance(accumulated, dict) else None
+            if usage is not None:
+                # Keep the SDK's exact usage available even when its agent loop raises
+                # (for example MaxTokensReachedException after a partial response).
+                try:
+                    setattr(exc, 'strands_accumulated_usage', usage)
+                except Exception:
+                    pass
+            agent_messages = getattr(agent, 'messages', [])
+            last = agent_messages[-1] if agent_messages else {}
+            content = last.get('content', []) if isinstance(last, dict) else []
+            partial = ''.join(x['text'] for x in content
+                              if isinstance(x, dict) and isinstance(x.get('text'), str))
+            if trace_sink:
+                try:
+                    trace_sink({'role': role,
+                                'input_sha256': hashlib.sha256(messages[1]['content'].encode()).hexdigest(),
+                                'output_sha256': hashlib.sha256(partial.encode()).hexdigest() if partial else None,
+                                'completion_tokens': usage.get('outputTokens') if usage else None,
+                                'accumulated_usage': usage,
+                                'wall_s': elapsed,
+                                'runtime': 'STRANDS_OPENAI_COMPATIBLE',
+                                'tool_enabled': bool(allow_contract_tool),
+                                'failure_type': type(exc).__name__})
+                except Exception:
+                    pass
+            raise
         elapsed = time.perf_counter() - start
         output = response_text(result)
         usage = token_usage(result)
