@@ -1,0 +1,12 @@
+{
+  "captured_utc": "2026-10-12T23:01:39.569132+00:00",
+  "state": "SANITIZED_SAVED_SNAPSHOT",
+  "submission": "User reported submitted; external confirmation not independently checked",
+  "scope": "Current aggregate summaries and imported historical catalog; no private run files or raw responses",
+  "files": {
+    "data.json": "77f3ac352bedbb3575735dbf89b95dd8770881cd24ab7fe308b72bcfe920e962",
+    "evidence.html": "5a1021f1bd2915e7c746e5fc8fa4cf744beee9298c125b7f73203d4baa95105d",
+    "evidence.json": "5d785a5a5a7322c640a1c1cac8cf21641c7dfcf7405b46bf00fe0a91043c816a",
+    "index.html": "4dfbf64343228532f614e342c487bbe63a23e4a3e3cd33334a887c60c3be5d68"
+  }
+}

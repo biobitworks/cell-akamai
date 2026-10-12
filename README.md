@@ -1,5 +1,7 @@
 # Cell-Akamai — auditable scientific agent evaluation
 
+**Judges: [start here — two-minute review](docs/JUDGES_QUICK_REVIEW.md).** [Saved dashboard data](judges/data.json) · [Saved evidence catalog](judges/evidence.json) · [Demo script](docs/FINAL_DEMO_SCRIPT.md)
+
 We extended Akamai’s inference workshop with a Strands role-separated design, real local/cloud evaluation, reproducible data representations and inspectable evidence.
 
 ## Verified achievements

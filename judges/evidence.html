@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cell-Akamai · evidence dashboard</title>
+<style>
+body{background:#0b1221;color:#e4edf8;font:14px system-ui,sans-serif;margin:0}main{max-width:1240px;margin:20px auto;padding:12px}
+h1{font-size:24px;margin:4px 0}h2{font-size:18px;margin:6px 0 10px}small,.muted{color:#a8bbcc}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}nav button{padding:8px 12px;border:1px solid #345;background:#16233a;color:#e4edf8;border-radius:8px;cursor:pointer}
+nav button.on{background:#2b4a6e;border-color:#8fe3d0}
+.section{border:1px solid #293c53;border-radius:12px;background:#141e31;padding:16px;margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}td,th{text-align:left;padding:6px 8px;border-bottom:1px solid #304158;vertical-align:top}
+.scroll{overflow:auto;max-height:560px}
+.st{font:11px monospace;padding:2px 6px;border-radius:5px;white-space:nowrap}
+.OBSERVED,.PASS,.SCORED{background:#1d4434;color:#9ff0c6}.FAILED,.FAIL,.REFUSED{background:#4a1f26;color:#ffb3bd}
+.NOT_TESTED,.AFTER_NOT_TESTED,.NOT_COMPUTED,.UNKNOWN,.NO_MANIFEST,.UNDEFINED_ZERO_CORRECT{background:#45391b;color:#ffd98a}
+.NOT_RECOVERED{background:#3a2a45;color:#e0b8ff}.IMPLEMENTED{background:#20354f;color:#a9cfff}
+.BUNDLE_REPORTED_UNVERIFIED{background:#4a3a1b;color:#ffcf8a}.OBSERVED_LOCAL_MAGICPRO_PYTHON_DICT{background:#1f3a3f;color:#9fe3ec}
+a.src{color:#8fe3d0;cursor:pointer;text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.metric{background:#1b2a43;padding:12px;border-radius:8px}.metric strong{display:block;font-size:20px;color:#8fe3d0;margin-top:4px}
+.toggle{display:flex;gap:6px;margin-bottom:8px}
+pre{white-space:pre-wrap;font:12px monospace;background:#0e1729;padding:12px;border-radius:8px;max-height:420px;overflow:auto}
+svg text{fill:#bdcbdb;font-size:11px}
+</style></head><body><main>
+<h1>Cell-Akamai · evidence dashboard</h1>
+<p class="muted">Saved results replayed from imported receipts. <strong>No live GPU connection</strong> is used by this page. Every value links to its source; missing and failed measurements stay visible. Hashes establish identity, not scientific correctness.</p>
+<div class="section"><h2>Recorded achievements and evidence review</h2><p>Real local/cloud pilots, deterministic fixture reconstruction and a short GPU tuning pilot are recorded. <b>Module 8 executed a before/after pilot.</b> Module 9 has separate ECA execution and an agent deployment attempt that failed at port-forward readiness. The catalog below preserves an older index; its earlier execution labels are historical, not the latest overall status.</p><p><b>Verification issue:</b> recovered answer files that fail commitments are excluded from scoring; recorded throughput summaries remain separate observations. Missing metrics, unrun conditions and failed attempts are distinct. <a class="src" href="/">Open current run summaries and first tokens/s² experiment →</a></p><details><summary>Read status labels</summary><p>Recorded measurement = source contains an observation. Reported; verification pending = bundled value awaiting required checks. Excluded from scoring = commitment/config/coverage check did not pass. Attempt failed = operation attempted and failed. Not run / execution unverified = this catalog lacks verified execution. Undefined: zero correct answers = a ratio has a zero denominator. Source detail preserves original labels.</p></details></div><div class="grid" id="kpis"></div>
+<nav id="tabs"></nav>
+<div id="view"></div>
+<div class="section" id="detail" hidden><h2>Source detail</h2><pre id="detailbody"></pre></div>
+</main><script>
+const $=id=>document.getElementById(id);
+const e=s=>String(s??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>typeof v==='number'?(Number.isInteger(v)?String(v):v.toPrecision(5)):(v===true?'true':v===false?'false':e(v));
+const stateLabels={BUNDLE_REPORTED_UNVERIFIED:'Reported; verification pending',FAILED:'Attempt failed',REFUSED:'Excluded from scoring',NOT_TESTED:'Not run / execution unverified',AFTER_NOT_TESTED:'Earlier index: after-run unverified',NOT_COMPUTED:'Metric unavailable',NOT_RECOVERED:'Artifact not recovered',UNKNOWN:'Value or identity unverified',UNDEFINED_ZERO_CORRECT:'Undefined: zero correct answers',OBSERVED:'Recorded measurement',IMPLEMENTED:'Implemented'};
+const st=(s,r)=>{const stale=r&&['CAKM-M08','CAKM-M09'].includes(r.experiment_id)&&['NOT_TESTED','AFTER_NOT_TESTED'].includes(s);return '<span title="Original receipt state: '+e(s)+'" class="st '+e(s)+'">'+e(stale?'Older index; see execution update':(stateLabels[s]||s))+'</span>'};
+let IDX=null,ROWS=[];
+function src(i){return '<a class="src" onclick="show('+i+')">source</a>'}
+function show(i){$('detail').hidden=false;$('detailbody').textContent=JSON.stringify(ROWS[i],null,2);$('detail').scrollIntoView({behavior:'smooth'})}
+function table(cols,rows){return '<div class="scroll"><table><thead><tr>'+cols.map(c=>'<th>'+e(c[0])+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+cols.map(c=>'<td>'+c[1](r)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'}
+const pick=(f)=>ROWS.map((r,i)=>Object.assign({_i:i},r)).filter(f);
+const T={
+ 'Sources & coverage':()=>'<div class="section"><h2>Imported archives</h2>'+table([['Label',r=>e(r.label)],['Archive',r=>e(r.archive||r.pattern)],['SHA-256',r=>'<code>'+e((r.sha256||'').slice(0,16))+(r.sha256?'…':'')+'</code>'],['Manifest',r=>st(r.manifest_state||r.state)+' '+e(r.manifest_files_ok??'')+(r.manifest_files_listed?'/'+r.manifest_files_listed:'')]],IDX.sources)+
+   '<p class="muted">An archive whose own manifest fails is listed but never ingested. NO_MANIFEST archives are only used to flag duplicates.</p></div>'+
+   '<div class="section"><h2>Claim boundaries</h2>'+table([['Item',r=>e(r[0])],['State',r=>e(r[1])]],Object.entries(IDX.claims))+'</div>',
+ 'Akamai GPU runs':()=>{let h='';for(const ex of ['EXP-AKAMAI-TOKEN-001','EXP-AKAMAI-SPEC-001']){const rr=pick(r=>r.experiment_id===ex);const tps=rr.filter(r=>r.metric==='request_completion_tokens_per_s'||r.metric==='spec_tokens_per_s');
+   h+='<div class="section"><h2>'+e(ex)+' · run '+e(rr[0]&&rr[0].run_id)+'</h2><p class="muted">Model '+e(rr[0]&&rr[0].model_identity)+' · AKAMAI_VLLM · source '+e(rr[0]&&rr[0].source_archive)+'. Client throughput, client first-chunk time and server Prometheus deltas are separate metrics.</p>'+bars(tps,'completion tokens/s per request')+
+   table([['Request',r=>e(r.request??'—')],['Metric',r=>e(r.metric)],['Value',r=>num(r.value)],['Unit',r=>e(r.unit)],['State',r=>st(r.state,r)],['Derivation',r=>e(r.derivation||'receipt')],['',r=>src(r._i)]],rr)+'</div>'}
+   return h+'<div class="section"><p class="muted">No speedup is claimed between these runs: different workloads and configurations, no matched FP8 or speculative-decoding run, precision UNKNOWN.</p></div>'},
+ 'Six datasets':()=>{const roles=['genesis','vita_daisy','evaluator'];const m=(role,k)=>pick(r=>r.role===role&&r.metric===k)[0]||{};
+   const repr=window.REPR||'both';const keysO=['original_records','original_unique_records','original_bytes'];const keysF=['fco_count','fcg_edge_count','fco_fcg_bytes','storage_overhead_ratio','reconstruction_equal','fcg_edge_endpoints_exist','direct_lookup_mean_us','fcg_traversal_mean_us'];
+   const keysC=['file_hashes_match_verification','model_visible_prompt_tokens','inference_tokens_per_s','inference_total_request_latency_s'];
+   const keys=(repr==='original'?keysO:repr==='fco'?keysF:keysO.concat(keysF)).concat(keysC);
+   return '<div class="section"><h2>Original vs FCO/FCG · ECA_DERIVED_FIXTURE</h2><div class="toggle">'+['original','fco','both'].map(x=>'<button onclick="window.REPR=\''+x+'\';render(\'Six datasets\')"'+(x===repr?' style="border-color:#8fe3d0"':'')+'>'+({original:'Original',fco:'FCO/FCG',both:'Side by side'})[x]+'</button>').join('')+'</div>'+
+   table([['Metric',k=>e(k)]].concat(roles.map(ro=>[ro,k=>{const r=m(ro,k);return r._i===undefined?'—':num(r.value)+' '+e(r.unit==='bool'?'':r.unit)+' '+st(r.state,r)+' '+src(r._i)}])),keys)+
+   '<p class="muted">These six files are deterministic ECA-derived input fixtures, not recovered historical Genesis/Vita DAISY/evaluator outputs (historical execution: '+st('NOT_RECOVERED')+'). Lookup/traversal times are local Python dict timings on magicPRO, not database or GPU latency. FCO/FCG transformation is not a learned-model improvement. Dataset SHA '+e((m('genesis','original_records').dataset_sha256||'').slice(0,16))+'…</p></div>'},
+ 'B0–B3 evaluation':()=>{const ak=pick(r=>r.backend==='AKAMAI_VLLM'&&r.arm);let pre='';
+   if(ak.length){const cells=[...new Set(ak.map(r=>r.concurrency+'|'+r.arm))].sort((a,b)=>(+a.split('|')[0])-(+b.split('|')[0])||a.localeCompare(b));const g=(ca,m)=>ak.find(r=>(r.concurrency+'|'+r.arm)===ca&&r.metric===m)||{};
+    const sc=c=>pick(r=>r.metric==='independent_scoring'&&r.concurrency===c)[0]||{};
+    pre='<div class="section"><h2>Akamai GPU · '+e(ak[0].model_identity)+' · precision '+e(ak[0].precision)+' · '+e(ak[0].run_id)+'</h2><p class="muted">Throughput and latency come from bench_cells.json (independent of answer bytes; archive manifest PASS). Accuracy below is <b>BUNDLE_REPORTED_UNVERIFIED</b>: the archived answers.jsonl do not match their COMMIT.json digests, so independent scoring is REFUSED and config bytes are NOT_RECOVERED.</p>'+
+    table([['c · arm',ca=>e(ca.replace('|',' · '))],['Agg. completion tok/s',ca=>num(g(ca,'gpu_aggregate_completion_tokens_per_s').value)],['p95 latency ms',ca=>num(g(ca,'gpu_latency_p95_ms').value)],['Calls',ca=>num(g(ca,'gpu_model_calls_observed').value)],['Failed/abstained/over-budget',ca=>num(g(ca,'gpu_failed_or_abstained_or_over_budget').value)],['Exact match (unverified)',ca=>num(g(ca,'bundle_reported_exact_match_accuracy_primary').value)+' '+st(g(ca,'bundle_reported_exact_match_accuracy_primary').state||'UNKNOWN')],['Independent scoring',ca=>{const x=sc(+ca.split('|')[0]);return x._i===undefined?st('UNKNOWN'):st(x.state)+' '+e(x.value)}],['',ca=>src(g(ca,'gpu_aggregate_completion_tokens_per_s')._i)]],cells)+'</div>'}
+   const rr=pick(r=>r.experiment_id.startsWith('EXP-LANEB')&&r.backend!=='AKAMAI_VLLM'&&r.metric!=='reported_execution_state');const runs=[...new Set(rr.map(r=>r.run_id))];let h='';
+   for(const run of runs){const x=rr.filter(r=>r.run_id===run);const arms=[...new Set(x.filter(r=>r.arm).map(r=>r.concurrency+'|'+r.arm))];
+    h+='<div class="section"><h2>'+e(run)+'</h2><p class="muted">'+e(x[0].model_identity)+' · '+e(x[0].backend)+' · split PILOT_NONCONFIRMATORY</p>';
+    const fails=x.filter(r=>r.state==='FAILED');if(fails.length)h+=table([['Failure',r=>e(r.metric)],['State',r=>st(r.state,r)],['Detail',r=>e(r.derivation||r.value)],['',r=>src(r._i)]],fails);
+    if(arms.length){const g=(ca,m)=>x.find(r=>(r.concurrency+'|'+r.arm)===ca&&r.metric===m)||{};
+     h+=table([['c / arm',ca=>e(ca.replace('|',' · '))],['Correct / n',ca=>num(g(ca,'correct').value)+' / '+num(g(ca,'n_items').value)],['Exact match',ca=>num(g(ca,'exact_match_accuracy').value)],['Hamming',ca=>num(g(ca,'mean_hamming_error').value)],['Abstain',ca=>num(g(ca,'abstention_rate').value)],['Parse fail',ca=>num(g(ca,'parse_failure_rate').value)],['Call failures',ca=>num(g(ca,'failure_rate').value)],['Calls',ca=>num(g(ca,'model_calls').value)],['Completion tokens',ca=>num(g(ca,'completion_tokens').value)+' '+st(g(ca,'completion_tokens').state)],['Tokens / correct',ca=>num(g(ca,'tokens_per_correct_item').value)+' '+st(g(ca,'tokens_per_correct_item').state)],['',ca=>src(g(ca,'correct')._i)]],arms);
+     const pd=x.filter(r=>r.metric==='paired_discordance');h+=table([['c',r=>e(r.concurrency)],['Contrast',r=>e(r.A+' vs '+r.B)],['A only',r=>e(r.A_only)],['B only',r=>e(r.B_only)],['McNemar p (Holm)',r=>num(r.p_holm)],['',r=>src(r._i)]],pd)}
+    h+='</div>'}
+   return pre+(h||'<div class="section">'+st('NOT_TESTED')+' no scored panels</div>')+'<div class="section"><p class="muted">B1 = GENESIS_POLICY_PROXY_V0, not the recovered Genesis Transformer. B2 DAISY challenges are inference-time critique, not weight training (SELF_TRAINING '+st('NOT_TESTED')+'). Arms are not compute-matched: B0 makes 1 call per item, B1–B3 make 3; B3 is a randomized adversarial check, not an inert placebo. Failed calls and over-budget answers count as incorrect. Unsafe-admission and contradiction-detection metrics: '+st('NOT_COMPUTED')+' (no validated predicate).</p></div>'},
+ 'Module 8':()=>mod('CAKM-M08','Execution update: later PR #12 receipts contain a short max-num-seqs 32-to-64 GPU tuning pilot, with no demonstrated benefit. These older catalog rows preserve the earlier handoff; they are not the latest execution status. Quality answer commitments remain under reconciliation.'),
+ 'Module 9':()=>mod('CAKM-M09','Execution update: the agent deployment attempt failed at port-forward readiness; separate ECA execution produced answer ledgers with commitment discrepancies under reconciliation. Later PR #12 receipts establish these distinct attempts. Historical catalog rows below predate those receipts.'),
+ 'All evidence':()=>'<div class="section"><h2>All rows ('+ROWS.length+')</h2><button onclick="exp()">Export comparison report (JSON)</button>'+table([['Experiment',r=>e(r.experiment_id)],['Run',r=>e(r.run_id)],['Metric',r=>e(r.metric)],['Value',r=>num(r.value)],['Unit',r=>e(r.unit)],['State',r=>st(r.state,r)],['',r=>src(r._i)]],pick(()=>true))+'</div>'};
+function mod(id,note){const rr=pick(r=>r.experiment_id===id);return '<div class="section"><h2>'+e(id)+'</h2><p class="muted">'+e(note)+'</p>'+table([['Run / phase',r=>e(r.run_id)],['Metric',r=>e(r.metric)],['Value',r=>num(r.value)],['State',r=>st(r.state,r)],['Evidence',r=>e(r.evidence_ref)],['',r=>src(r._i)]],rr)+'</div>'}
+function bars(rows,label){const v=rows.filter(r=>typeof r.value==='number');if(!v.length)return '';const w=900,h=150,max=Math.max(...v.map(r=>r.value))*1.15,bw=Math.min(80,(w-60)/v.length-10);
+ return '<svg viewBox="0 0 '+w+' '+(h+30)+'" role="img" aria-label="'+e(label)+'"><text x="4" y="12">'+e(label)+'</text>'+v.map((r,i)=>{const bh=(h-30)*r.value/max,x=50+i*(bw+10);return '<rect x="'+x+'" y="'+(h-bh)+'" width="'+bw+'" height="'+bh+'" fill="#80dace"/><text x="'+(x+bw/2)+'" y="'+(h-bh-4)+'" text-anchor="middle">'+r.value.toFixed(2)+'</text><text x="'+(x+bw/2)+'" y="'+(h+14)+'" text-anchor="middle">req '+e(r.request)+'</text>'}).join('')+'</svg>'}
+function exp(){const b=new Blob([JSON.stringify({exported_from:'evidence dashboard',index_schema:IDX.schema,sources:IDX.sources,claims:IDX.claims,rows:IDX.rows},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='cell_akamai_comparison_report.json';a.click()}
+function render(name){window.TAB=name;$('tabs').innerHTML=Object.keys(T).map(k=>'<button class="'+(k===name?'on':'')+'" onclick="render(\''+k.replace(/'/g,"\\'")+'\')">'+e(k)+'</button>').join('');$('view').innerHTML=T[name]()}
+async function load(){const r=await fetch('evidence.json',{cache:'no-store'});IDX=await r.json();ROWS=IDX.rows;
+ const c=s=>ROWS.filter(r=>r.state===s).length;const rec=IDX.sources.filter(s=>!s.state).length;
+ $('kpis').innerHTML=[['Archives imported',rec+' / '+IDX.sources.length],['Evidence rows',ROWS.length],['Observed',c('OBSERVED')],['Historical execution gaps',c('NOT_TESTED')+c('AFTER_NOT_TESTED')],['Recorded failed-attempt rows',c('FAILED')],['Not recovered',c('NOT_RECOVERED')+IDX.sources.filter(s=>s.state==='NOT_RECOVERED').length]].map(x=>'<div class="metric">'+e(x[0])+'<strong>'+e(x[1])+'</strong></div>').join('');
+ render('Sources & coverage')}
+load().catch(err=>{$('view').innerHTML='<div class="section">'+st('UNKNOWN')+' evidence index could not be loaded: '+e(err)+'</div>'});
+</script></body></html>
