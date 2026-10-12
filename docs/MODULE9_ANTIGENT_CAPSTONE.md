@@ -70,3 +70,31 @@ No improvement or self-training claim is permitted without executed controlled r
 - **Orchestrator:** Review lineage, failures, full verification, claims; do not merge unverifiable improvements.
 
 **NEXT_ACTION:** On Akamai while GPU access lasts, run original Module 9 baseline and an 8-item Strands/plain pilot at c=1 and c=2 before expanding to c=4,8. Frozen 32-item dataset is a pilot only; confirmatory task power and genotype/biological data are not supplied.
+
+## Optional namespaced Kubernetes service (new, not deployed)
+
+The code also supplies a separate **Strands-powered** `cell-akamai-antigent` Deployment/ClusterIP Service and `module9_antigents/service.py`, for the workshop's actual pod-and-port-forward capstone. It accepts `POST /invoke` with `{ "role": "actor|antigent|random_control|adjudicator", "prompt": "...", "candidate": "..." }`; it does not expose a held-out oracle. A semaphore limits concurrent requests (default six), request bodies and output tokens are bounded, and errors do not echo secret prompt text. This interactive service **is separate from** the scientifically paired CLI above; do not treat its role prompts as equivalent B0–B3 frozen harness prompts.
+
+Example operator steps in the **authorized** workshop namespace (no cluster-scoped resources, no deletion/replacement of workshop `sa-agent`):
+
+```bash
+# Run only from a checked-out PR #10 source root in authorized namespace.
+NS="${NAMESPACE:?set the workshop namespace}"
+kubectl -n "$NS" create configmap cell-akamai-antigent-code \
+ --from-file=module9_antigents/bridge.py \
+ --from-file=module9_antigents/service.py \
+ --from-file=module9_antigents/__init__.py \
+ --dry-run=client -o yaml | kubectl -n "$NS" apply -f -
+# Before apply, replace SET_VERIFIED_SERVED_MODEL with actual /v1/models value
+# in a reviewed COPY of manifests/module9-antigent.yaml.
+kubectl -n "$NS" diff -f /tmp/module9-antigent-verified.yaml
+kubectl -n "$NS" apply -f /tmp/module9-antigent-verified.yaml
+kubectl -n "$NS" rollout status deploy/cell-akamai-antigent --timeout=180s
+kubectl -n "$NS" port-forward svc/cell-akamai-antigent 8090:8090
+# Separate terminal, POST only benign test prompts:
+curl -s http://127.0.0.1:8090/invoke -H 'Content-Type: application/json' \
+ -d '{"role":"actor","prompt":"Describe the purpose of an antigentic reviewer in one sentence"}'
+```
+
+Only use the candidate endpoint if namespace NetworkPolicy permits the new \
+`app=cell-akamai-antigent` pod to connect to vLLM Service on port 8000; default-deny policies might require an explicit approved namespaced egress/ingress rule. The example image installs SDK at startup, suitable for a workshop **only**; pin dependencies and image digests for a production deployment. Do not expose this service publicly or give it write-capable Kubernetes credentials.
