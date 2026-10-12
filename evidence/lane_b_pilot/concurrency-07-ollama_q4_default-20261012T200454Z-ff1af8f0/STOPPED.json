@@ -1,0 +1,16 @@
+{
+  "cells": {
+    "c01_B0_FIXED": true,
+    "c01_B1_GENESIS": false
+  },
+  "committed_cells": [
+    "c01_B0_FIXED"
+  ],
+  "paired_panels_committed": [],
+  "reason": "5.1 completion tokens/s under GPU contention with another loaded Ollama model; 240-call plan could not finish before the 16:00 PDT deadline",
+  "run_manifest_state_left_as_written": "IN_PROGRESS",
+  "scorable": false,
+  "signal": "SIGINT then SIGTERM",
+  "state": "STOPPED_BY_OPERATOR_AGENT",
+  "ts": "2026-10-12T20:11:42+00:00"
+}

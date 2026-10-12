@@ -44,8 +44,8 @@ def summarize(folder, config, dataset, manifest):
             (p / "score_refusal.json").write_text(json.dumps({"state": "REFUSED", "reason": str(e), "scored": False}, indent=2) + "\n")
             panel_states.append({"concurrency": c, "state": "REFUSED", "reason": str(e)}); continue
         per_arm, cons = S.score(items, recs)
-        source = "SYNTHETIC_FIXTURE" if commit.get("source_class") == "SYNTHETIC_FIXTURE" else "OBSERVED"
-        panel_states.append({"concurrency": c, "state": "SCORED", "answers_sha256": S.bare(commit["answers_sha256"]),
+        source = "SYNTHETIC_FIXTURE" if commit.get("source_class") == "SYNTHETIC_FIXTURE" else ("OBSERVED_CONFIG_NOT_RECOVERED" if config is None else "OBSERVED")
+        panel_states.append({"concurrency": c, "state": "SCORED" if config is not None else "SCORED_CONFIG_NOT_RECOVERED", "answers_sha256": S.bare(commit["answers_sha256"]),
                              "source_class": source, "checks": {k: v for k, v in checks.items() if isinstance(v, bool)}})
         for arm, m in per_arm.items():
             b = bench.get((c, arm), {})
@@ -71,18 +71,20 @@ def summarize(folder, config, dataset, manifest):
 
 def cli(argv=None):
     ap = argparse.ArgumentParser(description="Score concurrency panels after answer commitment")
-    ap.add_argument("run_folder"); ap.add_argument("--config", required=True)
+    ap.add_argument("run_folder"); g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--config"); g.add_argument("--config-not-recovered", action="store_true",
+                                               help="config bytes absent from the evidence; verify everything else and label results CONFIG_NOT_RECOVERED")
     ap.add_argument("--dataset", required=True); ap.add_argument("--manifest", required=True)
     a = ap.parse_args(argv)
-    out = summarize(a.run_folder, a.config, a.dataset, a.manifest)
+    out = summarize(a.run_folder, None if a.config_not_recovered else a.config, a.dataset, a.manifest)
     for p in out["panels"]:
-        print(f"c={p['concurrency']:>2} {p['state']}" + (f" {p.get('reason')}" if p["state"] != "SCORED" else f" {p['source_class']}"))
+        print(f"c={p['concurrency']:>2} {p['state']}" + (f" {p.get('reason')}" if not p["state"].startswith("SCORED") else f" {p['source_class']}"))
     for r in out["rows"]:
         print(f"c={r['concurrency']:>2} {r['arm']:<18} acc={r['exact_match_accuracy']:.3f} ham={r['mean_hamming_error']:.3f} "
               f"abst={r['abstention_rate']:.3f} calls={r['model_calls']} tok/correct={r['tokens_per_correct_item']}")
     for c in out["contrasts"]:
         print(f"c={c['concurrency']:>2} {c['A']} vs {c['B']}: A-only={c['A_only_correct']} B-only={c['B_only_correct']} p_holm={c['p_holm']:.3f}")
-    return 0 if all(p["state"] == "SCORED" for p in out["panels"]) and out["panels"] else 1
+    return 0 if all(p["state"].startswith("SCORED") for p in out["panels"]) and out["panels"] else 1
 
 
 if __name__ == "__main__":

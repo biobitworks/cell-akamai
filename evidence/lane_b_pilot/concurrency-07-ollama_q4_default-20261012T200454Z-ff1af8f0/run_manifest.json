@@ -1,0 +1,33 @@
+{
+  "_sanitized": "copy of runs/concurrency/<run>/run_manifest.json with host redacted for git",
+  "anticube": "NOT_COMPUTED",
+  "backend": "MAGICPRO_OLLAMA",
+  "concurrency": [
+    1,
+    2,
+    4
+  ],
+  "config_sha256": "sha256:30a33253bf04de944f4caf89ca6ca5bbf39d414939c26941a39c5e5f322dfa2d",
+  "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+  "declared_max_model_calls": 240,
+  "delta_g_star": "NOT_COMPUTED",
+  "deployment_args_sha": "UNKNOWN",
+  "host": "REDACTED_LOCAL_HOST (magicPRO)",
+  "independent_host_verification": "NOT_TESTED",
+  "items_per_arm": 8,
+  "mmr": "NOT_COMMITTED",
+  "model_revision": "UNKNOWN",
+  "module": "07",
+  "oracle_access": "NONE",
+  "precision_verified": "UNKNOWN",
+  "preregistration": "PILOT_NONCONFIRMATORY",
+  "run_id": "concurrency-07-ollama_q4_default-20261012T200454Z-ff1af8f0",
+  "self_training": "NOT_TESTED",
+  "served_model_requested": "qwen2.5:7b",
+  "signature": "NOT_SIGNED",
+  "source_class": "OBSERVED_IF_ENDPOINT_SUCCESS",
+  "source_claude_harness_sha256": "sha256:6e744fdc6bb7dccaf372812bf7ce9cb1c33f7b1931ce806b24e3bcbadceed7c0",
+  "stage": "ollama_q4_default",
+  "state": "IN_PROGRESS",
+  "workshop_baseline_sha": "454b43269216c1f92dd8d7e2711649e38cb888cb"
+}

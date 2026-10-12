@@ -1,0 +1,18 @@
+{
+  "cells_present_at_kill": [
+    "c01_B0_FIXED",
+    "c01_B1_GENESIS",
+    "c01_B2_GENESIS_DAISY",
+    "c01_B3_RANDOM_CONTROL"
+  ],
+  "committed_cells": [
+    "c01_B0_FIXED",
+    "c01_B1_GENESIS",
+    "c01_B2_GENESIS_DAISY"
+  ],
+  "corrects": "STOPPED.json (written 20:11:42Z) wrongly said the run had stopped; SIGINT and SIGTERM were ignored while worker threads blocked on HTTP calls, and the run kept executing for ~1 h, competing for the GPU with run 4427e1d6",
+  "effect_on_other_run": "run concurrency-07-ollama_q4_default-20261012T201153Z-4427e1d6 throughput and timeouts were measured under this contention",
+  "paired_panels_committed": [],
+  "state": "KILLED_SIGKILL",
+  "ts": "2026-10-12T21:14:59+00:00"
+}

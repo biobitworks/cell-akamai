@@ -41,13 +41,16 @@ def row(experiment_id, run_id, source, metric, unit, value, state, evidence_ref,
 def verify_manifest(z):
     """Check every file listed in the archive's own manifest. Returns (state, n_ok, n_listed, failures)."""
     names = set(z.namelist())
-    for mf in ("PACKAGE_MANIFEST.json", "EVIDENCE_MANIFEST.json"):
+    for mf in ("PACKAGE_MANIFEST.json", "EVIDENCE_MANIFEST.json", "SHA256_MANIFEST.json"):
         if mf in names:
             m = json.loads(z.read(mf))
             files = m.get("files", m.get("source_snapshot_file_checks"))
+            if mf == "SHA256_MANIFEST.json" and files is None:
+                files = m  # {path: {"bytes", "sha256"}}
             if files is None:
                 return "NO_FILE_LIST", 0, 0, [], mf
-            pairs = list(files.items()) if isinstance(files, dict) else [(f["path"], f["sha256"]) for f in files]
+            pairs = ([(k, v["sha256"] if isinstance(v, dict) else v) for k, v in files.items()] if isinstance(files, dict)
+                     else [(f["path"], f["sha256"]) for f in files])
             bad = [p for p, h in pairs if p not in names or sha(z.read(p)) != h.split(":")[-1]]
             return ("PASS" if not bad else "FAIL"), len(pairs) - len(bad), len(pairs), bad[:10], mf
     return "NO_MANIFEST", 0, 0, [], None
@@ -199,9 +202,50 @@ def modules(z, src, rows):
                                 "AFTER_NOT_TESTED" if phase == "after" else "NOT_TESTED", f"{src['name']}:{nb}"))
 
 
+def github_evidence(z, src, rows):
+    """Consolidated recovery archive from another lane: run states, BF16 bench stats, commitment checks."""
+    names = z.namelist()
+    seen = set()
+    for r in json.loads(z.read("CONSOLIDATED_RUN_INDEX.json")):
+        key = (r["run_id"], r["execution_state"])
+        if key in seen: continue
+        seen.add(key)
+        exp = ("CAKM-M08" if r["run_id"].startswith("M08") else "CAKM-M09" if r["run_id"].startswith("M09") else
+               "EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY" if r["run_id"].startswith("concurrency-") else r.get("parent_run_id", "UNKNOWN"))
+        st = {"FAILED": "FAILED", "IN_PROGRESS": "NOT_TESTED"}.get(r["execution_state"], "IMPLEMENTED")
+        rows.append(row(exp, r["run_id"], src, "reported_execution_state", "state", r["execution_state"], st, f"{src['name']}:CONSOLIDATED_RUN_INDEX.json",
+                        r.get("model_identity", "UNKNOWN"), derivation="state as reported by the recovering lane; not re-executed here",
+                        precision=r.get("precision_state"), hardware=r.get("hardware")))
+    base = "recovered/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/"
+    if base + "run_manifest.json" not in names: return
+    rid = base.rstrip("/").split("/")[-1]; meta = json.loads(z.read(base + "run_manifest.json"))
+    model = meta.get("served_model_requested", "UNKNOWN"); prec = meta.get("precision_verified", "UNKNOWN")
+    for b in json.loads(z.read(base + "bench_cells.json")).get("rows", []):
+        for metric, unit in (("aggregate_completion_tokens_per_s", "tokens/s"), ("latency_p95_ms", "ms"), ("latency_p50_ms", "ms"),
+                             ("model_calls_observed", "calls"), ("failed_or_abstained_or_over_budget", "items"), ("aggregate_completion_tokens", "tokens")):
+            if b.get(metric) is not None:
+                rows.append(row("EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY", rid, src, "gpu_" + metric, unit, b[metric], "OBSERVED", f"{src['name']}:{base}bench_cells.json",
+                                model, workload=f"AKAMAI_VLLM {meta.get('stage')} c={b['concurrency']}", derivation="bench_cells.json written by run_concurrency.py (independent of answer bytes)",
+                                arm=b["arm"], concurrency=b["concurrency"], backend="AKAMAI_VLLM", precision=prec))
+    for c in meta.get("concurrency", []):
+        d = f"{base}c{c:02d}_paired_for_scoring/"
+        if d + "COMMIT.json" not in names: continue
+        commit = json.loads(z.read(d + "COMMIT.json")); ok = sha(z.read(d + "answers.jsonl")) == commit["answers_sha256"].split(":")[-1]
+        rows.append(row("EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY", rid, src, "independent_scoring", "state", "SCORED" if ok else "REFUSED: ANSWER COMMIT MISMATCH",
+                        "OBSERVED" if ok else "FAILED", f"{src['name']}:{d}COMMIT.json", model, concurrency=c, backend="AKAMAI_VLLM",
+                        derivation="answers.jsonl in archive vs COMMIT.json answers_sha256; config bytes NOT_RECOVERED"))
+        if d + "lane_b_results.jsonl" in names:
+            for lr in (json.loads(l) for l in z.read(d + "lane_b_results.jsonl").decode().splitlines() if l.strip()):
+                if lr["metric"] in ("exact_match_accuracy_primary", "mean_hamming_error", "abstention_rate"):
+                    rows.append(row("EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY", rid, src, "bundle_reported_" + lr["metric"], lr["unit"], lr["value"], "BUNDLE_REPORTED_UNVERIFIED",
+                                    f"{src['name']}:{d}lane_b_results.jsonl", model, arm=lr["arm"], concurrency=c, backend="AKAMAI_VLLM",
+                                    derivation="computed by the producing lane with scorer v1 before packing; not reproducible here because answer bytes do not match the commitment"))
+
+
 def lane_b(runs, rows):
     for p in sorted(Path(runs).glob("concurrency-*/")):
-        src = {"name": f"runs/concurrency/{p.name}", "sha256": None}
+        rp = p.resolve()
+        src = {"name": str(rp.relative_to(ROOT)) if rp.is_relative_to(ROOT) else f"runs/concurrency/{p.name}", "sha256": None}
         stopped = p / "STOPPED.json"
         summ = p / "lane_b_concurrency_summary.json"
         meta = json.loads((p / "run_manifest.json").read_text()) if (p / "run_manifest.json").exists() else {}
@@ -210,6 +254,11 @@ def lane_b(runs, rows):
             s = json.loads(stopped.read_text())
             rows.append(row("EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY", p.name, src, "run_state", "state", s["state"], "FAILED", f"{src['name']}/STOPPED.json",
                             model, workload=backend, derivation=s["reason"], backend=backend))
+        corr = p / "STOPPED_CORRECTION.json"
+        if corr.exists():  # later record correcting STOPPED.json; both stay visible
+            c = json.loads(corr.read_text())
+            rows.append(row("EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY", p.name, src, "run_state_correction", "state", c["state"], "FAILED", f"{src['name']}/STOPPED_CORRECTION.json",
+                            model, workload=backend, derivation=c["corrects"] + "; " + c.get("effect_on_other_run", ""), backend=backend))
         if summ.exists():
             s = json.loads(summ.read_text()); src["sha256"] = sha(summ.read_bytes())
             for pnl in s["panels"]:
@@ -254,6 +303,7 @@ def main(argv=None):
             if label in ("EVIDENCE_EXPORT", "AKAMAI_RUN_001"): akamai_runs(z, src, h, rows, seen)
             if label == "M08_M09_SIX_DATASETS": six_datasets(z, src, rows)
             if label in ("M08_M09_HANDOFF",): modules(z, src, rows)
+            if label == "GITHUB_EVIDENCE": github_evidence(z, src, rows)
     lane_b(a.runs, rows)
     body = {"schema": SCHEMA, "policy": "receipts or named deterministic derivations only; NOT_RECOVERED / NOT_TESTED / NOT_COMPUTED kept visible",
             "sources": sources, "rows": rows,

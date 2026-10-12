@@ -78,9 +78,12 @@ def verify(cfg_path, run, dataset=None, manifest=None):
     checks["answers_sha256_matches"] = h((run / "answers.jsonl").read_bytes()) == bare(commit.get("answers_sha256"))
     if not checks["answers_sha256_matches"]:
         raise Refusal("ANSWER COMMIT MISMATCH")
-    checks["config_sha256_matches"] = bool(commit.get("config_sha256")) and h(Path(cfg_path).read_bytes()) == bare(commit["config_sha256"])
-    if not checks["config_sha256_matches"]:
-        raise Refusal("CONFIG DIGEST MISSING OR MISMATCHED")
+    if cfg_path is None:  # explicit caller decision: config bytes not recovered; everything else is still verified
+        checks["config_sha256_matches"] = "NOT_RECOVERED"
+    else:
+        checks["config_sha256_matches"] = bool(commit.get("config_sha256")) and h(Path(cfg_path).read_bytes()) == bare(commit["config_sha256"])
+        if not checks["config_sha256_matches"]:
+            raise Refusal("CONFIG DIGEST MISSING OR MISMATCHED")
     items_list = [json.loads(l) for l in (run / "items.jsonl").read_text().splitlines() if l.strip()]
     items = {i["item_id"]: i for i in items_list}
     if len(items) != len(items_list) or not items:
