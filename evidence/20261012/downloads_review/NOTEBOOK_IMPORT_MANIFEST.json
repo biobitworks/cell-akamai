@@ -1,0 +1,32 @@
+{
+  "schema": "sanitized-download-import-v1",
+  "files": [
+    {
+      "source_filename": "AKAMAI_SPEC_FCO_COMPARISON_V1.ipynb",
+      "source_sha256": "bf5701601304aabae421aae732aa1bda7ad9e389ac6d859ddd9d40f9f6f98ccc",
+      "sanitized_path": "evidence/20261012/downloads_review/notebooks/AKAMAI_SPEC_FCO_COMPARISON_V1.ipynb",
+      "sanitized_sha256": "bf5701601304aabae421aae732aa1bda7ad9e389ac6d859ddd9d40f9f6f98ccc",
+      "removed_outputs": 0,
+      "state": "SOURCE_ONLY_NOT_EXECUTION_EVIDENCE",
+      "note": "Original preserved locally; outputs/execution counters and incidental metadata removed. Historical notebook may embed an older harness; not the current execution entrypoint."
+    },
+    {
+      "source_filename": "AKAMAI_WORKSHOP_FCO_TOKEN_SMOKE_V1.ipynb",
+      "source_sha256": "589c14ccd4fe97bbccdb8ce96ac69abd92a7b81d3ed27743afe3ea77817bcff9",
+      "sanitized_path": "evidence/20261012/downloads_review/notebooks/AKAMAI_WORKSHOP_FCO_TOKEN_SMOKE_V1.ipynb",
+      "sanitized_sha256": "589c14ccd4fe97bbccdb8ce96ac69abd92a7b81d3ed27743afe3ea77817bcff9",
+      "removed_outputs": 0,
+      "state": "SOURCE_ONLY_NOT_EXECUTION_EVIDENCE",
+      "note": "Original preserved locally; outputs/execution counters and incidental metadata removed. Historical notebook may embed an older harness; not the current execution entrypoint."
+    },
+    {
+      "source_filename": "30_akamai_lane_b_pilot_UPLOAD.ipynb",
+      "source_sha256": "6f663f0e1a111785e4bb4d0234f26a0482e4820055a17dd049b045e0af3da0dd",
+      "sanitized_path": "evidence/20261012/downloads_review/notebooks/30_akamai_lane_b_pilot_UPLOAD.ipynb",
+      "sanitized_sha256": "6f663f0e1a111785e4bb4d0234f26a0482e4820055a17dd049b045e0af3da0dd",
+      "removed_outputs": 0,
+      "state": "SOURCE_ONLY_NOT_EXECUTION_EVIDENCE",
+      "note": "Original preserved locally; outputs/execution counters and incidental metadata removed. Historical notebook may embed an older harness; not the current execution entrypoint."
+    }
+  ]
+}

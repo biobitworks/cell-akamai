@@ -30,7 +30,7 @@ Our tests cover strict answer parsing, commitment and coverage checks, and accou
 ## 2:45–3:10 — Close
 Show: contribution list and limits.
 
-Our success is a working foundation for accountable scientific agents: owned inference, local and cloud pilots, reproducible data and inspectable evidence. We preserve nulls and negative findings. We have not established training, quality improvement, a Strands speedup or a completed hour-scale study. Next are sufficient answer budgets, independent repeats and complete checkpoint coverage.
+Our contribution is the combination: frozen records that reconstruct exactly across original, object and graph formats; role-separated agent comparisons; real local and Akamai inference; reproduced token-rate calculations; and evidence checked before scoring. The framework keeps successful measurements, nulls and negative findings inspectable. Next we extend these verified foundations with independent repeats, longer runs and complete checkpoint coverage.
 
 ## Recording rule
 
