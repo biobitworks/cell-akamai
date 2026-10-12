@@ -1,0 +1,73 @@
+{
+  "schema": "cell-akamai-off-host-review/v1",
+  "review_date_utc": "2026-10-12",
+  "reviewer": "ChatGPT independently recomputed uploaded receipt contents",
+  "experiment_id": "EXP-AKAMAI-TOKEN-001",
+  "run_id": "akm-57de3a4a14c9",
+  "source": {
+    "archive_name": "akamai_run_001.zip",
+    "sha256": "sha256:73c2c4ff7deb5c3e30b16f73ef6754c3b102cb0da8e4705a7ac8d485b7d38dad",
+    "receipt_sha256": "sha256:a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc",
+    "jupyter_url": "https://s05.workshop-ord.ws.akamai-workshops.com/lab/tree/cell_akamai_results/EXP-AKAMAI-TOKEN-001_20261012T190713Z_akm-57de3a4a14c9",
+    "raw_archive_published_to_github": false
+  },
+  "environment": {
+    "namespace": "workshop-s05",
+    "model": "Qwen/Qwen3-4B",
+    "model_revision": "UNKNOWN",
+    "tokenizer_revision": "UNKNOWN",
+    "speculative_config": "NOT_OBSERVED",
+    "fp8_serving_state": "NOT_VERIFIED"
+  },
+  "measurements": {
+    "requests": 4,
+    "successful_requests": 4,
+    "completion_tokens_per_request": [
+      68,
+      68,
+      68,
+      68
+    ],
+    "completion_tokens_per_second": [
+      39.23397824575491,
+      39.56497398778675,
+      39.57833912654482,
+      39.5879545502477
+    ],
+    "mean_completion_tokens_per_second": 39.491311477583544,
+    "first_nonempty_chunk_latency_ms": [
+      55.520793,
+      37.77367,
+      38.290439,
+      36.986545
+    ],
+    "mean_first_nonempty_chunk_latency_ms": 42.14286175,
+    "inter_request_acceleration_tokens_per_s_squared": [
+      null,
+      0.19004143091232567,
+      0.007689473163381206,
+      0.005540052250365595
+    ],
+    "kv_cache_fraction_idle_snapshot_last": 0,
+    "unit_caveat": "KV cache snapshot was idle; zero does not imply zero in-flight cache. First nonempty chunk is a client-side TTFT proxy. Throughput is completion tokens / whole request duration; acceleration is across requests."
+  },
+  "independent_off_host_integrity_check": {
+    "raw_prometheus_hash_matches": "8/8 PASS",
+    "fco_content_ids": "9/9 PASS",
+    "fcg_endpoint_integrity": "8/8 PASS",
+    "arithmetic_tps": "4/4 PASS",
+    "arithmetic_inter_request_acceleration": "3/3 PASS",
+    "metrics_counter_agreement": "4/4 PASS",
+    "independent_akamai_compute_execution": "NOT_TESTED",
+    "external_source_attestation": "NOT_VERIFIED"
+  },
+  "derived_evidence_state": {
+    "signed": false,
+    "mmr": "NOT_COMMITTED",
+    "anticube": "NOT_COMPUTED",
+    "delta_g_star": "NOT_COMPUTED",
+    "causal_comparison": "NOT_TESTED",
+    "scientific_accuracy": "NOT_TESTED"
+  },
+  "next_action": "Run Akamai Module 5 to establish FP8 target baseline, then Module 6 to enable 0.6B speculative drafter. Run notebooks/12_speculative_vs_fp8.ipynb on each state; preserve both receipts and compare only same model/config/workload, with evidence labels."
+}

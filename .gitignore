@@ -2,3 +2,13 @@ runs/
 config.json
 __pycache__/
 .DS_Store
+# Raw telemetry, prompts, secrets, vLLM response metadata: do not auto-publish.
+data/*.jsonl
+*.ipynb_checkpoints/
+.pytest_cache/
+.env
+.env.*
+*.pem
+*.key
+*.kubeconfig
+kubeconfig*
