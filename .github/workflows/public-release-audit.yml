@@ -57,18 +57,40 @@ jobs:
           set -e
           export GITLEAKS_EXIT_CODE="$code"
           python3 - <<'PY'
-          import json, os, pathlib, collections
+          import json, os, pathlib, collections, subprocess, hashlib
           p = pathlib.Path('/tmp/cell-akamai-gitleaks.json')
           try:
               findings = json.loads(p.read_text()) if p.exists() and p.stat().st_size else []
               if not isinstance(findings, list):
                   raise ValueError('Unexpected JSON report shape')
               rules = dict(collections.Counter(x.get('RuleID', 'unknown') for x in findings))
+              # Independently rederive the explicitly documented inventory-hash false positive.
+              # A new candidate, even of the same rule, still fails the gate.
+              known_fp = False
+              if len(findings) == 1:
+                  item = findings[0]
+                  expected_commit = '26da5ca8fd3e73e958b69e504651a6766e6ceb20'
+                  if (item.get('RuleID') == 'generic-api-key'
+                      and item.get('File', '').removeprefix('./') == 'PACKAGE_MANIFEST.json'
+                      and item.get('Commit') == expected_commit):
+                      try:
+                          notebook_bytes = subprocess.check_output(
+                              ['git', 'show', expected_commit + ':notebooks/10_token_kinetics.ipynb'])
+                          manifest_bytes = subprocess.check_output(
+                              ['git', 'show', expected_commit + ':PACKAGE_MANIFEST.json'])
+                          digest = hashlib.sha256(notebook_bytes).hexdigest().encode('ascii')
+                          known_fp = digest in manifest_bytes
+                      except subprocess.CalledProcessError:
+                          known_fp = False
+              if known_fp:
+                  pathlib.Path('/tmp/cell-akamai-known-fp-verified.flag').write_text('verified')
               result = {
                   'tool': 'gitleaks', 'version': 'v8.30.1',
                   'scope': 'all refs fetched with checkout fetch-depth 0 and explicit branch/tag fetch',
                   'reachable_commits': int(os.popen('git rev-list --all --count').read().strip()),
                   'finding_count': len(findings),
+                  'verified_noncredential_inventory_digest_count': 1 if known_fp else 0,
+                  'unresolved_candidate_count': len(findings) - (1 if known_fp else 0),
                   'rule_counts': rules,
                   'exit_code': int(os.environ['GITLEAKS_EXIT_CODE']),
                   'secret_values_included': False,
@@ -86,6 +108,10 @@ jobs:
             exit "$code"
           fi
           if [ "$code" -eq 1 ]; then
+            if [ -f /tmp/cell-akamai-known-fp-verified.flag ]; then
+              echo "::notice::The sole historical Gitleaks candidate was recomputed as a manifest SHA-256 digest; values withheld"
+              exit 0
+            fi
             echo "::warning::Gitleaks candidates require local, private triage; values withheld"
             exit 1
           fi
