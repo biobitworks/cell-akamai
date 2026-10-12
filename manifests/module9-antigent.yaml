@@ -1,0 +1,70 @@
+# Module 9 optional capstone. Do not apply without namespace authorization.
+# Precreate configmap from module9_antigents sources and __init__.py using kubectl.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cell-akamai-antigent
+  labels:
+    app: cell-akamai-antigent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cell-akamai-antigent
+  template:
+    metadata:
+      labels:
+        app: cell-akamai-antigent
+    spec:
+      containers:
+        - name: agent
+          image: python:3.12-slim
+          # Workshop only. In production build a pinned, signed image instead of pip at boot.
+          command: ["sh", "-c"]
+          args:
+            - "pip install --disable-pip-version-check 'strands-agents[openai]' && cd /app && python -m module9_antigents.service"
+          env:
+            - name: VLLM_BASE_URL
+              value: http://vllm:8000/v1
+            - name: MODEL_NAME
+              value: SET_VERIFIED_SERVED_MODEL
+            - name: MAX_TOKENS_PER_CALL
+              value: "128"
+            - name: MAX_PARALLEL_ANTIGENTS
+              value: "6"
+            - name: PORT
+              value: "8090"
+          ports:
+            - containerPort: 8090
+          volumeMounts:
+            - name: module9-code
+              mountPath: /app/module9_antigents
+              readOnly: true
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          readinessProbe:
+            httpGet: {path: /health, port: 8090}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+      volumes:
+        - name: module9-code
+          configMap:
+            name: cell-akamai-antigent-code
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cell-akamai-antigent
+spec:
+  type: ClusterIP
+  selector:
+    app: cell-akamai-antigent
+  ports:
+    - name: http
+      port: 8090
+      targetPort: 8090
