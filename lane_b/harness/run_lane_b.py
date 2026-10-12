@@ -24,7 +24,7 @@ def prob(it):
 
 
 def parse(text):
-    m = re.findall(r"ANSWER:\s*([01]{8}|ABSTAIN)", text or "")
+    m = re.findall(r"ANSWER:\s*([01]{8}|ABSTAIN)(?![0-9A-Za-z])", text or "")  # 9+ bits or trailing junk = parse failure
     return m[-1] if m else None
 
 
@@ -55,6 +55,16 @@ def call(chat, rec, user):
 
 def run_item(arm, it, chat, cfg):
     rec = {"item_id": it["item_id"], "arm": arm, "calls": []}
+    try:
+        return _run_item(arm, it, chat, cfg, rec)
+    except Exception as e:  # keep calls already made (tokens, wall time) instead of discarding them
+        toks = [c["completion_tokens"] for c in rec["calls"]]
+        rec.update({"final_answer": None, "failure": type(e).__name__, "tokens_total": None if (not toks or None in toks) else sum(toks),
+                    "wall_s_total": sum(c["wall_s"] for c in rec["calls"]), "n_calls": len(rec["calls"]), "over_budget": False})
+        return rec
+
+
+def _run_item(arm, it, chat, cfg, rec):
     p = prob(it)
     if arm == "B0_FIXED":
         ans = [parse(call(chat, rec, p))]

@@ -73,7 +73,7 @@ def summarize(rows, arm, concurrency, elapsed_s):
     call_counts = [r.get("n_calls", 0) for r in rows]
     all_known = all(type(n) is int and n >= 0 for n in token_counts)
     durations = [r.get("item_elapsed_s") for r in rows if isinstance(r.get("item_elapsed_s"), (int, float))]
-    failed = sum(bool(r.get("failure") or r.get("over_budget") or not r.get("final_answer")) for r in rows)
+    failed = sum(bool(r.get("failure") or r.get("over_budget") or not r.get("final_answer") or r.get("final_answer") == "ABSTAIN") for r in rows)
     return {"arm": arm, "concurrency": concurrency, "items": len(rows), "successful_parsed_within_budget": len(rows) - failed,
             "failed_or_abstained_or_over_budget": failed, "model_calls_observed": sum(call_counts),
             "model_calls_declared_upper_bound": len(rows) * DECLARED_CALLS[arm],
