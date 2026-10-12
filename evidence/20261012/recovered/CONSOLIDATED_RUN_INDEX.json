@@ -1,0 +1,1085 @@
+[
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:3f64aec1206bcf10b63d3a214714b18380c59b93d23cd82397aa8f16634007ab",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CELL_AKAMAI_EVIDENCE_EXPORT_d26889746244/cell_akamai_results/EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d/experiment_receipt.json@sha256:afbca0946c244056c46c325f8e494dda0453bc288b0f71b824d80ecb2d60f704"
+    ],
+    "run_id": "d69ad4d0e37d",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CELL_AKAMAI_EVIDENCE_EXPORT_d26889746244/cell_akamai_results/EXP-AKAMAI-TOKEN-001_20261012T190713Z_akm-57de3a4a14c9/experiment_receipt.json@sha256:a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc"
+    ],
+    "run_id": "akm-57de3a4a14c9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CODEX_BF16_SANITIZED_10e9d3c57a77/runs/concurrency/concurrency-07-bf16_reference-20261012T202707Z-b703eafe/c01_B0_FIXED/COMMIT.json@sha256:53613ded17a8d76e23312d816ebe3b0b194fa512e1511dfcfd93975326283c60"
+    ],
+    "run_id": "concurrency-07-bf16_reference-20261012T202707Z-b703eafe",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "FAILED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "torch.bfloat16",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CODEX_BF16_SANITIZED_10e9d3c57a77/runs/concurrency/concurrency-07-bf16_reference-20261012T202707Z-b703eafe/run_manifest.json@sha256:7abc58f97c8212ee59b44fb9baf0899a01703d0712ac7699a0fbff840edb6864"
+    ],
+    "run_id": "concurrency-07-bf16_reference-20261012T202707Z-b703eafe",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "bd83681ade8f9dd3c81da2f9b39979c2432358b621372af85ea1da061209dfb9",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CODEX_BF16_SANITIZED_10e9d3c57a77/runs_answeronly/concurrency/concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9/c01_B0_FIXED/COMMIT.json@sha256:51a61eb0a550b29d4a26acd55473b8433ad3816fdf643148e84a95370061fb4c"
+    ],
+    "run_id": "concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:bd83681ade8f9dd3c81da2f9b39979c2432358b621372af85ea1da061209dfb9",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "FAILED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "torch.bfloat16",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CODEX_BF16_SANITIZED_10e9d3c57a77/runs_answeronly/concurrency/concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9/run_manifest.json@sha256:80f6069676db2237e8b8dff359c052a09ae988c618b25f2c7164fed6b8396597"
+    ],
+    "run_id": "concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "torch.bfloat16",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/CODEX_BF16_SANITIZED_10e9d3c57a77/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/run_manifest.json@sha256:b3311c996bb95e48ac7f3a0ebb24cc9c546aab97376a12ad478112fe193f5cb6"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/akamai_run_001_73c2c4ff7deb/experiment_receipt.json@sha256:a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc"
+    ],
+    "run_id": "akm-57de3a4a14c9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:3f64aec1206bcf10b63d3a214714b18380c59b93d23cd82397aa8f16634007ab",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_EVIDENCE_EXPORT_d26889746244/cell_akamai_results/EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d/experiment_receipt.json@sha256:afbca0946c244056c46c325f8e494dda0453bc288b0f71b824d80ecb2d60f704"
+    ],
+    "run_id": "d69ad4d0e37d",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_EVIDENCE_EXPORT_d26889746244/cell_akamai_results/EXP-AKAMAI-TOKEN-001_20261012T190713Z_akm-57de3a4a14c9/experiment_receipt.json@sha256:a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc"
+    ],
+    "run_id": "akm-57de3a4a14c9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "ANSWER_COMMITTED_NO_ORACLE_YET",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M08_QUALITY_after_20261012T205309Z_f66d170/COMMIT.json@sha256:25b80260204b8a5eb8a7795127f103505be923c6d2e015241ba53dae4d290bfb"
+    ],
+    "run_id": "M08_QUALITY_after_20261012T205309Z_f66d170",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "2ca8318f343b10aee7dd3daeea3a83d582560c7efc555edca3827c90c2be57c0",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M08_QUALITY_after_20261012T205309Z_f66d170/identity.json@sha256:7e1f2e7a1ed47015fcf7a2d509f5f2dbfbc8ff272740620b109e2b20c62d5135"
+    ],
+    "run_id": "M08_QUALITY_after_20261012T205309Z_f66d170",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "ANSWER_COMMITTED_NO_ORACLE_YET",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M08_QUALITY_before_20261012T205112Z_44f9f53/COMMIT.json@sha256:1abee6170aef87385964eec9ca7a083d65186f84dc7c502187edae90bef452d2"
+    ],
+    "run_id": "M08_QUALITY_before_20261012T205112Z_44f9f53",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "7b0b8c9188d8cd89146131cd096ef4013bc3c7c5fc7c2bce9d7d7b177991bae4",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M08_QUALITY_before_20261012T205112Z_44f9f53/identity.json@sha256:e00f53b971e126b98861539078df1d4047de05fffe2818a3681ab092dcb03745"
+    ],
+    "run_id": "M08_QUALITY_before_20261012T205112Z_44f9f53",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "2ca8318f343b10aee7dd3daeea3a83d582560c7efc555edca3827c90c2be57c0",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN_UNLESS_MODEL_AND_RUNTIME_VERIFIED",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M08_after_20261012T205246Z_ef7cf71/identity.json@sha256:fc2c78ff16775ebc73d8c8459e0cd3b3ba61986c33a5eedb42f9062396a09dcb"
+    ],
+    "run_id": "M08_after_20261012T205246Z_ef7cf71",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "7b0b8c9188d8cd89146131cd096ef4013bc3c7c5fc7c2bce9d7d7b177991bae4",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN_UNLESS_MODEL_AND_RUNTIME_VERIFIED",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M08_before_20261012T205049Z_9edc4db/identity.json@sha256:442e294c1146fdb5e81a259c51777b9cc0493a7fa27a2e7b20fc8958ca141e14"
+    ],
+    "run_id": "M08_before_20261012T205049Z_9edc4db",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "103d0378412a8247a0b9dafc28bf6786782587563bbbcc863749602bb5038041",
+    "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "ANSWERS_COMMITTED_BEFORE_SCORING",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M09_ECA_B0_B3_20261012T205324Z_56da8fa/COMMIT.json@sha256:495ffb9bef69c870d1e82c530aa65b377d4e9efcbf2b3e4dd39be1bdbc7f07fd"
+    ],
+    "run_id": "M09_ECA_B0_B3_20261012T205324Z_56da8fa",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RAW_ANSWERS_COMMITTED_UNSCORED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M09_SIX_DATASET_COMPARE_20261012T205637Z_6c1963b/COMMIT.json@sha256:7b0855917f12a67895cd158159cb0c01fb2451c5c4961b500f92bb136578afa0"
+    ],
+    "run_id": "M09_SIX_DATASET_COMPARE_20261012T205637Z_6c1963b",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5/runs/M09_UPSTREAM_K8S_AGENT_20261012T205323Z_f4be912/agent_config.json@sha256:0c0c24e357b14f605d5badf98c93799c1f458190cbc88978dbe3cf94f6c19190"
+    ],
+    "run_id": "M09_UPSTREAM_K8S_AGENT_20261012T205323Z_f4be912",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:3f64aec1206bcf10b63d3a214714b18380c59b93d23cd82397aa8f16634007ab",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d_2866f1ea0466/experiment_receipt.json@sha256:afbca0946c244056c46c325f8e494dda0453bc288b0f71b824d80ecb2d60f704"
+    ],
+    "run_id": "d69ad4d0e37d",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/archive_akamai_run_001_73c2c4ff7deb/experiment_receipt.json@sha256:a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc"
+    ],
+    "run_id": "akm-57de3a4a14c9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "ANSWER_COMMITTED_NO_ORACLE_YET",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M08_QUALITY_after_20261012T205309Z_f66d170/COMMIT.json@sha256:25b80260204b8a5eb8a7795127f103505be923c6d2e015241ba53dae4d290bfb"
+    ],
+    "run_id": "M08_QUALITY_after_20261012T205309Z_f66d170",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "2ca8318f343b10aee7dd3daeea3a83d582560c7efc555edca3827c90c2be57c0",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M08_QUALITY_after_20261012T205309Z_f66d170/identity.json@sha256:7e1f2e7a1ed47015fcf7a2d509f5f2dbfbc8ff272740620b109e2b20c62d5135"
+    ],
+    "run_id": "M08_QUALITY_after_20261012T205309Z_f66d170",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "ANSWER_COMMITTED_NO_ORACLE_YET",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M08_QUALITY_before_20261012T205112Z_44f9f53/COMMIT.json@sha256:1abee6170aef87385964eec9ca7a083d65186f84dc7c502187edae90bef452d2"
+    ],
+    "run_id": "M08_QUALITY_before_20261012T205112Z_44f9f53",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "7b0b8c9188d8cd89146131cd096ef4013bc3c7c5fc7c2bce9d7d7b177991bae4",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M08_QUALITY_before_20261012T205112Z_44f9f53/identity.json@sha256:e00f53b971e126b98861539078df1d4047de05fffe2818a3681ab092dcb03745"
+    ],
+    "run_id": "M08_QUALITY_before_20261012T205112Z_44f9f53",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "2ca8318f343b10aee7dd3daeea3a83d582560c7efc555edca3827c90c2be57c0",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN_UNLESS_MODEL_AND_RUNTIME_VERIFIED",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M08_after_20261012T205246Z_ef7cf71/identity.json@sha256:fc2c78ff16775ebc73d8c8459e0cd3b3ba61986c33a5eedb42f9062396a09dcb"
+    ],
+    "run_id": "M08_after_20261012T205246Z_ef7cf71",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "7b0b8c9188d8cd89146131cd096ef4013bc3c7c5fc7c2bce9d7d7b177991bae4",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "IN_PROGRESS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN_UNLESS_MODEL_AND_RUNTIME_VERIFIED",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M08_before_20261012T205049Z_9edc4db/identity.json@sha256:442e294c1146fdb5e81a259c51777b9cc0493a7fa27a2e7b20fc8958ca141e14"
+    ],
+    "run_id": "M08_before_20261012T205049Z_9edc4db",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "103d0378412a8247a0b9dafc28bf6786782587563bbbcc863749602bb5038041",
+    "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "ANSWERS_COMMITTED_BEFORE_SCORING",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M09_ECA_B0_B3_20261012T205324Z_56da8fa/COMMIT.json@sha256:495ffb9bef69c870d1e82c530aa65b377d4e9efcbf2b3e4dd39be1bdbc7f07fd"
+    ],
+    "run_id": "M09_ECA_B0_B3_20261012T205324Z_56da8fa",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RAW_ANSWERS_COMMITTED_UNSCORED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M09_SIX_DATASET_COMPARE_20261012T205637Z_6c1963b/COMMIT.json@sha256:7b0855917f12a67895cd158159cb0c01fb2451c5c4961b500f92bb136578afa0"
+    ],
+    "run_id": "M09_SIX_DATASET_COMPARE_20261012T205637Z_6c1963b",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/runs/M09_UPSTREAM_K8S_AGENT_20261012T205323Z_f4be912/agent_config.json@sha256:0c0c24e357b14f605d5badf98c93799c1f458190cbc88978dbe3cf94f6c19190"
+    ],
+    "run_id": "M09_UPSTREAM_K8S_AGENT_20261012T205323Z_f4be912",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:3f64aec1206bcf10b63d3a214714b18380c59b93d23cd82397aa8f16634007ab",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "Qwen/Qwen3-4B",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_results/EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d/experiment_receipt.json@sha256:afbca0946c244056c46c325f8e494dda0453bc288b0f71b824d80ecb2d60f704"
+    ],
+    "run_id": "d69ad4d0e37d",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "UNKNOWN",
+    "dataset_sha256": "NOT_APPLICABLE_OR_UNKNOWN",
+    "execution_location": "RECOVERED_PREEXISTING_RECEIPT",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/cell_akamai_results/EXP-AKAMAI-TOKEN-001_20261012T190713Z_akm-57de3a4a14c9/experiment_receipt.json@sha256:a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc"
+    ],
+    "run_id": "akm-57de3a4a14c9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs/concurrency/concurrency-07-bf16_reference-20261012T202707Z-b703eafe/c01_B0_FIXED/COMMIT.json@sha256:53613ded17a8d76e23312d816ebe3b0b194fa512e1511dfcfd93975326283c60"
+    ],
+    "run_id": "concurrency-07-bf16_reference-20261012T202707Z-b703eafe",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "FAILED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "torch.bfloat16",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs/concurrency/concurrency-07-bf16_reference-20261012T202707Z-b703eafe/run_manifest.json@sha256:7abc58f97c8212ee59b44fb9baf0899a01703d0712ac7699a0fbff840edb6864"
+    ],
+    "run_id": "concurrency-07-bf16_reference-20261012T202707Z-b703eafe",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "bd83681ade8f9dd3c81da2f9b39979c2432358b621372af85ea1da061209dfb9",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_answeronly/concurrency/concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9/c01_B0_FIXED/COMMIT.json@sha256:51a61eb0a550b29d4a26acd55473b8433ad3816fdf643148e84a95370061fb4c"
+    ],
+    "run_id": "concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:bd83681ade8f9dd3c81da2f9b39979c2432358b621372af85ea1da061209dfb9",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "FAILED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "torch.bfloat16",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_answeronly/concurrency/concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9/run_manifest.json@sha256:80f6069676db2237e8b8dff359c052a09ae988c618b25f2c7164fed6b8396597"
+    ],
+    "run_id": "concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c01_B0_FIXED/COMMIT.json@sha256:c94b284610915e882015fe800e9d0c162e8f469615efb325db69b15a96ba6559"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c01_B1_GENESIS/COMMIT.json@sha256:d2f00c7237b8892aae63eeccbd353d20144ae157b2eb81f738b60530c16c2713"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c01_B2_GENESIS_DAISY/COMMIT.json@sha256:d4339011b66dfe3d15ab6e9a85bbd5455c71064a9f27604356856dfe49963635"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c01_B3_RANDOM_CONTROL/COMMIT.json@sha256:c166f45ab3628e1560118808cb23d4bf21003a0a54c79407e482beb8728266ef"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c01_paired_for_scoring/COMMIT.json@sha256:328078c4ed5f1ba8796c3c23afbed5b96ce60a0e9fa59a0af6124433cf1e80d7"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c02_B0_FIXED/COMMIT.json@sha256:14d6789a358ec8336349a8e4afe9f06673ca5cd9a31a54fb5ced26aa15114713"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c02_B1_GENESIS/COMMIT.json@sha256:353502df39f173ed474c98181800443a5e5bbe2a18f89e55646b4036efe3b2cb"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c02_B2_GENESIS_DAISY/COMMIT.json@sha256:fa23db89856f080f0e42d2709cabdf028c292f86b8547f0f766af3196c30cb0c"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c02_B3_RANDOM_CONTROL/COMMIT.json@sha256:2b6a89fed7d48ed0c7b1bca6c630776576d02fb1133dca2ecbf43e1936642aed"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c02_paired_for_scoring/COMMIT.json@sha256:12ae52ecb2a3638a2358f4c534ddb91b761014d898708031741347f12560625f"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c04_B0_FIXED/COMMIT.json@sha256:6254405e5af78dd700c95e30cdaeda998b7fd6e3c75d71f516d443c7587be5c6"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c04_B1_GENESIS/COMMIT.json@sha256:a1985532b3ba3148416522d0539e3f72ca8c1ba0c475e6b6eff0db6cd71545a0"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c04_B2_GENESIS_DAISY/COMMIT.json@sha256:516e5a6b02fafd678535472e81e60f6120750c2b62f945034c56e39dbe1ad1b1"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c04_B3_RANDOM_CONTROL/COMMIT.json@sha256:f421f3eb1d7c0612f7cddcaab46ba2ea60e89652a567319802d632f65a8e0201"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c04_paired_for_scoring/COMMIT.json@sha256:025d112bbaab6373a69f35ff275bdd8e38d53570fa8497bbae1b4ad6a15a5ea1"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c08_B0_FIXED/COMMIT.json@sha256:c3f87552b60bd6428bd5f7f487d19e119cf140bf551ec998c915386b41067608"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c08_B1_GENESIS/COMMIT.json@sha256:c14f0fd1c1df133a3e85c9da51710b67e4299cb0b8fa93e16e2d6ffc13c9fed1"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c08_B2_GENESIS_DAISY/COMMIT.json@sha256:18f2f56d84a8a952948a28f14ae6ed5a700868f05911d087c62effc62b3ae475"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c08_B3_RANDOM_CONTROL/COMMIT.json@sha256:66e174b1c668d921a214611005733a35b1b5d2a16967091da9da0975927a3a20"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "RECOVERED_RECEIPT_NOT_REEXECUTED",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "UNKNOWN",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/c08_paired_for_scoring/COMMIT.json@sha256:d47284f51cdc686c15b140126a217024293bfcdf3823de820dcfcb5ae03b3e64"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  },
+  {
+    "claim_ceiling": "PILOT_NONCONFIRMATORY; custody hashes alone establish no improvement; no training",
+    "configuration_sha256": "sha256:30db03a0ca903032095b0b89c91369acedfbd42f64d23f7b27f218059026e03f",
+    "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "execution_location": "AKAMAI_WORKSHOP_S05",
+    "execution_state": "COMPLETED_WITH_RESULT_OR_FAILURE_ROWS",
+    "failures": "SEE_RETAINED_REQUEST_METRICS",
+    "hardware": "UNKNOWN_NOT_ATTESTED",
+    "model_identity": "UNKNOWN",
+    "parent_run_id": "CAKM-M08M09-RECOVERY-EXPORT-20261012",
+    "precision_state": "torch.bfloat16",
+    "receipt_refs": [
+      "/home/coder/workshop/codex_execution_20261012/bundle/runs_fullmatrix/concurrency/concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49/run_manifest.json@sha256:a5ab2c84c9201556f72a8a9806654dbd80928957069eeafbc71582cfd0e7fef8"
+    ],
+    "run_id": "concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49",
+    "source_commit": "UNKNOWN",
+    "test_results": "SEE_NOTEBOOK_STATUS_AND_OFFLINE_VERIFICATION",
+    "workload_sha256": "UNKNOWN"
+  }
+]

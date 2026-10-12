@@ -1,0 +1,9 @@
+{
+  "answers_sha256": "7746e2c65ab43861f8d5c356533fe1c5b9d2db2a29fb052a197ae7b7cf2cd69a",
+  "config_sha256": "bd83681ade8f9dd3c81da2f9b39979c2432358b621372af85ea1da061209dfb9",
+  "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+  "genesis_policy": "GENESIS_POLICY_PROXY_V0_NOT_THE_RECOVERED_GENESIS_TRANSFORMER",
+  "oracle_accessed": false,
+  "run_id": "concurrency-07-bf16_answeronly_reference-20261012T202857Z-f28816e9",
+  "source_class": "OBSERVED"
+}

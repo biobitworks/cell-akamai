@@ -1,0 +1,10 @@
+{
+  "answers_sha256": "06a4ce7e637fabd745b4fdfb4430114c7ffab093f4eba909fba08d7ed654aada",
+  "committed_at": "2026-10-12T20:56:33.907325+00:00",
+  "config_sha256": "103d0378412a8247a0b9dafc28bf6786782587563bbbcc863749602bb5038041",
+  "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+  "items_sha256": "09716e8fccdafbe9a693293ea202db511340a64538a881e617563724a0660d61",
+  "oracle_accessed": false,
+  "policy_id": "GENESIS_POLICY_PROXY_V0_NOT_THE_RECOVERED_GENESIS_TRANSFORMER",
+  "status": "ANSWERS_COMMITTED_BEFORE_SCORING"
+}

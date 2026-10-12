@@ -1,0 +1,20 @@
+{
+  "aggregate_completion_tokens_per_s": 146.66079844339257,
+  "batch_wall_s": 3.893337593006436,
+  "concurrency": 4,
+  "failed": 0,
+  "label": "after",
+  "latency_p50_ms": 1005.6222199928015,
+  "latency_p95_ms": 1033.6539540003287,
+  "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+  "metric_generation_delta": 571.0,
+  "n_requests": 16,
+  "ok": 16,
+  "peak_kv_fraction": 0.025957446808510642,
+  "peak_running": 4.0,
+  "peak_waiting": 0.0,
+  "request_avg_tok_s_mean": 36.836512745204985,
+  "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+  "total_completion_tokens": 571,
+  "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+}

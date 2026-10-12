@@ -1,0 +1,18 @@
+{
+  "aggregate_completion_tokens": 6144,
+  "aggregate_completion_tokens_per_s": 77.63847738937199,
+  "arm": "B1_GENESIS",
+  "batch_wall_s": 79.136018719,
+  "concurrency": 2,
+  "failed_or_abstained_or_over_budget": 8,
+  "inter_request_tokens_per_s2": null,
+  "inter_request_tokens_per_s2_reason": "concurrent per-item calls cannot define sequential request-midpoint derivatives; use Lane A per-request collector",
+  "items": 8,
+  "items_per_s": 0.1010917674340781,
+  "latency_p50_ms": 19785.572982,
+  "latency_p95_ms": 19794.918311,
+  "model_calls_declared_upper_bound": 24,
+  "model_calls_observed": 24,
+  "successful_parsed_within_budget": 0,
+  "token_count_status": "OBSERVED_USAGE"
+}

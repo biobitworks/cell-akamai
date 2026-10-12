@@ -1,0 +1,68 @@
+{
+  "rows": [
+    {
+      "batch_wall_s": 8.365097284317017,
+      "concurrency": 1,
+      "failed": 0,
+      "latency_p95_ms": 1070.694428999559,
+      "measurement": "usage_completion_tokens / unrounded batch_wall_s",
+      "ok": 8,
+      "raw_sha256": "2fb32588cb35bf4314c93161ab9de191f41f917867893d490fd8a4188e071d0d",
+      "requests": 8,
+      "throughput_tok_s": 38.254187503585854,
+      "token_count_status": "OBSERVED_USAGE",
+      "ttfc_p50_ms": 62,
+      "ttfc_p95_ms": 69,
+      "wall_s": 8.4
+    },
+    {
+      "batch_wall_s": 4.282070875167847,
+      "concurrency": 2,
+      "failed": 0,
+      "latency_p95_ms": 1073.6833980045049,
+      "measurement": "usage_completion_tokens / unrounded batch_wall_s",
+      "ok": 8,
+      "raw_sha256": "3124c7119445d8839698f611bcc24a886c17085402a237ae8009b9066a927e86",
+      "requests": 8,
+      "throughput_tok_s": 74.73019698382662,
+      "token_count_status": "OBSERVED_USAGE",
+      "ttfc_p50_ms": 76,
+      "ttfc_p95_ms": 77,
+      "wall_s": 4.3
+    },
+    {
+      "batch_wall_s": 4.494198322296143,
+      "concurrency": 4,
+      "failed": 0,
+      "latency_p95_ms": 1164.0906730026472,
+      "measurement": "usage_completion_tokens / unrounded batch_wall_s",
+      "ok": 16,
+      "raw_sha256": "be7ee525336f3950272d2b985a25016c4d69f3aca1add4645266ea1487087d07",
+      "requests": 16,
+      "throughput_tok_s": 142.85083878363295,
+      "token_count_status": "OBSERVED_USAGE",
+      "ttfc_p50_ms": 124,
+      "ttfc_p95_ms": 128,
+      "wall_s": 4.5
+    },
+    {
+      "batch_wall_s": 4.776806354522705,
+      "concurrency": 8,
+      "failed": 0,
+      "latency_p95_ms": 1261.6051229997538,
+      "measurement": "usage_completion_tokens / unrounded batch_wall_s",
+      "ok": 32,
+      "raw_sha256": "4669c152607438ec90560b79fd8bdf726eef7709876f27d08d9450865fe4ea12",
+      "requests": 32,
+      "throughput_tok_s": 269.0081834243407,
+      "token_count_status": "OBSERVED_USAGE",
+      "ttfc_p50_ms": 109,
+      "ttfc_p95_ms": 227,
+      "wall_s": 4.8
+    }
+  ],
+  "source_loadtest_sha256": "22fb5acb30a2b284e09f86223c10c76d33841089dba4af70ba26ac3dc910b459",
+  "source_sha": "454b43269216c1f92dd8d7e2711649e38cb888cb",
+  "status": "OBSERVED",
+  "workload": "original Module07 loadtest._prompt input_tokens\u2248256, max_output_tokens=128; bounded c=[1,2,4,8]; BF16 target"
+}

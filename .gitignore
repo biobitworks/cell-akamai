@@ -15,3 +15,9 @@ kubeconfig*
 
 # Private recovery material and local signing keys
 private/
+.venv/
+*.zip
+.env*
+checkpoints/
+*.safetensors
+*.bin

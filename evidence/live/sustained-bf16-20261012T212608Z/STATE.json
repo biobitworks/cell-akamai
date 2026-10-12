@@ -1,0 +1,6 @@
+{
+  "completed_windows": 0,
+  "expected_windows": 48,
+  "run_id": "sustained-bf16-20261012T212608Z",
+  "state": "FAILED_PREFLIGHT_NO_INFERENCE"
+}

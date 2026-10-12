@@ -1,0 +1,52 @@
+{
+  "checked_at_utc": "2026-10-12T21:27:39.908113+00:00",
+  "sources": [
+    {
+      "kind": "dataset",
+      "repo_id": "insilicomedicine/longebench",
+      "revision": "0b6bab2ac5de29b0ad4fcbf062022a6b1c742e9f",
+      "gated": false,
+      "license": "cc-by-nc-4.0",
+      "source_url": "https://huggingface.co/datasets/insilicomedicine/longebench",
+      "state": "METADATA_VERIFIED_NO_GPU_EXECUTION"
+    },
+    {
+      "kind": "model",
+      "repo_id": "insilicomedicine/longevity-llm",
+      "revision": "5f1c2d482c7758fa073a2e819b08c4d5acd42d70",
+      "gated": false,
+      "license": "cc-by-nd-4.0",
+      "source_url": "https://huggingface.co/insilicomedicine/longevity-llm",
+      "state": "METADATA_VERIFIED_NO_GPU_EXECUTION"
+    },
+    {
+      "kind": "model",
+      "repo_id": "insilicomedicine/Qwen3-0.6B-Longevity",
+      "revision": "bffdda93f7f228280c375db8e7078162d9446a4c",
+      "gated": false,
+      "license": "cc-by-nd-4.0",
+      "source_url": "https://huggingface.co/insilicomedicine/Qwen3-0.6B-Longevity",
+      "state": "METADATA_VERIFIED_NO_GPU_EXECUTION"
+    },
+    {
+      "kind": "model",
+      "repo_id": "insilicomedicine/Qwen3-1.7B-Longevity",
+      "revision": "4024a47b516a9fafdf0255b7b6486adb85f5978b",
+      "gated": false,
+      "license": "cc-by-nd-4.0",
+      "source_url": "https://huggingface.co/insilicomedicine/Qwen3-1.7B-Longevity",
+      "state": "METADATA_VERIFIED_NO_GPU_EXECUTION"
+    },
+    {
+      "kind": "dataset",
+      "repo_id": "insilicomedicine/URSA-benchmarking-sets",
+      "revision": "42fd2f24df04e2b24836a3019342f396e06c1209",
+      "gated": false,
+      "license": "apache-2.0",
+      "source_url": "https://huggingface.co/datasets/insilicomedicine/URSA-benchmarking-sets",
+      "state": "METADATA_VERIFIED_NO_GPU_EXECUTION"
+    }
+  ],
+  "benchmark_training_authorized": false,
+  "model_deployment_authorized": false
+}

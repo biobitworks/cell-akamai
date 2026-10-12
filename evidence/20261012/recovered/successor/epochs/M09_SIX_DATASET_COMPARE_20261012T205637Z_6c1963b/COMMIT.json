@@ -1,0 +1,41 @@
+{
+  "deployment": {
+    "args": [
+      "--model=Qwen/Qwen3-4B",
+      "--download-dir=/models",
+      "--tensor-parallel-size=1",
+      "--gpu-memory-utilization=0.7",
+      "--max-model-len=8192",
+      "--max-num-seqs=64",
+      "--host=0.0.0.0",
+      "--port=8000",
+      "--reasoning-parser=qwen3",
+      "--enable-auto-tool-choice",
+      "--tool-call-parser=hermes"
+    ],
+    "generation": 2,
+    "image": "vllm/vllm-openai:v0.20.2",
+    "image_status": "DECLARED_NOT_DIGEST_ATTESTED",
+    "model_flag": "Qwen/Qwen3-4B",
+    "namespace": "workshop-s05",
+    "resource_version": "1358157",
+    "resources": {
+      "limits": {
+        "nvidia.com/gpu": "1"
+      },
+      "requests": {
+        "cpu": "2",
+        "memory": "8Gi",
+        "nvidia.com/gpu": "1"
+      }
+    }
+  },
+  "evaluator_oracle_used_before_answer_commit": false,
+  "model": "Qwen/Qwen3-4B",
+  "n_items": 8,
+  "no_training_claim": true,
+  "rows_sha256": "b043ec352d357f0518b7e57a671df2c7b4861dc91daa1a8aa6bc88bf191ba124",
+  "schema": "CAKM_SIX_DATASET_LIVE_PILOT_V1",
+  "source_dataset_local_root": "1e3077c462581762394248840c2ebf2c81fab2e60d76cc1ca3df90ded7a2c7e4",
+  "status": "RAW_ANSWERS_COMMITTED_UNSCORED"
+}

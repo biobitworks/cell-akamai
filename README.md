@@ -69,3 +69,9 @@ Each run creates `runs/akamai-<timestamp>-<random>/` with:
 **Lane B exchange:** `schemas/lane_b_results.schema.json`, documented in `docs/LANE_B_HANDOFF.md`.
 
 **Model comparison:** run notebook separately for each actually served model, freezing prompt, sampler interval, max completion tokens, and recording weight/tokenizer IDs if available. Do not assume switching the notebook's `MODEL_NAME` switches the GPU server model.
+
+## Recovered execution evidence
+
+[Module 7–9 receipts and original publication context](docs/RECOVERED_PUBLICATION_README.md) · [Coverage and custody audit](docs/EVIDENCE_COVERAGE_AUDIT.md)
+
+Recovered answer commitment discrepancies remain unresolved; bundled scores are not admitted by this audit. Private raw outputs and recovery archives are excluded.

@@ -1,0 +1,14 @@
+{
+  "errors": [
+    {
+      "message": "Port-forward exited; check pod and service readiness",
+      "type": "RuntimeError"
+    }
+  ],
+  "executed_sha256": "f7189e768bac65809c59b799f977af40b48f3c1b150c703bb470c108b69c76eb",
+  "notebook": "81_m09_agent_and_daisy_EXECUTED.ipynb",
+  "original_sha256": "17eec7518c81c992c7d92ed6095686bebf161dc77c4478f3161ba9bc3e414d6e",
+  "raw_responses_printed": false,
+  "serving_policy_authorized": false,
+  "state": "FAILED"
+}

@@ -1,0 +1,5 @@
+{
+  "failure": "STOP_ON_CELL_FAILURE: committed failed cell retained; later cells NOT_TESTED",
+  "ledger_sha256": "a2bb58451067c731f38a2d33758951f1e3090db2b7b809bfdde08327fcfbc85d",
+  "status": "STOPPED_ON_FAILURE"
+}

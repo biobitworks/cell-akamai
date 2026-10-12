@@ -1,0 +1,31 @@
+{
+  "files": {
+    "README.md": "c6bd9e478c100efbf50d71df8f930efa7bb7b7b010e7696d0d90ebdc9d974e1f",
+    "cell_akamai_handoff.py": "153fbb517fdd6a2c30b265921040c83b6c4ab96fb8836d3df07128b818d81d1d",
+    "data/SIX_DATASET_VERIFICATION.json": "df93d1ae43043c1f3f17899812a531ad7116e90786d81463ed34c7b88745e7d7",
+    "data/eca_pilot_inputs_v1.jsonl": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "data/fcg/evaluator.jsonl": "16efa87454f510e46e3366ff64d514c45cec2c2c6f17d7b02ff640fe8e352a38",
+    "data/fcg/genesis.jsonl": "5e6785925bc2a2e3caa087ddbabc289458962846dd4c4e121f9c00eb9fd09d9e",
+    "data/fcg/vita_daisy.jsonl": "04f51ddb5660bee1cd07969da0ed4c6bb82b7025bfeccb457a75973938cd7575",
+    "data/fco/evaluator.jsonl": "b66eb57b31bc84ad0482fe798585afd7051c0d210b7c55b3c7d54ea486260b8f",
+    "data/fco/genesis.jsonl": "75f89dc1638800c9d073fcb3cf7c9401374c44d9d3d0ee2c8a2f4a30cecd026e",
+    "data/fco/vita_daisy.jsonl": "b54e23a2b7a834efa8a374bcf2d45a21bbce466b4ee43fdd51b19859bdce237b",
+    "data/original/evaluator.jsonl": "8b269181d9c8e7f759c262d4357652192b28d6aa4b4635aa19b9862d8489938b",
+    "data/original/genesis.jsonl": "c32ac8a241e9ed18c06c6c2c654ea0a1060ac5aa8287c2c484099362700e84f3",
+    "data/original/vita_daisy.jsonl": "83be6187b2975524234a13bcf8cbab54e861224d0e1ac6fb1aa4476a3b1ea800",
+    "notebooks/80_m08_tune_before_after.ipynb": "3ce4d291e32bdcf2c84275c49c5763c7180d6bfe11992ea3679c463867c37369",
+    "notebooks/81_m09_agent_and_daisy.ipynb": "17eec7518c81c992c7d92ed6095686bebf161dc77c4478f3161ba9bc3e414d6e",
+    "notebooks/82_verify_and_export.ipynb": "31e0d09eef121ec973663b7d880cd8649c096deb27eae677a223f465b7737e9a",
+    "notebooks/83_six_dataset_offline_verify.ipynb": "62861fac2c47d1d8058d2c58b858ae1da058106b1747185c1a641560cd2fdc41",
+    "notebooks/84_six_dataset_akamai_paired.ipynb": "260d7807f7a51d9baeda9fdc3187a94b7e5690fbd1aaf8d21c3c328f361df9d0",
+    "six_dataset_fco_fcg.py": "7f71167b9f74c55adf74919d47a0d17452eb41761d3baaff3826217c57d7cf58",
+    "tests/test_handoff.py": "d99d83b886dd60080342c64f3665c3c627fc69b3953da1e7e8be51dc4fe570e7",
+    "tests/test_six_dataset.py": "1408b6ee462a7b799b85943e7ed13db42eedcfb63f6dcac4bee84eab31bdae14"
+  },
+  "historical_pretransform_recovery": "NOT_VERIFIED",
+  "local_construction": "1e3077c462581762394248840c2ebf2c81fab2e60d76cc1ca3df90ded7a2c7e4",
+  "model_inference": "NOT_TESTED",
+  "predecessor_zip_sha256": "a974e8a30ef47e227ddd3d1adcdcb4f61e0867aa773d92de4a013ff866366bf0",
+  "project_MMR": "NOT_COMPUTED",
+  "schema": "CAKM_UPLOAD_MANIFEST_V2"
+}

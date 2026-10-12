@@ -1,0 +1,14 @@
+{
+  "schema": "CAKM_QUEUE_FAILURE_V1",
+  "run_id": "sustained-bf16-20261012T213600Z",
+  "predecessor_run_id": "sustained-bf16-20261012T212924Z",
+  "source_commit": "29c866e96ad365aa375844e60b1fe577e1c7a283",
+  "state": "FAILED_LAUNCHER_BEFORE_INFERENCE",
+  "exception_type": "TypeError",
+  "reason": "Generated queue treated a string root as a pathlib.Path during runner launch. Replaced by an argparse-based launcher with regression tests.",
+  "completed_windows": 0,
+  "expected_windows": 48,
+  "inference_submitted": false,
+  "recorded_utc": "2026-10-12T21:46:24.624849+00:00",
+  "next_action": "Prioritize serialized Strands integration canary; queue remains stopped."
+}
