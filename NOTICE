@@ -1,0 +1,13 @@
+Copyright 2026 Cell-Akamai contributors.
+
+Unless a file or component carries a separate notice, original software in this
+repository is licensed under the Apache License, Version 2.0 (see LICENSE).
+Original documentation, notebook narrative, and other non-software material is
+licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+International (see LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt).
+
+These notices apply only to material the contributors are entitled to license.
+They do not grant rights to third-party material, model outputs, trademarks,
+names, or dependencies. Third-party items retain their own terms; see
+docs/THIRD_PARTY_NOTICES.md. No source files from Akamai's workshop repository
+are intentionally bundled here.
