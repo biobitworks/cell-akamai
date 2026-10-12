@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout with complete history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -47,12 +47,14 @@ jobs:
       - name: Inspect reachable Git history without logging secret values
         shell: bash
         run: |
+          set +e
           set -uo pipefail
           /tmp/cell-audit-bin/gitleaks git \
             --log-opts='--all' --redact \
             --report-format=json --report-path=/tmp/cell-akamai-gitleaks.json \
             --no-banner . >/tmp/cell-akamai-gitleaks-stdout.txt 2>&1
           code=$?
+          set -e
           export GITLEAKS_EXIT_CODE="$code"
           python3 - <<'PY'
           import json, os, pathlib, collections
