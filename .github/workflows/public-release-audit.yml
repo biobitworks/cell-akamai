@@ -1,0 +1,119 @@
+name: Public history and release audit
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/public-release-audit.yml"
+      - "LICENSE*"
+      - "NOTICE"
+      - "docs/THIRD_PARTY_NOTICES.md"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reachable-history-secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with complete history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fetch all published branch heads
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*' '+refs/tags/*:refs/tags/*' --prune
+          echo "Reachable commits across fetched refs: $(git rev-list --all --count)"
+
+      - name: Install pinned Gitleaks with release checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz \
+            -o /tmp/gitleaks.tgz
+          printf '%s  %s\n' \
+            '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb' \
+            /tmp/gitleaks.tgz | sha256sum -c -
+          mkdir -p /tmp/cell-audit-bin
+          tar -xzf /tmp/gitleaks.tgz -C /tmp/cell-audit-bin gitleaks
+          /tmp/cell-audit-bin/gitleaks version
+
+      - name: Inspect reachable Git history without logging secret values
+        shell: bash
+        run: |
+          set -uo pipefail
+          /tmp/cell-audit-bin/gitleaks git \
+            --log-opts='--all' --redact \
+            --report-format=json --report-path=/tmp/cell-akamai-gitleaks.json \
+            --no-banner . >/tmp/cell-akamai-gitleaks-stdout.txt 2>&1
+          code=$?
+          export GITLEAKS_EXIT_CODE="$code"
+          python3 - <<'PY'
+          import json, os, pathlib, collections
+          p = pathlib.Path('/tmp/cell-akamai-gitleaks.json')
+          try:
+              findings = json.loads(p.read_text()) if p.exists() and p.stat().st_size else []
+              if not isinstance(findings, list):
+                  raise ValueError('Unexpected JSON report shape')
+              rules = dict(collections.Counter(x.get('RuleID', 'unknown') for x in findings))
+              result = {
+                  'tool': 'gitleaks', 'version': 'v8.30.1',
+                  'scope': 'all refs fetched with checkout fetch-depth 0 and explicit branch/tag fetch',
+                  'reachable_commits': int(os.popen('git rev-list --all --count').read().strip()),
+                  'finding_count': len(findings),
+                  'rule_counts': rules,
+                  'exit_code': int(os.environ['GITLEAKS_EXIT_CODE']),
+                  'secret_values_included': False,
+                  'note': 'False positives require manual verification; zero findings does not prove zero secrets.',
+              }
+          except (ValueError, OSError, json.JSONDecodeError) as e:
+              result = {'state':'SCAN_REPORT_ERROR','error_type': type(e).__name__}
+          # Intentionally do NOT print raw Gitleaks output, matches, values or report bytes.
+          print(json.dumps(result, sort_keys=True))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as w:
+              w.write('### Full history audit\n\n```json\n'+json.dumps(result, indent=2)+'\n```\n')
+          PY
+          if [ "$code" -gt 1 ]; then
+            echo "::error::Gitleaks scanner execution error (code $code)"
+            exit "$code"
+          fi
+          if [ "$code" -eq 1 ]; then
+            echo "::warning::Gitleaks candidates require local, private triage; values withheld"
+            exit 1
+          fi
+
+      - name: Check license scope and current artifact inventory
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, subprocess
+          req = ['LICENSE', 'LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt',
+                 'LICENSES.md', 'NOTICE', 'docs/THIRD_PARTY_NOTICES.md']
+          missing = [x for x in req if not Path(x).is_file()]
+          files = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          files = [f for f in files if f]
+          notebooks = [f for f in files if f.endswith('.ipynb')]
+          binaries = [f for f in files if f.endswith(('.safetensors','.bin','.gguf','.pt','.pth','.pem','.key','.p12','.kubeconfig'))]
+          report = {
+              'license_files_present': not missing,
+              'missing_license_paths': missing,
+              'tracked_files': len(files),
+              'tracked_notebooks': len(notebooks),
+              'model_weight_or_key_like_paths': binaries,
+              'third_party_clearance': 'MANUAL_FILE_BY_FILE_REVIEW_REQUIRED',
+              'history_scan_is_not_license_clearance': True,
+          }
+          print(json.dumps(report, sort_keys=True))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as w:
+              w.write('### License and current inventory checks\n\n```json\n'+json.dumps(report,indent=2)+'\n```\n')
+          if missing:
+              raise SystemExit(1)
+          PY
