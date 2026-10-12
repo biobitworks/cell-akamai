@@ -1,0 +1,11 @@
+{
+ "schema":"cell-akamai.sources.v1",
+ "primary_references":[
+  {"name":"Akamai inference workshop","url":"https://github.com/akamai-developers/akamai-workshop-ai-inference","pinned_commit":"454b43269216c1f92dd8d7e2711649e38cb888cb","reuse":"Use modules unchanged as benchmark upstream"},
+  {"name":"Cell-Akamai Lane A","url":"https://github.com/biobitworks/cell-akamai/pull/3","evidence":"Existing vLLM custody notebook and API measurement"},
+  {"name":"Cell-Akamai Lane B","url":"https://github.com/biobitworks/cell-akamai/pull/5","evidence":"Claude proxy arm definitions and draft ECA preregistration"},
+  {"name":"SciFact original","url":"https://github.com/allenai/scifact","archive":"https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz","reuse":"NOT_ADMITTED_PENDING_LICENSE_RECONCILIATION"}
+ ],
+ "licensing_warning":"Original SciFact repo distinguishes CC BY 4.0 claim annotations and ODC-By 1.0 abstracts; Hugging Face dataset card describes CC BY-NC 2.0. Reconcile before commercial reuse or redistribution.",
+ "content_dedup_causality":"sha256 identity only. FCG typed edges declaration, not causality."
+}

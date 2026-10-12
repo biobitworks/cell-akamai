@@ -1,0 +1,84 @@
+{
+  "schema": "cell-akamai.eca.dataset_manifest.v1",
+  "generator_contract": "matches Claude lane_b/harness/items.py numpy default_rng per seed",
+  "task": "ECA_NEXT_ROW",
+  "rules": [
+    30,
+    90,
+    110,
+    184
+  ],
+  "width": 8,
+  "split_admission": {
+    "calibration": "TUNING_ONLY",
+    "pilot": "PILOT_NONCONFIRMATORY",
+    "holdout_proposed": "UNFROZEN_NO_TUNING"
+  },
+  "oracle_contract": "periodic Wolfram neighborhood L*4+C*2+R",
+  "splits": {
+    "calibration": {
+      "items_sha256": "c3d09d013301fe1b86d1e718cf1eb539fa7744bc667e13056a315ffd9a9a2f8b",
+      "oracle_sha256": "e95bf834e80e5f711e9288233b7d12fe6ecda37de21449b44f402bcdf3fa9e9b",
+      "n_items": 32,
+      "initial_seed": 47000,
+      "next_seed_exclusive": 47032,
+      "skipped_duplicate_seeds": [],
+      "n_rules": 4
+    },
+    "pilot": {
+      "items_sha256": "47b3a932323b359e9cec70a6b5bd7193e9c4641910060ad235e8b8acb754439b",
+      "oracle_sha256": "e26ce68178e855d32948103129a5b9d5db6d24f4820b16be9d767113de9981e4",
+      "n_items": 32,
+      "initial_seed": 50000,
+      "next_seed_exclusive": 50032,
+      "skipped_duplicate_seeds": [],
+      "n_rules": 4
+    },
+    "holdout_proposed": {
+      "items_sha256": "ec17177113f4212f679b2ffba4c8c50ef5342530e4795c5d6387328b6a57bf7a",
+      "oracle_sha256": "4ebc3ae22e421d3d6baf8b3721139021801b2f251f822121d0164d4a1a1eec3c",
+      "n_items": 64,
+      "initial_seed": 51000,
+      "next_seed_exclusive": 51071,
+      "skipped_duplicate_seeds": [
+        {
+          "rule": 30,
+          "seed": 51007,
+          "duplicate_state": "01001001"
+        },
+        {
+          "rule": 30,
+          "seed": 51010,
+          "duplicate_state": "10101000"
+        },
+        {
+          "rule": 90,
+          "seed": 51025,
+          "duplicate_state": "10001110"
+        },
+        {
+          "rule": 90,
+          "seed": 51030,
+          "duplicate_state": "10001001"
+        },
+        {
+          "rule": 110,
+          "seed": 51047,
+          "duplicate_state": "11111111"
+        },
+        {
+          "rule": 184,
+          "seed": 51054,
+          "duplicate_state": "11100111"
+        },
+        {
+          "rule": 184,
+          "seed": 51066,
+          "duplicate_state": "11100111"
+        }
+      ],
+      "n_rules": 4
+    }
+  },
+  "overlap_policy": "No identical (rule,state) pairs across splits; deterministic skipped seeds recorded."
+}

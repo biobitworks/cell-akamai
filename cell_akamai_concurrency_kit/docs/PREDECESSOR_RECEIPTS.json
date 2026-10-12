@@ -1,0 +1,8 @@
+{
+  "schema":"cell-akamai.predecessor_intake.v1",
+  "states":[
+    {"id":"EXP-AKAMAI-TOKEN-001","source_zip_sha256":"73c2c4ff7deb5c3e30b16f73ef6754c3b102cb0da8e4705a7ac8d485b7d38dad","n_requests":4,"server_completion_tokens_per_request":[68,68,68,68],"claim":"measured original Qwen3-4B request kinetics; internal integrity verified","external_attestation":"UNKNOWN","mmr":"NOT_COMMITTED"},
+    {"id":"qwen_original_reference","n_completion_tokens_server_reported":451,"chunk_counts_recorded_separately":true,"speculative_configuration":"OFF_USER_REPORTED","source_zip":"NOT_AVAILABLE_IN_THIS_SESSION","claim":"baseline predecessor only","external_attestation":"UNKNOWN","mmr":"NOT_COMMITTED"}
+  ],
+  "not_inferred":["FP8 improvement","speculative decoding speedup","concurrency scaling","Genesis/DAISY accuracy","signatures","MMR committed","Anticube","Delta G star"]
+}
