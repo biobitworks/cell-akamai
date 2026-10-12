@@ -39,5 +39,39 @@ def test_fresh_agent_and_trace():
     assert 'input_sha256' in logs[0] and 'ANSWER:' not in str(logs)
     assert logs[0]['tool_enabled'] is False
 
+def test_failed_agent_preserves_sdk_usage_and_partial_hash():
+    import hashlib
+    calls=[]; logs=[]
+    class FailingAgent:
+        event_loop_metrics=SimpleNamespace(accumulated_usage={'inputTokens':11,'outputTokens':32,'totalTokens':43})
+        messages=[{'role':'assistant','content':[{'text':'partial answer'}]}]
+        def __call__(self, prompt):
+            raise RuntimeError('bounded response stopped')
+    def factory(cfg, sys, role, allow_tool):
+        calls.append((role,allow_tool))
+        return FailingAgent()
+    chat=make_chat(CFG, agent_factory=factory, trace_sink=logs.append)
+    msg=[{'role':'system','content':'task'}, {'role':'user','content':'state?'}]
+    with pytest.raises(RuntimeError) as err:
+        chat(msg)
+    assert err.value.strands_accumulated_usage == {'inputTokens':11,'outputTokens':32,'totalTokens':43}
+    assert logs[0]['completion_tokens'] == 32
+    assert logs[0]['accumulated_usage'] == err.value.strands_accumulated_usage
+    assert logs[0]['output_sha256'] == hashlib.sha256(b'partial answer').hexdigest()
+    assert logs[0]['failure_type'] == 'RuntimeError'
+
+def test_real_openai_model_request_shape_offline():
+    pytest.importorskip('strands.models.openai')
+    from module9_antigents.bridge import default_agent_factory
+    cfg={**CFG,'extra_body':{'chat_template_kwargs':{'enable_thinking':False}}}
+    agent=default_agent_factory(cfg,'system','actor',False)
+    model=agent.model
+    message=[{'role':'user','content':[{'text':'Say hello.'}]}]
+    request=model.format_request(message,None,system_prompt='system')
+    assert 'tools' not in request
+    assert request['extra_body']==cfg['extra_body']
+    assert request['max_tokens']==CFG['max_tokens_per_call']
+    assert model.client_args['max_retries']==0
+
 def test_config_rejects_missing_bound():
     with pytest.raises(ValueError): make_chat({'base_url': CFG['base_url'],'model':CFG['model']})

@@ -22,7 +22,7 @@ spec:
           # Workshop only. In production build a pinned, signed image instead of pip at boot.
           command: ["sh", "-c"]
           args:
-            - "pip install --disable-pip-version-check 'strands-agents[openai]' && cd /app && python -m module9_antigents.service"
+            - "pip install --disable-pip-version-check -r /app/module9_antigents/requirements.txt && cd /app && python -m module9_antigents.service"
           env:
             - name: VLLM_BASE_URL
               value: http://vllm:8000/v1

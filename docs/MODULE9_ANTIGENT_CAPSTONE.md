@@ -1,6 +1,6 @@
 # Module 09 — Strands actor / antigent capstone (2026-10-12)
 
-**State: IMPLEMENTED OFFLINE; 0 real Strands/GPU invocations.** Source: Akamai workshop module 9 at `akamai-developers/akamai-workshop-ai-inference@454b43269216c1f92dd8d7e2711649e38cb888cb`. Its capstone uses a *plain OpenAI client*, a Kubernetes Deployment and Service, a read-only GPU-pricing tool, port forwarding and six concurrent agent questions. Our candidate does **not** modify its manifest, endpoint, agent code or deployment; preserve it as the baseline.
+**State: IMPLEMENTED OFFLINE; one bounded Strands/vLLM compatibility canary passed; no benchmark executed.** The canary verified one tool-free OpenAI-compatible request against the existing hosted Qwen service using pinned Strands/OpenAI SDK versions. Detailed request and usage receipts remain private. Source: Akamai workshop module 9 at `akamai-developers/akamai-workshop-ai-inference@454b43269216c1f92dd8d7e2711649e38cb888cb`. Its capstone uses a *plain OpenAI client*, a Kubernetes Deployment and Service, a read-only GPU-pricing tool, port forwarding and six concurrent agent questions. The original workshop manifest, endpoint, agent code and deployment remain the baseline and are unchanged.
 
 ## Scientific question
 
@@ -22,14 +22,14 @@ The run driver imports PR #7's existing `tools/concurrency/run_concurrency.py` h
 
 ## Reproducible execution (requires current PR #5 and #7 isolated checkouts)
 
-Install on an authorized workstation or workshop Jupyter kernel:
+Install on an authorized workstation or workshop Jupyter kernel using the pinned compatibility-canary dependencies:
 
 ```bash
-python -m pip install 'strands-agents[openai]' requests numpy
+python -m pip install -r module9_antigents/requirements.txt
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=. python -m pytest -q module9_antigents/tests
 ```
 
-Confirm that the served Qwen model supports the Strands OpenAI-compatible provider. Strands SDK may change; pin the installed version in execution receipts. Use an explicit data config with `base_url: http://vllm:8000/v1`, `model: Qwen/Qwen3-4B`, `max_tokens_per_call`, `item_token_cap`, `item_call_cap`, `temperature: 0`, `decode_seed`, and `api_key_env` (env variable name only). Never commit secrets or full raw responses. Verify served model with `/v1/models`; do not infer precision from model name alone.
+Use an explicit data config with `base_url: http://vllm:8000/v1`, `model: Qwen/Qwen3-4B`, `max_tokens_per_call`, `item_token_cap`, `item_call_cap`, `temperature: 0`, `decode_seed`, and `api_key_env` (env variable name only). For Qwen3, `extra_body: {"chat_template_kwargs":{"enable_thinking":false}}` is available to control thinking tokens through the OpenAI-compatible SDK request. Never commit secrets or full raw responses. Verify served model with `/v1/models`; do not infer precision from model name alone.
 
 ```bash
 # PREVIEW, no inference
@@ -84,6 +84,7 @@ kubectl -n "$NS" create configmap cell-akamai-antigent-code \
  --from-file=module9_antigents/bridge.py \
  --from-file=module9_antigents/service.py \
  --from-file=module9_antigents/__init__.py \
+ --from-file=module9_antigents/requirements.txt \
  --dry-run=client -o yaml | kubectl -n "$NS" apply -f -
 # Before apply, replace SET_VERIFIED_SERVED_MODEL with actual /v1/models value
 # in a reviewed COPY of manifests/module9-antigent.yaml.
