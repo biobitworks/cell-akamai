@@ -8,7 +8,7 @@ from pathlib import Path
 HTML = '''<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Cell-Akamai — controlled inference concurrency</title>
 <style>body{background:#0b1221;color:#e4edf8;font:14px system-ui,sans-serif;margin:0}main{max-width:1100px;margin:25px auto;padding:15px}h1{font-size:25px}h2{font-size:18px}small{color:#a8bbcc}.section{border:1px solid #293c53;border-radius:12px;background:#141e31;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.metric{background:#1b2a43;padding:12px;border-radius:8px}table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px;border-bottom:1px solid #304158} .scroll{overflow:auto}svg{width:100%;height:auto;max-height:310px}strong{color:#8fe3d0}button{padding:7px;border:1px solid #345;background:#213049;color:#fff} .empty{padding:30px;text-align:center;color:#bac9d4}</style></head>
-<body><main><h1>Cell-Akamai · concurrency / science inference</h1>
+<body><main><h1>Cell-Akamai · concurrency / science inference</h1><p><a href="/evidence" style="color:#8fe3d0">Open the evidence dashboard (Akamai GPU runs, six datasets, B0–B3, Modules 8/9) →</a></p>
 <p>Workshop modules 05–09 · Frozen ECA pilot · Genesis policy proxy vs DAISY challenge · Append-only receipts</p>
 <div class="section"><div class="grid"><div class="metric">Dashboard ingestion <strong id="state">LOADING</strong></div><div class="metric">Validated cells <strong id="cells">—</strong></div><div class="metric">Signed/MMR <strong>NOT_SIGNED / NOT_COMMITTED</strong></div><div class="metric">Scientific improvement <strong>NOT_ESTABLISHED</strong></div></div><p><small>Imported Akamai Qwen reference receipts are separate, not concurrency or FP8/speculative results. Tokens/s uses actual endpoint usage. Streamed chunks are never tokenizer tokens. Concurrent tokens/s² is undefined here; sequential Lane A derivative is a distinct measure.</small></p></div>
 <div class="section"><h2>Aggregate completion-token throughput (tokens/s) versus concurrency</h2><div id="throughput" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
@@ -71,6 +71,13 @@ def serve(root, host='127.0.0.1', port=8765):
         def do_GET(self):
             if self.path == '/':
                 body=HTML.encode();typ='text/html; charset=utf-8'
+            elif self.path in ('/evidence', '/evidence/'):
+                body=(Path(__file__).resolve().parents[1]/'dashboard'/'evidence.html').read_bytes();typ='text/html; charset=utf-8'
+            elif self.path in ('/evidence.json', '/evidence/evidence.json'):
+                vs=sorted((Path(__file__).resolve().parents[2]/'evidence'/'dashboard').glob('DASHBOARD_EVIDENCE_INDEX.v*.json'),key=lambda q:int(q.stem.split('.v')[-1]))
+                if not vs:
+                    self.send_error(404);return
+                body=vs[-1].read_bytes();typ='application/json'
             elif self.path == '/data.json':
                 body=json.dumps(load_sanitized(root)).encode();typ='application/json'
             else:
