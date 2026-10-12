@@ -1,27 +1,25 @@
-# Cell-Akamai HackerSquad video (about 3 minutes)
+# Strands-first recording script — about three minutes
 
-Use the dashboard and GitHub PR #12 as screen cues. Keep the browser on sanitized aggregate views and public repository pages. This script is written to speak as-is; bracketed text is a screen cue, not narration.
+[Face camera, then show PR #10: https://github.com/biobitworks/cell-akamai/pull/10]
 
-**[Face camera; title card or project page]**
+Hi, I’m Byron. Cell-Akamai is a Strands-based agent and antigent prototype designed to make scientific inference auditable on infrastructure we control. Our central idea is to separate the actor that proposes an answer, the challenger that questions it, and the adjudicator that decides what to retain. A randomized challenger gives us a control for whether useful challenge adds value beyond extra inference.
 
-Hi, I’m presenting Cell-Akamai, an evidence-first prototype for evaluating language-model inference on an Akamai-hosted vLLM service. The project records workload details, token usage, latency, failures, configuration identity, and committed answers so that a run can be checked after it finishes. We used Python and Jupyter for the harness, Kubernetes to reach the existing Akamai service, pytest for accounting checks, and SHA-256 receipts for reproducibility. This is inference evaluation. We did not train model weights.
+[Show module9_antigents/bridge.py and run_capstone.py in PR #10]
 
-**[Show the dashboard’s sanitized aggregate results]**
+During the workshop, we implemented a Strands OpenAIModel bridge for OpenAI-compatible inference endpoints, with fresh context for each role call, token-usage accounting when the SDK provides it, and hash-only role traces. We added a preview-first capstone runner, separate plain-client and Strands runtime paths, and answer commitments before independent scoring. An optional HTTP service defines a bounded six-request concurrency limit. That service is implementation work, not a verified deployment.
 
-Here is a short, completed workload measurement. In a separate run of the original workshop Module 07 workload at concurrency eight, the service recorded 269.01 completion tokens per second, 1.262 seconds p95 request latency, and no failed HTTP requests. The workshop’s original counter counted streamed chunks; this result uses server-reported completion-token usage divided by measured batch time. These numbers describe that workload and run only. They do not show an improvement over a control.
+Seven local fixture tests passed for the Strands integration, and its review notebook executed offline. These tests check the scaffolding; they do not prove a real networked Strands request or tool call against Akamai. Those integration steps remain untested in our verified evidence.
 
-**[Show the B0–B3 table and retained failures]**
+[Show the sanitized dashboard at http://127.0.0.1:8766]
 
-We also tested a small synthetic ECA pilot. The results include failures: across the recovered BF16 pilot, all 128 items failed the parse or within-budget answer criteria. The fixture is synthetic and does not represent biological data. B1 is a Genesis proxy, and the arms had different call budgets and challenge information, so this pilot cannot establish that one approach is better. We preserve the negative result instead of treating it as a success.
+Separately, we did execute real inference workloads on the existing Akamai Qwen3-4B vLLM service. We ran sixteen BF16 concurrency cells across four policy arms and concurrency levels one, two, four and eight. These endpoint results validate execution and accounting, but they are not Strands runtime measurements.
 
-**[Show the offline verification receipt]**
+We preserved negative results: all 128 pilot items failed the parsing or answer-budget criteria. A separate original-workshop concurrency-eight run measured 269 completion tokens per second, 1.262 seconds p95 latency, and no HTTP failures. We corrected the distinction between streamed chunks and actual tokens. These are short pilots and do not establish a speedup or quality improvement.
 
-For reproducibility, the local verification checked three role datasets with 32 records each and confirmed that the FCO and FCG projections reconstruct the original fixture payloads exactly. These are data representation and provenance checks. They do not verify biological correctness or recover historical Genesis and Vita/DAISY model outputs.
+[Show PR #12 evidence and test index]
 
-**[Show GitHub PR #12, then the current run status]**
+We also verified exact reconstruction of three synthetic datasets across original, FCO and FCG representations, passed 42 additional offline tests, and published sanitized evidence and a dashboard. The synthetic fixtures are not biological observations. Local-model attempts are a separate track, not a matched hardware comparison.
 
-[Show tools/hour_scale/sustained.py and its unit tests briefly.] PR twelve tracks the longer evaluation implementation. Its current design allocates 48 five-minute windows across four eligible representations and configurations. The attempted start failed preflight before inference, so zero windows completed and the longer study remains pending. FP8 and speculative decoding are untested. The dashboard and receipts keep that boundary visible.
+Our next milestone is a real Strands request, followed by equal-budget plain-versus-Strands experiments and independent scoring of committed answers. Long-duration runs are incomplete. FP8, speculative decoding, Anticube and delta G star remain unverified or uncomputed. We have not trained weights.
 
-**[Show project page; face camera for close]**
-
-Longevity evaluation is a future, source-pinned design track. The Virtual Cell Challenge is separate future work; no submission is verified. Cell-Akamai’s contribution today is a reproducible inference workflow that records both measurements and failures. Thank you.
+Cell-Akamai’s contribution today is the Strands role-separated implementation plus real Akamai endpoint experiments and reproducible evidence. We make the boundary between implemented, tested, failed and not yet tested visible. Thank you.
