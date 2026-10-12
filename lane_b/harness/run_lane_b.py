@@ -29,12 +29,14 @@ def parse(text):
 
 
 def make_chat(cfg):
+    import os
     def chat(messages):
+        key = os.environ.get(cfg.get("api_key_env", ""), "")  # read at call time; never stored in config, answers or receipts
+        body = {"model": cfg["model"], "messages": messages, "temperature": cfg["temperature"],
+                "seed": cfg["decode_seed"], "max_tokens": cfg["max_tokens_per_call"], **cfg.get("extra_body", {})}
         t0 = time.monotonic()
         r = requests.post(cfg["base_url"].rstrip("/") + "/chat/completions", timeout=cfg.get("timeout_s", 300),
-                          headers={"Authorization": "Bearer " + cfg.get("api_key_env_value", "none")},
-                          json={"model": cfg["model"], "messages": messages, "temperature": cfg["temperature"],
-                                "seed": cfg["decode_seed"], "max_tokens": cfg["max_tokens_per_call"]})
+                          headers={"Authorization": "Bearer " + (key or "none")}, json=body)
         dt = time.monotonic() - t0
         r.raise_for_status()
         j = r.json()
