@@ -1,0 +1,6 @@
+{
+  "completed_windows": 0,
+  "exception_type": "AssertionError",
+  "run_id": "sustained-bf16-20261012T212608Z",
+  "state": "FAILED_PREFLIGHT_NO_INFERENCE"
+}
