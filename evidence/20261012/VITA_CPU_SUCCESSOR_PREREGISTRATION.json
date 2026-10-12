@@ -1,0 +1,18 @@
+{
+  "run_id": "AKAMAI-VITA-DAISY-CPU-SUCCESSOR-20261012T232000Z",
+  "source_sha": "1a160b3088b4d815b85a0fb2a33ac2157b3a0ba0",
+  "parent_checkpoint": "step_0008_model.pt",
+  "parent_sha256": "b5d109a8636c1f3c6e839e6621d96d8597101e4eb12790b80dcf700cc86bea6f",
+  "view_sha256": "74ba95e12bf7c01ca8155e77e8866a8589f598619347966733182a12edcd7786",
+  "device": "cpu",
+  "threads": 2,
+  "seed": 20261012,
+  "optimizer_steps": 8,
+  "batch_size": 64,
+  "lr": 5e-05,
+  "row_selection": "first 512 train rows sorted by row_id, reused development training; no test access",
+  "claim_scope": "bounded optimizer/custody engineering experiment; biological provenance not established for this view; no VCC quality claim",
+  "comparison": "before/after on same 320 development validation rows; not independent improvement evidence",
+  "requested_generation_metrics": "not applicable to three-head encoder; measure input ID positions/s with explicit padding-inclusive denominator",
+  "module8_9_scope": "separate future vLLM generation epochs; do not apply vLLM serving knobs to this CPU model"
+}
