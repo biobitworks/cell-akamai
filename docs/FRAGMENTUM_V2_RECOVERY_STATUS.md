@@ -34,3 +34,7 @@ These definitions describe the recovered DAISY fixture/training lineage only. Th
 5. Keep `NOT_TESTED`, `NOT_COMPUTED`, `UNKNOWN`, `NOT_RECOVERED`, and `FAILED` distinct. A successful manifest/hash check establishes custody only; it does not establish predictive validity or biological truth.
 
 **Next safe action:** recover and review the approved source manifest/license and Fragmentum v2 provider package, then run a manifest-only/read-only verification. Keep real-target predictor binding blocked until that verification and target mapping are complete. No training, SeedGraph mutation, or external publication is authorized by this status note.
+
+## Recovery update
+
+The exact full-store length table was recovered privately from Substrata Git commit `71f49cb5f6aa8527e69febd3d38f4af59f5fc180`: 20,493 positive integer accession lengths, SHA-256 `8e4caacd1f22628beb6a0d6e7734546e4572e0529688f282d0826403b0d425fc`. This resolves the missing table input; it does not establish availability of protein sequences, generated v2 partitions or the Cloudmer provider manifest. The three-entry seed table is insufficient. Earlier missing-path findings above describe the working checkout before this recovery.

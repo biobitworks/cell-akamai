@@ -1,0 +1,31 @@
+{
+  "observed_at_utc": "2026-10-12T23:41:33.987574+00:00",
+  "served_model": "Qwen/Qwen3-4B",
+  "vllm_version": "0.20.2",
+  "dtype": "torch.bfloat16",
+  "quantization": null,
+  "speculative_config": null,
+  "gpu": "NVIDIA RTX 4000 Ada Generation",
+  "vram_total_mib": 20475,
+  "vram_used_mib": 13729,
+  "gpu_utilization_percent": 0,
+  "running_requests": 0,
+  "waiting_requests": 0,
+  "matched_fp8_speculative_run": "NOT_TESTED",
+  "continuous_training": "NOT_RUNNING_AT_CHECK",
+  "ollarma_health": "TIMEOUT_3_SECONDS",
+  "monitor": {
+    "automation_id": "cell-akamai-checkpoint-recovery",
+    "interval_minutes": 15,
+    "status": "ACTIVE",
+    "purpose": "private artifact recovery and sanitized delta publication; does not launch GPU jobs"
+  },
+  "fragmentum_length_table": {
+    "status": "RECOVERED_FROM_SUBSTRATA_GIT_HISTORY",
+    "source_git_sha": "71f49cb5f6aa8527e69febd3d38f4af59f5fc180",
+    "sha256": "8e4caacd1f22628beb6a0d6e7734546e4572e0529688f282d0826403b0d425fc",
+    "accessions": 20493,
+    "provider_manifest": "NOT_YET_RECOVERED"
+  },
+  "next_action": "Verify FP8/drafter loading in separate serialized epochs; recover Fragmentum provider partitions; keep private models outside public lane."
+}
