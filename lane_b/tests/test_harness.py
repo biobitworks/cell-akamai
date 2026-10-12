@@ -27,7 +27,7 @@ def build(tmp_path):
 def test_end_to_end_and_rows_valid(tmp_path):
     cfg = build(tmp_path); score_lane_b.main(cfg, tmp_path / "run", "SYNTHETIC_FIXTURE")
     rows = [json.loads(l) for l in (tmp_path / "run" / "lane_b_results.jsonl").read_text().splitlines()]
-    assert len(rows) == 36 and all(r["source_class"] == "SYNTHETIC_FIXTURE" for r in rows)
+    assert len(rows) == 44 and all(r["source_class"] == "SYNTHETIC_FIXTURE" for r in rows)
     acc = [r["value"] for r in rows if r["metric"] == "exact_match_accuracy_primary"]
     assert acc == [1.0] * 4
     assert all(r["value"] is None for r in rows if r["status"] == "NOT_COMPUTED")
