@@ -1,0 +1,14 @@
+{
+  "experiment_id": "EXP-LANEB-GDAISY-001-PILOT",
+  "mode": "PILOT_NONCONFIRMATORY",
+  "base_url": "http://127.0.0.1:11434/v1",
+  "model": "SET_ME (e.g. an Ollama tag; revision stays UNKNOWN until verified)",
+  "temperature": 0,
+  "decode_seed": 20261012,
+  "max_tokens_per_call": 1024,
+  "item_token_cap": 3072,
+  "item_call_cap": 3,
+  "seed_start": 50000,
+  "per_rule": 8,
+  "_note": "All values are PROPOSALS for the unfrozen items in PREREGISTRATION_DRAFT.md; mode must become CONFIRMATORY_FROZEN only after operator freeze."
+}
