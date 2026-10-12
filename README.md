@@ -1,3 +1,7 @@
+## Workshop extensions and demo
+
+[What we added, with evidence limits](docs/WORKSHOP_ADDITIONS.md) · [Three-minute walkthrough](docs/FINAL_DEMO_SCRIPT.md)
+
 # cell-akamai · Lane A — Verified inference telemetry
 
 This is a **standalone integration package** for the existing MagicPro directory `/Users/byron/projects/active/cell-akamai` and the **CPU-only hosted Akamai JupyterLab**. It does not modify Kubernetes manifests or provision GPUs. The vLLM service already runs on the workshop GPU node.

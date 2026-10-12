@@ -1,0 +1,120 @@
+{
+  "schema": "cell_akamai.evidence_coverage_audit.v1",
+  "audit_status": "PARTIAL_WITH_SCORE_CUSTODY_FAILURES",
+  "scope": "Read-only audit of retained Modules 1-9, selected local runs, manifests, answer commitments, and hour-scale Merkle breakpoints. No answer text was read; no recovery scripts were executed.",
+  "index": {
+    "name": "DASHBOARD_EVIDENCE_INDEX.v5.json",
+    "catalog_rows": 450,
+    "source_groups": 6,
+    "byte_identical_local_copies": 3,
+    "sha256": "5d785a5a5a7322c640a1c1cac8cf21641c7dfcf7405b46bf00fe0a91043c816a",
+    "staleness": [
+      "M08 handoff before/after rows remain NOT_TESTED/AFTER_NOT_TESTED despite later recovered M08 artifacts.",
+      "M09 handoff run rows remain NOT_TESTED despite later recovered M09 artifacts."
+    ],
+    "claims": {
+      "signature": "NOT_SIGNED_IN_V5_ARTIFACT_CLAIM; LATER_DETACHED_MANIFEST_SIGNATURE_VERIFIED_BY_CURRENT_LOCAL_ATTESTATION",
+      "project_mmr": "NOT_COMMITTED",
+      "anticube": "NOT_COMPUTED",
+      "delta_g_star": "NOT_COMPUTED",
+      "all_evidence_archive": "NOT_RECOVERED"
+    }
+  },
+  "archive_checks": [
+    {"archive": "M08_M09_HANDOFF", "manifest_expected": 7, "verified": 7, "mismatches": 0},
+    {"archive": "M08_M09_SIX_DATASETS", "manifest_expected": 21, "verified": 21, "mismatches": 0},
+    {"archive": "EVIDENCE_EXPORT", "manifest_expected": 27, "verified": 27, "mismatches": 0},
+    {"archive": "GITHUB_EVIDENCE", "manifest_expected": 825, "verified": 825, "mismatches": 0},
+    {"archive": "AKAMAI_RUN_001", "embedded_manifest": false, "outer_digest_matches_inventory": true, "extracted_files_byte_equal": 12, "extracted_files_total": 12},
+    {"archive": "COMPLETE_WORKSPACE_SNAPSHOT", "crc": "PASS", "inventory": "EXACT_MATCH", "entries": 23030, "snapshot_atomic": false, "license_secret_audit": "PENDING"}
+  ],
+  "module_coverage": [
+    {"module": "M01", "saved_original_notebook_execution_count": 0, "module_receipt": "NONE_FOUND_IN_AUDITED_INDEX", "status": "NOT_VERIFIED"},
+    {"module": "M02", "saved_original_notebook_execution_count": 0, "module_receipt": "NONE_FOUND_IN_AUDITED_INDEX", "status": "NOT_VERIFIED"},
+    {"module": "M03", "saved_original_notebook_execution_count": 0, "module_receipt": "NONE_FOUND_IN_AUDITED_INDEX", "status": "NOT_VERIFIED"},
+    {"module": "M04", "saved_original_notebook_execution_count": 0, "module_receipt": "NONE_FOUND_IN_AUDITED_INDEX", "status": "NOT_VERIFIED"},
+    {"module": "M05", "saved_original_notebook_execution_count": 0, "module_receipt": "NO_VERIFIED_FP8_RUN", "status": "NOT_TESTED_PRECISION_UNKNOWN"},
+    {"module": "M06", "saved_original_notebook_execution_count": 0, "module_receipt": "NO_DRAFTER_CONFIGURATION_IN_REFERENCE_RUN", "status": "NOT_TESTED"},
+    {"module": "M07", "saved_original_notebook_execution_count": 0, "separate_evidence": "CORRECTED_EXECUTED_COPY_AND_RECOVERED_RUN_RECEIPTS", "status": "RECOVERED_OBSERVATIONS_NOT_REEXECUTED; SCORE_CUSTODY_FAILED"},
+    {"module": "M08", "saved_original_notebook_execution_count": 0, "separate_evidence": "SUCCESSOR_BEFORE_AFTER_AND_QUALITY_ARTIFACTS", "answer_commit_checks": {"checked": 2, "matched": 0}, "status": "PARTIAL_RECOVERED_EXECUTION; SCORE_WITHHELD"},
+    {"module": "M09", "saved_original_notebook_execution_count": 0, "separate_evidence": "SUCCESSOR_ECA_AND_SIX_DATASET_ARTIFACTS; OPTIONAL_AGENT_PATH_FAILED_OR_NOT_READY", "answer_commit_checks": {"checked": 1, "matched": 0}, "status": "PARTIAL_RECOVERED_EXECUTION; SCORE_WITHHELD"}
+  ],
+  "commitment_audit": {
+    "method": "Hash file bytes only; answer contents not read.",
+    "fullmatrix_answer_files": {"checked": 20, "matched": 0, "mismatched": 20},
+    "m08_m09_answer_files": {"checked": 3, "matched": 0, "mismatched": 3},
+    "other_adjacent_answer_files": {"checked": 2, "matched": 0, "mismatched": 2},
+    "scoring_receipt_panels_claimed_scored": 4,
+    "scoring_receipt_panels_with_recovered_commit_match": 0,
+    "bundle_reported_unverified_score_fields": 48,
+    "disposition": "REFUSE_AFFECTED_SCORES_PENDING_RECOVERY_OF_BYTES_MATCHING_COMMIT_AND_FROZEN_SCORER_REPLAY"
+  },
+  "local_runs": [
+    {
+      "run": "EXP-AKAMAI-TOKEN-001 / akm-57de3a4a14c9",
+      "records": 4,
+      "metrics_file_hashes": {"checked": 8, "matched": 8},
+      "same_host_replay": "PASS_AS_RECORDED",
+      "independent_host_reexecution": "NOT_TESTED",
+      "model_revision": "UNKNOWN",
+      "precision": "UNKNOWN",
+      "signed": false,
+      "project_mmr": "NOT_COMMITTED",
+      "duplicate_exports": "TREATED_AS_ONE_RUN"
+    },
+    {
+      "run": "EXP-AKAMAI-SPEC-001 / d69ad4d0e37d",
+      "records": 4,
+      "role": "QWEN_NO_DRAFTER_REFERENCE",
+      "precision": "UNKNOWN",
+      "matched_fp8_or_speculative_comparison": false,
+      "independent_host_reexecution": "NOT_TESTED"
+    },
+    {
+      "run": "canonical local LFM 1.2B pilot",
+      "answers_bytes": 0,
+      "commit_equals_empty_file_hash": true,
+      "run_manifest": false,
+      "model_identity_receipt": false,
+      "scorer_receipt": false,
+      "score": "MISSING_NOT_ZERO"
+    },
+    {
+      "run": "local Ollama Lane B pilot family",
+      "separate_from_hosted_akamai": true,
+      "merged_with_other_model_runs": false
+    }
+  ],
+  "null_taxonomy": {
+    "NOT_TESTED": "Condition not run or no run evidence found; not zero.",
+    "NOT_COMPUTED": "Formula or metric not computed.",
+    "NOT_RECOVERED": "Artifact absent from audited recovery; not a negative result.",
+    "UNKNOWN": "Identity/value unavailable or unverified; not zero.",
+    "UNDEFINED_ZERO_CORRECT": "Ratio has zero denominator; keep null with reason.",
+    "FAILED": "Attempt failed; preserve as failure, not successful or scientific negative.",
+    "BUNDLE_REPORTED_UNVERIFIED": "Value exists but dependent custody check fails; withhold.",
+    "OBSERVED": "Recorded observation without implied independent replication or causality."
+  },
+  "merkle_breakpoint_compliance": [
+    {"requirement": "Per-window immutable receipt", "design": "Numbered 300-second windows plus mutable latest pointer", "run_evidence": "NO_SUCCESSFUL_SUSTAINED_WINDOW", "status": "DESIGN_ONLY"},
+    {"requirement": "Local Merkle root", "design": "Canonical receipt digests in local tree; code labels tree unsigned and not project MMR", "run_evidence": "NO_COMPLETED_RUN_ROOT", "status": "NOT_EXERCISED"},
+    {"requirement": "Pull-side hash/root verification", "design": "Code verifies receipt digest and local root", "run_evidence": "NO_COMPLETED_SUSTAINED_PULL", "status": "NOT_EXERCISED"},
+    {"requirement": "Project MMR and cryptographic signature", "index": "NOT_COMMITTED / NOT_SIGNED", "local_git_checkpoint_has_ssh_signature_header": true, "default_git_verification": "UNAVAILABLE_ALLOWED_SIGNERS_FILE_NOT_CONFIGURED", "detached_manifest_signature": "VERIFIED_BY_CURRENT_LOCAL_ATTESTATION", "status": "PROJECT_MMR_NOT_INTEGRATED"},
+    {"requirement": "Every 15 minutes and at each cell/failure/config boundary", "protocol": "Specified", "direct_runner_default_seconds": 900, "queued_sustained_window_seconds": 300, "run_evidence": "NO_SUCCESSFUL_MEASURED_WINDOW", "status": "SPECIFIED_NOT_OBSERVED"},
+    {"requirement": "3600 seconds per dataset/configuration", "planned_queue": {"window_seconds": 300, "windows": 12, "representations": 4, "planned_hours": 4}, "completed_hours_verified": 0, "status": "NOT_FULFILLED"}
+  ],
+  "limitations": [
+    "The ALL_EVIDENCE archive was not recovered.",
+    "The retained full-workspace archive is an exact inventory/CRC match but was captured as a non-atomic snapshot.",
+    "License and secret audit remains pending.",
+    "This audit does not establish complete local/private file coverage, original remote-host identity, or original answer bytes.",
+    "No 3600-second sustained inference condition or 15-minute checkpoint was observed in a completed long run."
+  ],
+  "safe_integration_next_steps": [
+    "Recover bytes matching each answer commitment or mark that output unrecoverable; rerun the frozen scorer only after exact match.",
+    "Regenerate a current dashboard index while retaining the older v5 snapshot as a historical stale index.",
+    "Keep null-state categories separate and do not convert unknown, not tested, failed, or unverified results to zero.",
+    "Integrate and exercise the project MMR and signature protocol before changing NOT_INTEGRATED/NOT_SIGNED.",
+    "Require 3600 seconds per condition with validated checkpoints and answer commitments before marking any hour-scale condition complete."
+  ]
+}
