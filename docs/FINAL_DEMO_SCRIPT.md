@@ -25,7 +25,7 @@ Our first recorded experiment measured throughput and its change between sequent
 ## 2:15–2:45 — Code and controls
 Show: strict parser, commitment checks, then module status.
 
-Our tests cover strict answer parsing, commitment and coverage checks, and accounting for partial failures. Answers are committed before scoring; changed evidence must be refused. Some recovered archive answers currently fail that check and remain under reconciliation. Module 8 completed a short before-and-after tuning pilot with no demonstrated benefit. Module 9’s deployment failed at readiness; that is separate from its ECA execution. Software tests and infrastructure successes do not establish model improvement.
+Our tests cover strict answer parsing, commitment and coverage checks, and accounting for partial failures. Answers are committed before scoring; changed evidence must be refused. Some recovered archive answers currently fail that check and remain under reconciliation. Module 8 completed a short before-and-after tuning pilot and preserved its negative finding. Module 9’s deployment attempt and its separate ECA execution are reported separately. The evidence catalog preserves older labels; the execution update explains the newer receipts. Software tests and infrastructure successes do not establish model improvement.
 
 ## 2:45–3:10 — Close
 Show: contribution list and limits.
