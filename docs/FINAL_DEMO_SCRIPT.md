@@ -1,4 +1,4 @@
-# Cell-Akamai — three-minute walkthrough
+# Cell-Akamai — approximately three-minute walkthrough
 
 Read at roughly 145 words/minute. Show only sanitized aggregates and source code. Confirm actual screen status before recording. No GPU traffic starts during this walkthrough.
 
@@ -17,17 +17,21 @@ Show: deterministic reconstruction, local/cloud and evidence-custody bullets.
 
 Beyond the modules, we ran local Ollama Llama 3.2 3B and Akamai Qwen3-4B pilots using our evaluation harness. Because the models and hardware differ, these are observed comparisons, not proof of a platform advantage. We froze 32 synthetic cellular-automaton tasks and verified exact reconstruction across original records, content-addressed objects and graphs. Deterministic means those data transformations reproduce exactly; it does not mean the model answers are deterministic. These are paired representations, not independent biological datasets.
 
-## 1:35–2:10 — Results and units
+## 1:35–2:15 — First experiment: rate and rate change
 Show: actual scored panels, then throughput and latency.
 
-The four arms compare a single answer, a voting proxy, a challenge and a randomized challenge control. Their call budgets differ. The small scored panels returned zero correct answers, so tokens per correct answer is undefined. That is a recorded negative result, not missing data. Separately, the original Module 7 short concurrency-eight run measured about 269 output tokens per second and 1,262 milliseconds p95 latency. We count tokens from usage, not streaming chunks. Tokens per second squared would measure throughput change over time; it is not ordinary throughput or a new unit.
+Our first recorded experiment measured throughput and its change between sequential requests. Tokens per second is completion tokens divided by request duration. Tokens per second squared is the change in that rate divided by the time between request midpoints. We reproduced three recorded calculations exactly: approximately 0.1900, 0.00769 and 0.00554 tokens per second squared. These describe rate variation, not learning or individual-token acceleration. Separately, Module 7 reached about 269 output tokens per second at concurrency eight in a short run. The small scored agent panels returned zero correct answers; tokens per correct answer is therefore undefined.
 
-## 2:10–2:40 — Code and controls
+## 2:15–2:45 — Code and controls
 Show: strict parser, commitment checks, then module status.
 
 Our tests cover strict answer parsing, commitment and coverage checks, and accounting for partial failures. Answers are committed before scoring; changed evidence must be refused. Some recovered archive answers currently fail that check and remain under reconciliation. Module 8 completed a short before-and-after tuning pilot with no demonstrated benefit. Module 9’s deployment failed at readiness; that is separate from its ECA execution. Software tests and infrastructure successes do not establish model improvement.
 
-## 2:40–3:00 — Close
+## 2:45–3:10 — Close
 Show: contribution list and limits.
 
 Our success is a working foundation for accountable scientific agents: owned inference, local and cloud pilots, reproducible data and inspectable evidence. We preserve nulls and negative findings. We have not established training, quality improvement, a Strands speedup or a completed hour-scale study. Next are sufficient answer budgets, independent repeats and complete checkpoint coverage.
+
+## Recording rule
+
+Anticube and ΔG* are omitted from the spoken demo because their numerical calculations have not yet been reconciled to this project’s experiment receipts. Do not imply they were never computed in other project work. The first experiment is EXP-AKAMAI-TOKEN-001; its derivative is sequential, not a concurrent-workload acceleration claim.
