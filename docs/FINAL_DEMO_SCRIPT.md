@@ -18,7 +18,7 @@ Show: deterministic reconstruction, local/cloud and evidence-custody bullets.
 Beyond the modules, we ran local Ollama Llama 3.2 3B and Akamai Qwen3-4B pilots using our evaluation harness. Because the models and hardware differ, these are observed comparisons, not proof of a platform advantage. We froze 32 synthetic cellular-automaton tasks and verified exact reconstruction across original records, content-addressed objects and graphs. Deterministic means those data transformations reproduce exactly; it does not mean the model answers are deterministic. These are paired representations, not independent biological datasets.
 
 ## 1:35–2:15 — First experiment: rate and rate change
-Show: actual scored panels, then throughput and latency.
+Show: “First experiment · tokens/second/second” table. Highlight the formula, requests 2–4 and their reproduced values; then show throughput/latency axes.
 
 Our first recorded experiment measured throughput and its change between sequential requests. Tokens per second is completion tokens divided by request duration. Tokens per second squared is the change in that rate divided by the time between request midpoints. We reproduced three recorded calculations exactly: approximately 0.1900, 0.00769 and 0.00554 tokens per second squared. These describe rate variation, not learning or individual-token acceleration. Separately, Module 7 reached about 269 output tokens per second at concurrency eight in a short run. The small scored agent panels returned zero correct answers; tokens per correct answer is therefore undefined.
 
