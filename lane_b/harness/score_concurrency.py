@@ -32,10 +32,13 @@ def summarize(folder, config, dataset, manifest):
     if (folder / "bench_cells.json").exists():
         for r in json.loads((folder / "bench_cells.json").read_text()).get("rows", []):
             bench[(r["concurrency"], r["arm"])] = r
-    panels = sorted(p for p in folder.glob("c*_paired_for_scoring") if re.fullmatch(r"c\d{2}_paired_for_scoring", p.name))
+    found = {int(p.name[1:3]) for p in folder.glob("c*_paired_for_scoring") if re.fullmatch(r"c\d{2}_paired_for_scoring", p.name)}
+    scheduled = {int(c) for c in meta.get("concurrency", [])}
     rows, contrasts, panel_states = [], [], []
-    for p in panels:
-        c = int(p.name[1:3])
+    for c in sorted(found | scheduled):
+        p = folder / f"c{c:02d}_paired_for_scoring"
+        if not p.is_dir():  # scheduled in the run manifest but never reached commitment (interrupted/failed run)
+            panel_states.append({"concurrency": c, "state": "REFUSED", "reason": "PANEL NEVER COMMITTED (scheduled, absent)"}); continue
         if not (p / "COMMIT.json").exists():
             panel_states.append({"concurrency": c, "state": "REFUSED", "reason": "NO ANSWER COMMITMENT"}); continue
         try:

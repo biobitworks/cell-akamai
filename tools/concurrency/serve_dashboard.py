@@ -10,7 +10,7 @@ HTML = '''<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport
 <style>body{background:#0b1221;color:#e4edf8;font:14px system-ui,sans-serif;margin:0}main{max-width:1100px;margin:25px auto;padding:15px}h1{font-size:25px}h2{font-size:18px}small{color:#a8bbcc}.section{border:1px solid #293c53;border-radius:12px;background:#141e31;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.metric{background:#1b2a43;padding:12px;border-radius:8px}table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px;border-bottom:1px solid #304158} .scroll{overflow:auto}svg{width:100%;height:auto;max-height:310px}strong{color:#8fe3d0}button{padding:7px;border:1px solid #345;background:#213049;color:#fff} .empty{padding:30px;text-align:center;color:#bac9d4}</style></head>
 <body><main><h1>Cell-Akamai · concurrency / science inference</h1><p><a href="/evidence" style="color:#8fe3d0">Open the evidence dashboard (Akamai GPU runs, six datasets, B0–B3, Modules 8/9) →</a></p>
 <p>Workshop modules 05–09 · Frozen ECA pilot · Genesis policy proxy vs DAISY challenge · Append-only receipts</p>
-<div class="section"><div class="grid"><div class="metric">Dashboard ingestion <strong id="state">LOADING</strong></div><div class="metric">Validated cells <strong id="cells">—</strong></div><div class="metric">Signed/MMR <strong>NOT_SIGNED / NOT_COMMITTED</strong></div><div class="metric">Scientific improvement <strong>NOT_ESTABLISHED</strong></div></div><p><small>Imported Akamai Qwen reference receipts are separate, not concurrency or FP8/speculative results. Tokens/s uses actual endpoint usage. Streamed chunks are never tokenizer tokens. Concurrent tokens/s² is undefined here; sequential Lane A derivative is a distinct measure.</small></p></div>
+<div class="section"><div class="grid"><div class="metric">Evaluation evidence <strong id="state">LOADING</strong></div><div class="metric">Aggregate run rows <strong id="cells">—</strong></div><div class="metric">Signed/MMR <strong>NOT_SIGNED / NOT_COMMITTED</strong></div><div class="metric">Scientific improvement <strong>NOT_ESTABLISHED</strong></div></div><p><small>Imported Akamai Qwen reference receipts are separate, not concurrency or FP8/speculative results. Tokens/s uses actual endpoint usage. Streamed chunks are never tokenizer tokens. Concurrent tokens/s² is undefined here; sequential Lane A derivative is a distinct measure.</small></p></div>
 <div class="section"><h2>Aggregate completion-token throughput (tokens/s) versus concurrency</h2><div id="throughput" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
 <div class="section"><h2>Item latency p95 (ms) versus concurrency</h2><div id="latency" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
 <div class="section"><h2>Backend, model stage and evaluation controls</h2><div class="scroll"><table><thead><tr><th>Run / module</th><th>Backend / stage</th><th>Arm</th><th>c</th><th>Items</th><th>Calls</th><th>Completion tok/s</th><th>Latency p95 ms</th><th>Failures</th><th>Evidence</th></tr></thead><tbody id="rows"></tbody></table></div></div>
@@ -20,8 +20,8 @@ HTML = '''<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport
 const $=id=>document.getElementById(id), e=s=>String(s??'UNKNOWN').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>n===null||n===undefined||!Number.isFinite(n)?'—':n.toFixed(2);
 const COLORS=['#80dace','#f8bd70','#a4b9ff','#ff92bc','#93e080','#d9aafc'];
-function plot(id,rows,key,label){const xs=[...new Set(rows.map(x=>x.concurrency))].sort((a,b)=>a-b), groups=[...new Set(rows.map(x=>x.backend+'/'+x.stage+'/'+x.arm))]; if(!xs.length||!rows.some(x=>Number.isFinite(x[key]))){$(id).innerHTML='<div class="empty">NOT_TESTED — No supported '+e(label)+' data</div>';return;}const w=900,h=280,p=45,max=Math.max(1,...rows.map(r=>r[key]).filter(Number.isFinite))*1.1;let html='<svg viewBox="0 0 900 280" role="img" aria-label="'+e(label)+' by concurrency"><path stroke="#6d829b" fill="none" d="M45 15V235H865"/>'; xs.forEach((x,i)=>{let px=p+(w-2*p)*(xs.length===1?0.5:i/(xs.length-1)); html+='<text x="'+px+'" y="258" fill="#bdcbdb" text-anchor="middle" font-size="13">c='+x+'</text>'});groups.forEach((g,k)=>{let rr=rows.filter(x=>x.backend+'/'+x.stage+'/'+x.arm===g&&Number.isFinite(x[key]));if(!rr.length)return; const color=COLORS[k%COLORS.length]; const points=rr.map(r=>[p+(w-2*p)*(xs.length===1?0.5:xs.indexOf(r.concurrency)/(xs.length-1)),h-p-195*r[key]/max]); html+='<polyline fill="none" stroke="'+color+'" stroke-width="2" points="'+points.map(z=>z.join(',')).join(' ')+'"/>';points.forEach(pt=>html+='<circle r="4" fill="'+color+'" cx="'+pt[0]+'" cy="'+pt[1]+'"/>')});html+='</svg><p><small>'+groups.map((g,k)=>'<span style="color:'+COLORS[k%COLORS.length]+'">● '+e(g)+'</span>').join(' &nbsp; ')+'</small></p>';$(id).innerHTML=html;}
-function science(ss){if(!ss.length){$('science').textContent='NOT_TESTED / NOT_ADMITTED';return}
+function plot(id,rows,key,label){const xs=[...new Set(rows.map(x=>x.concurrency))].sort((a,b)=>a-b), groups=[...new Set(rows.map(x=>x.backend+'/'+x.stage+'/'+x.arm))]; if(!xs.length||!rows.some(x=>Number.isFinite(x[key]))){$(id).innerHTML='<div class="empty">'+(rows.length?'NO_MEASURED_VALUE — Aggregate rows exist, but '+e(label)+' is unavailable':'NO_RUN_DATA — No aggregate run rows are available for '+e(label))+'</div>';return;}const w=900,h=280,p=45,max=Math.max(1,...rows.map(r=>r[key]).filter(Number.isFinite))*1.1;let html='<svg viewBox="0 0 900 280" role="img" aria-label="'+e(label)+' by concurrency"><path stroke="#6d829b" fill="none" d="M45 15V235H865"/>'; xs.forEach((x,i)=>{let px=p+(w-2*p)*(xs.length===1?0.5:i/(xs.length-1)); html+='<text x="'+px+'" y="258" fill="#bdcbdb" text-anchor="middle" font-size="13">c='+x+'</text>'});groups.forEach((g,k)=>{let rr=rows.filter(x=>x.backend+'/'+x.stage+'/'+x.arm===g&&Number.isFinite(x[key]));if(!rr.length)return; const color=COLORS[k%COLORS.length]; const points=rr.map(r=>[p+(w-2*p)*(xs.length===1?0.5:xs.indexOf(r.concurrency)/(xs.length-1)),h-p-195*r[key]/max]); html+='<polyline fill="none" stroke="'+color+'" stroke-width="2" points="'+points.map(z=>z.join(',')).join(' ')+'"/>';points.forEach(pt=>html+='<circle r="4" fill="'+color+'" cx="'+pt[0]+'" cy="'+pt[1]+'"/>')});html+='</svg><p><small>'+groups.map((g,k)=>'<span style="color:'+COLORS[k%COLORS.length]+'">● '+e(g)+'</span>').join(' &nbsp; ')+'</small></p>';$(id).innerHTML=html;}
+function science(ss,pending,rows){const pendingHtml=pending.length?'<h3>Pending or unscored runs</h3><ul>'+pending.map(p=>'<li>'+e(p.run_id)+' · '+e(p.backend_family||p.backend)+' · '+e(p.served_model_requested)+' · '+e(p.score_state)+' — '+e(p.reason)+'</li>').join('')+'</ul>':'';if(!ss.length){let reason=pendingHtml|| (rows.length?'<div class="empty">AGGREGATES_ONLY — Run metrics are present, but no independent scoring summary is available.</div>':'<div class="empty">NO_RUN_DATA — No run manifests or scored summaries were found.</div>');$('science').innerHTML=reason;return}
 const fams=[['Akamai vLLM configurations',x=>String(x.backend_family).startsWith('AKAMAI_')],['Local Ollama models',x=>/OLLAMA/.test(String(x.backend_family))],['Synthetic fixtures (plumbing only, not model performance)',x=>x.backend_family==='SYNTHETIC_FIXTURE']];
 const pct=v=>Number.isFinite(v)?(100*v).toFixed(1)+'%':'—';let html='';
 for(const [title,f] of fams){const runs=ss.filter(f);if(!runs.length)continue;html+='<h3>'+e(title)+'</h3><div class="scroll"><table><thead><tr><th>Run / family / model</th><th>c</th><th>Arm</th><th>Exact match</th><th>Hamming</th><th>Abstain</th><th>Calls</th><th>Tokens / correct</th><th>Source</th></tr></thead><tbody>';
@@ -29,24 +29,56 @@ for(const s of runs){for(const r of s.rows){html+='<tr><td>'+e(s.run_id)+'<br>'+
 for(const p of s.panels.filter(p=>p.state!=='SCORED'))html+='<tr><td colspan="9">c='+e(p.concurrency)+' REFUSED: '+e(p.reason)+'</td></tr>'}
 html+='</tbody></table></div>';const cs=runs.flatMap(s=>s.contrasts.map(c=>Object.assign({run:s.run_id},c)));
 if(cs.length)html+='<div class="scroll"><table><thead><tr><th>Run</th><th>c</th><th>Contrast</th><th>A only</th><th>B only</th><th>Both right</th><th>Both wrong</th><th>McNemar p (Holm)</th></tr></thead><tbody>'+cs.map(c=>'<tr><td>'+e(c.run)+'</td><td>'+e(c.concurrency)+'</td><td>'+e(c.A)+' vs '+e(c.B)+'</td><td>'+e(c.A_only_correct)+'</td><td>'+e(c.B_only_correct)+'</td><td>'+e(c.both_correct)+'</td><td>'+e(c.both_wrong)+'</td><td>'+fmt(c.p_holm)+'</td></tr>').join('')+'</tbody></table></div>'}
-$('science').innerHTML=html+'<p><small>PILOT_NONCONFIRMATORY. Exact-match is scored only after each answers.jsonl SHA-256 commitment verifies; refused panels stay listed.</small></p>'}
-async function refresh(){try{const r=await fetch('/data.json',{cache:'no-store'});let data=await r.json(),rr=data.rows||[];$('state').textContent=rr.length?'LOCAL AGGREGATES':'NOT_TESTED';$('cells').textContent=String(rr.length);$('rows').innerHTML=rr.map(r=>'<tr><td>'+e(r.run_id)+' / '+e(r.module)+'</td><td>'+e(r.backend)+' / '+e(r.stage)+'</td><td>'+e(r.arm)+'</td><td>'+e(r.concurrency)+'</td><td>'+e(r.items)+'</td><td>'+e(r.model_calls_observed)+'</td><td>'+fmt(r.aggregate_completion_tokens_per_s)+'</td><td>'+fmt(r.latency_p95_ms)+'</td><td>'+e(r.failed_or_abstained_or_over_budget)+'</td><td>'+e(r.state)+'</td></tr>').join('');plot('throughput',rr,'aggregate_completion_tokens_per_s','throughput (tokens/s)');science(data.science||[]);plot('latency',rr,'latency_p95_ms','latency p95 (ms)')}catch(err){$('state').textContent='READ_FAILED'}}refresh();setInterval(refresh,4000);
+if(pendingHtml)html+=pendingHtml;$('science').innerHTML=html+'<p><small>PILOT_NONCONFIRMATORY. Exact-match is scored only after each answers.jsonl SHA-256 commitment verifies; refused panels stay listed. Pending/unscored runs are shown separately from scored results.</small></p>'}
+async function refresh(){try{const r=await fetch('/data.json',{cache:'no-store'});let data=await r.json(),rr=data.rows||[],pending=data.pending||[],ss=data.science||[],scored=(ss.flatMap(s=>s.panels||[]).filter(p=>String(p.state||'').startsWith('SCORED')).length),active=pending.filter(p=>p.score_state==='PENDING').length,stopped=pending.filter(p=>p.score_state==='STOPPED_UNSCORED').length;$('state').textContent=scored?'SCORED PANELS: '+scored+(active?' · '+active+' PENDING':'')+(stopped?' · '+stopped+' STOPPED':''):active?'PENDING: '+active:stopped?'STOPPED, UNSCORED: '+stopped:pending.length?'UNSCORED: '+pending.length:ss.length?'NO VERIFIED SCORED PANELS':rr.length?'AGGREGATES ONLY':'NO RUN DATA';$('cells').textContent=String(rr.length);$('rows').innerHTML=rr.map(r=>'<tr><td>'+e(r.run_id)+' / '+e(r.module)+'</td><td>'+e(r.backend)+' / '+e(r.stage)+'</td><td>'+e(r.arm)+'</td><td>'+e(r.concurrency)+'</td><td>'+e(r.items)+'</td><td>'+e(r.model_calls_observed)+'</td><td>'+fmt(r.aggregate_completion_tokens_per_s)+'</td><td>'+fmt(r.latency_p95_ms)+'</td><td>'+e(r.failed_or_abstained_or_over_budget)+'</td><td>'+e(r.state)+'</td></tr>').join('');plot('throughput',rr,'aggregate_completion_tokens_per_s','throughput (tokens/s)');science(ss,pending,rr);plot('latency',rr,'latency_p95_ms','latency p95 (ms)')}catch(err){$('state').textContent='READ_FAILED'}}refresh();setInterval(refresh,4000);
 </script></body></html>'''
 
 
 def load_sanitized(root):
     rows = []
+    pending = []
     if not root.is_dir():
-        return {"schema":"cell_akamai.concurrent_summary.v1","rows":rows,"science":[]}
-    for p in sorted(root.glob('concurrency-*/bench_cells.json')):
+        return {"schema":"cell_akamai.concurrent_summary.v1","rows":rows,"science":[],"pending":pending}
+    for run_dir in sorted(root.glob('concurrency-*')):
+        if not run_dir.is_dir():
+            continue
         try:
-            o = json.loads(p.read_text())
-            m = json.loads((p.parent/'run_manifest.json').read_text())
+            manifest_path = run_dir/'run_manifest.json'
+            if not manifest_path.is_file():
+                continue
+            m = json.loads(manifest_path.read_text())
+            bench_path = run_dir/'bench_cells.json'
+            if bench_path.is_file():
+                o = json.loads(bench_path.read_text())
+            else:
+                o = {}
             for r in o.get('rows',[]):
                 rows.append({k:r.get(k) for k in ('arm','concurrency','items','model_calls_observed','aggregate_completion_tokens_per_s',
                     'latency_p95_ms','failed_or_abstained_or_over_budget','token_count_status')}
                     | {'module':m.get('module'),'run_id':m.get('run_id'), 'backend':m.get('backend'),
                        'stage':m.get('stage'),'state':m.get('state')})
+            summary_path = run_dir/'lane_b_concurrency_summary.json'
+            if not summary_path.is_file():
+                state = str(m.get('state') or 'UNKNOWN')
+                marker = None
+                for marker_name in ('STOPPED_CORRECTION.json', 'STOPPED.json', 'FAILURE.json'):
+                    marker_path = run_dir / marker_name
+                    if marker_path.is_file():
+                        try:
+                            marker = json.loads(marker_path.read_text())
+                        except (OSError, ValueError, TypeError):
+                            marker = {"state": "TERMINAL_MARKER_UNREADABLE"}
+                        break
+                marker_state = str((marker or {}).get('state') or '').upper()
+                stopped = marker_state.startswith(('STOPPED', 'KILLED', 'CANCELLED', 'FAILED'))
+                pending.append({"run_id":m.get('run_id') or run_dir.name,"backend":m.get('backend'),
+                    "backend_family":m.get('backend_family'),"stage":m.get('stage'),
+                    "served_model_requested":m.get('served_model_requested'),"run_state":state,
+                    "score_state":("STOPPED_UNSCORED" if stopped else "PENDING" if state.upper() in ('IN_PROGRESS','RUNNING','PENDING') else "UNSCORED"),
+                    "run_marker_state":marker_state or None,
+                    "reason":("Run has terminal marker state " + marker_state + "; no independent score receipt is present." if stopped else
+                              "Run is still in progress; no independent score receipt is present." if state.upper() in ('IN_PROGRESS','RUNNING','PENDING') else
+                              "No independent score receipt is present.")})
         except (OSError,ValueError,TypeError):
             continue
     science = []
@@ -63,7 +95,7 @@ def load_sanitized(root):
                               'contrasts': [{k: c.get(k) for k in ('concurrency','A','B','A_only_correct','B_only_correct','both_correct','both_wrong','p_holm')} for c in s.get('contrasts', [])]})
         except (OSError, ValueError, TypeError):
             continue
-    return {"schema":"cell_akamai.concurrent_summary.v1","rows":rows,"science":science}
+    return {"schema":"cell_akamai.concurrent_summary.v1","rows":rows,"science":science,"pending":pending}
 
 
 def serve(root, host='127.0.0.1', port=8765):

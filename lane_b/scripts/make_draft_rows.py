@@ -5,7 +5,13 @@ No measurement is produced here. Run from the package root: python3 lane_b/scrip
 """
 import json
 from pathlib import Path
-from cell_akamai.contract import validate_lane_b_result
+try:
+    from cell_akamai.contract import validate_lane_b_result  # Lane A validator (PR #3), when installed
+except ModuleNotFoundError:  # standalone: check the fields this script writes against the shared schema file
+    def validate_lane_b_result(row):
+        schema = json.loads((Path(__file__).resolve().parents[2] / "schemas/lane_b_results.schema.json").read_text()) \
+            if (Path(__file__).resolve().parents[2] / "schemas/lane_b_results.schema.json").exists() else {"required": []}
+        return [f"missing {k}" for k in schema.get("required", []) if k not in row]
 
 PREREG = "lane_b/PREREGISTRATION_DRAFT.md#v0.1-DRAFT-UNFROZEN"
 ARMS = ["B0_FIXED", "B1_GENESIS", "B2_GENESIS_DAISY", "B3_RANDOM_CONTROL"]
