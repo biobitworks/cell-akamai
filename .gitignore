@@ -12,3 +12,6 @@ data/*.jsonl
 *.key
 *.kubeconfig
 kubeconfig*
+
+# Private recovery material and local signing keys
+private/

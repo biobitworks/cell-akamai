@@ -1,0 +1,26 @@
+[
+  {
+    "answers_sha256": "0fa6e50c05b91221b9ac55a7afe9f3b59fe6c9e21f6ce8aafb73271b662ecef4",
+    "panel": "c01_paired_for_scoring",
+    "scorer_sha256": "17a6acae82318434ba6699bbff7cd401434dd46fabf729a75e16f32bd7c06002",
+    "state": "COMMIT_CONFIG_DATASET_COVERAGE_VERIFIED_THEN_INDEPENDENTLY_SCORED"
+  },
+  {
+    "answers_sha256": "119f45b12b00a2704472ee26cf4abf6d85259b1a8c29cef84bad58d1e64ba34c",
+    "panel": "c02_paired_for_scoring",
+    "scorer_sha256": "17a6acae82318434ba6699bbff7cd401434dd46fabf729a75e16f32bd7c06002",
+    "state": "COMMIT_CONFIG_DATASET_COVERAGE_VERIFIED_THEN_INDEPENDENTLY_SCORED"
+  },
+  {
+    "answers_sha256": "42fca3a1d9915efca2b4f790126830583ab20cfc2a27044246494faf85ad4460",
+    "panel": "c04_paired_for_scoring",
+    "scorer_sha256": "17a6acae82318434ba6699bbff7cd401434dd46fabf729a75e16f32bd7c06002",
+    "state": "COMMIT_CONFIG_DATASET_COVERAGE_VERIFIED_THEN_INDEPENDENTLY_SCORED"
+  },
+  {
+    "answers_sha256": "d46480253fc19b82288f2541dd1c019782992269154ca4a6e1871ce30b361e9f",
+    "panel": "c08_paired_for_scoring",
+    "scorer_sha256": "17a6acae82318434ba6699bbff7cd401434dd46fabf729a75e16f32bd7c06002",
+    "state": "COMMIT_CONFIG_DATASET_COVERAGE_VERIFIED_THEN_INDEPENDENTLY_SCORED"
+  }
+]

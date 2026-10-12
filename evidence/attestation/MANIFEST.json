@@ -1,0 +1,13 @@
+{
+  "base_source_commit": "c3bb7c9683736cf1d1a18d540184ff2de41a5d64",
+  "created_utc": "2026-10-12T22:07:38.673602+00:00",
+  "files": {
+    "deterministic_replay.json": "b7e2717a0a351c6c8157c6d005d79452ffec6d31f5ef2f4424cf9ee9f0770366",
+    "independent_scoring_receipt.json": "cf3946dc310a22018ebea4d3ef175c48bc3644eba0cdcfef858fffe729de6db1",
+    "signer.pub": "d98f8b138f9c0c8f96b6d49bb449ecca0e9380f6e36519ae8c4fcec1bb1741f9"
+  },
+  "schema": "CAKM_SIGNED_CHECKPOINT_V1",
+  "signature_namespace": "cell-akamai-evidence",
+  "signer_identity": "SELF_ISSUED_LOCAL_CHECKPOINT_KEY_NOT_INDEPENDENTLY_ATTESTED",
+  "signer_principal": "cell-akamai-local"
+}

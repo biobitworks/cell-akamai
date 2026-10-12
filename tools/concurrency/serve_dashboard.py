@@ -2,15 +2,45 @@
 """Local sanitized dashboard; ONLY serves aggregate concurrency summaries, not raw answers."""
 import argparse
 import json
+import hashlib
+import subprocess
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+
+
+def attestation_status(folder=None):
+    folder = Path(folder) if folder else Path(__file__).resolve().parents[2] / 'evidence/attestation'
+    result = {'signature': 'UNVERIFIED', 'deterministic_reconstruction': 'UNVERIFIED',
+              'scientific_improvement': 'NOT_ESTABLISHED', 'project_mmr': 'NOT_INTEGRATED',
+              'reason': 'No independently comparable quality or speedup result; eight unique pilot tasks, unequal arm budgets and different local/cloud models.',
+              'signer_identity': 'Self-issued local checkpoint key; external identity not attested.'}
+    try:
+        raw = (folder / 'MANIFEST.json').read_bytes()
+        manifest = json.loads(raw)
+        assert manifest['schema'] == 'CAKM_SIGNED_CHECKPOINT_V1'
+        for name, expected in manifest['files'].items():
+            assert Path(name).name == name and name not in ('.', '..')
+            assert hashlib.sha256((folder / name).read_bytes()).hexdigest() == expected
+        subprocess.run(['ssh-keygen', '-Y', 'verify', '-f', str(folder / 'allowed_signers'),
+                        '-I', 'cell-akamai-local', '-n', 'cell-akamai-evidence',
+                        '-s', str(folder / 'MANIFEST.json.sig')], input=raw,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True, timeout=5)
+        result['signature'] = 'VERIFIED_LOCAL_CHECKPOINT'
+        report = json.loads((folder / 'deterministic_replay.json').read_text())
+        if report.get('state') == 'PASS' and report.get('exact_reconstruction') is True and report.get('repeat_replay_identical') is True:
+            result['deterministic_reconstruction'] = 'ESTABLISHED_FOR_FROZEN_FIXTURES'
+        result['manifest_sha256'] = hashlib.sha256(raw).hexdigest()
+    except (OSError, ValueError, KeyError, AssertionError, subprocess.SubprocessError):
+        result['verification_failure'] = 'Missing, changed or invalid checkpoint evidence/signature.'
+    return result
 
 HTML = '''<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Cell-Akamai — controlled inference concurrency</title>
 <style>body{background:#0b1221;color:#e4edf8;font:14px system-ui,sans-serif;margin:0}main{max-width:1100px;margin:25px auto;padding:15px}h1{font-size:25px}h2{font-size:18px}small{color:#a8bbcc}.section{border:1px solid #293c53;border-radius:12px;background:#141e31;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.metric{background:#1b2a43;padding:12px;border-radius:8px}table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px;border-bottom:1px solid #304158} .scroll{overflow:auto}svg{width:100%;height:auto;max-height:310px}strong{color:#8fe3d0}button{padding:7px;border:1px solid #345;background:#213049;color:#fff} .empty{padding:30px;text-align:center;color:#bac9d4}</style></head>
 <body><main><h1>Cell-Akamai · concurrency / science inference</h1><p><a href="/evidence" style="color:#8fe3d0">Open the evidence dashboard (Akamai GPU runs, six datasets, B0–B3, Modules 8/9) →</a></p>
 <p>Workshop modules 05–09 · Frozen ECA pilot · Genesis policy proxy vs DAISY challenge · Append-only receipts</p>
-<div class="section"><div class="grid"><div class="metric">Evaluation evidence <strong id="state">LOADING</strong></div><div class="metric">Aggregate run rows <strong id="cells">—</strong></div><div class="metric">Signed/MMR <strong>NOT_SIGNED / NOT_COMMITTED</strong></div><div class="metric">Scientific improvement <strong>NOT_ESTABLISHED</strong></div></div><p><small>Imported Akamai Qwen reference receipts are separate, not concurrency or FP8/speculative results. Tokens/s uses actual endpoint usage. Streamed chunks are never tokenizer tokens. Concurrent tokens/s² is undefined here; sequential Lane A derivative is a distinct measure.</small></p></div>
+<div class="section"><div class="grid"><div class="metric">Evaluation evidence <strong id="state">LOADING</strong></div><div class="metric">Aggregate run rows <strong id="cells">—</strong></div><div class="metric">Checkpoint signature <strong id="signature">VERIFYING</strong></div><div class="metric">Deterministic reconstruction <strong id="deterministic">VERIFYING</strong></div></div><p><small>Imported Akamai Qwen reference receipts are separate, not concurrency or FP8/speculative results. Tokens/s uses actual endpoint usage. Streamed chunks are never tokenizer tokens. Concurrent tokens/s² is undefined here; sequential Lane A derivative is a distinct measure.</small></p></div>
+<div class="section"><h2>What this evidence establishes</h2><p id="claim_reason">Loading signed checkpoint verification…</p><p>Signed local checkpoint verifies receipt integrity under a self-issued key; it does not independently attest identity. Project MMR is not integrated. Model quality improvement and controlled speedup remain unestablished.</p></div>
 <div class="section"><h2>Aggregate completion-token throughput (tokens/s) versus concurrency</h2><div id="throughput" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
 <div class="section"><h2>Item latency p95 (ms) versus concurrency</h2><div id="latency" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
 <div class="section"><h2>Backend, model stage and evaluation controls</h2><div class="scroll"><table><thead><tr><th>Run / module</th><th>Backend / stage</th><th>Arm</th><th>c</th><th>Items</th><th>Calls</th><th>Completion tok/s</th><th>Latency p95 ms</th><th>Failures</th><th>Evidence</th></tr></thead><tbody id="rows"></tbody></table></div></div>
@@ -30,7 +60,7 @@ for(const p of s.panels.filter(p=>p.state!=='SCORED'))html+='<tr><td colspan="9"
 html+='</tbody></table></div>';const cs=runs.flatMap(s=>s.contrasts.map(c=>Object.assign({run:s.run_id},c)));
 if(cs.length)html+='<div class="scroll"><table><thead><tr><th>Run</th><th>c</th><th>Contrast</th><th>A only</th><th>B only</th><th>Both right</th><th>Both wrong</th><th>McNemar p (Holm)</th></tr></thead><tbody>'+cs.map(c=>'<tr><td>'+e(c.run)+'</td><td>'+e(c.concurrency)+'</td><td>'+e(c.A)+' vs '+e(c.B)+'</td><td>'+e(c.A_only_correct)+'</td><td>'+e(c.B_only_correct)+'</td><td>'+e(c.both_correct)+'</td><td>'+e(c.both_wrong)+'</td><td>'+fmt(c.p_holm)+'</td></tr>').join('')+'</tbody></table></div>'}
 if(pendingHtml)html+=pendingHtml;$('science').innerHTML=html+'<p><small>PILOT_NONCONFIRMATORY. Exact-match is scored only after each answers.jsonl SHA-256 commitment verifies; refused panels stay listed. Pending/unscored runs are shown separately from scored results.</small></p>'}
-async function refresh(){try{const r=await fetch('/data.json',{cache:'no-store'});let data=await r.json(),rr=data.rows||[],pending=data.pending||[],ss=data.science||[],scored=(ss.flatMap(s=>s.panels||[]).filter(p=>String(p.state||'').startsWith('SCORED')).length),active=pending.filter(p=>p.score_state==='PENDING').length,stopped=pending.filter(p=>p.score_state==='STOPPED_UNSCORED').length;$('state').textContent=scored?'SCORED PANELS: '+scored+(active?' · '+active+' PENDING':'')+(stopped?' · '+stopped+' STOPPED':''):active?'PENDING: '+active:stopped?'STOPPED, UNSCORED: '+stopped:pending.length?'UNSCORED: '+pending.length:ss.length?'NO VERIFIED SCORED PANELS':rr.length?'AGGREGATES ONLY':'NO RUN DATA';$('cells').textContent=String(rr.length);$('rows').innerHTML=rr.map(r=>'<tr><td>'+e(r.run_id)+' / '+e(r.module)+'</td><td>'+e(r.backend)+' / '+e(r.stage)+'</td><td>'+e(r.arm)+'</td><td>'+e(r.concurrency)+'</td><td>'+e(r.items)+'</td><td>'+e(r.model_calls_observed)+'</td><td>'+fmt(r.aggregate_completion_tokens_per_s)+'</td><td>'+fmt(r.latency_p95_ms)+'</td><td>'+e(r.failed_or_abstained_or_over_budget)+'</td><td>'+e(r.state)+'</td></tr>').join('');plot('throughput',rr,'aggregate_completion_tokens_per_s','throughput (tokens/s)');science(ss,pending,rr);plot('latency',rr,'latency_p95_ms','latency p95 (ms)')}catch(err){$('state').textContent='READ_FAILED'}}refresh();setInterval(refresh,4000);
+async function refresh(){try{const r=await fetch('/data.json',{cache:'no-store'});let data=await r.json();const att=data.attestation||{};$('signature').textContent=att.signature||'UNVERIFIED';$('deterministic').textContent=att.deterministic_reconstruction||'UNVERIFIED';$('claim_reason').textContent=att.reason||'Verification unavailable';let rr=data.rows||[],pending=data.pending||[],ss=data.science||[],scored=(ss.flatMap(s=>s.panels||[]).filter(p=>String(p.state||'').startsWith('SCORED')).length),active=pending.filter(p=>p.score_state==='PENDING').length,stopped=pending.filter(p=>p.score_state==='STOPPED_UNSCORED').length;$('state').textContent=scored?'SCORED PANELS: '+scored+(active?' · '+active+' PENDING':'')+(stopped?' · '+stopped+' STOPPED':''):active?'PENDING: '+active:stopped?'STOPPED, UNSCORED: '+stopped:pending.length?'UNSCORED: '+pending.length:ss.length?'NO VERIFIED SCORED PANELS':rr.length?'AGGREGATES ONLY':'NO RUN DATA';$('cells').textContent=String(rr.length);$('rows').innerHTML=rr.map(r=>'<tr><td>'+e(r.run_id)+' / '+e(r.module)+'</td><td>'+e(r.backend)+' / '+e(r.stage)+'</td><td>'+e(r.arm)+'</td><td>'+e(r.concurrency)+'</td><td>'+e(r.items)+'</td><td>'+e(r.model_calls_observed)+'</td><td>'+fmt(r.aggregate_completion_tokens_per_s)+'</td><td>'+fmt(r.latency_p95_ms)+'</td><td>'+e(r.failed_or_abstained_or_over_budget)+'</td><td>'+e(r.state)+'</td></tr>').join('');plot('throughput',rr,'aggregate_completion_tokens_per_s','throughput (tokens/s)');science(ss,pending,rr);plot('latency',rr,'latency_p95_ms','latency p95 (ms)')}catch(err){$('state').textContent='READ_FAILED'}}refresh();setInterval(refresh,4000);
 </script></body></html>'''
 
 
@@ -111,7 +141,8 @@ def serve(root, host='127.0.0.1', port=8765):
                     self.send_error(404);return
                 body=vs[-1].read_bytes();typ='application/json'
             elif self.path == '/data.json':
-                body=json.dumps(load_sanitized(root)).encode();typ='application/json'
+                data=load_sanitized(root);data['attestation']=attestation_status()
+                body=json.dumps(data).encode();typ='application/json'
             else:
                 self.send_error(404);return
             self.send_response(200);self.send_header('Content-Type',typ)
