@@ -46,8 +46,8 @@ Next: sufficient answer budgets, independent repeated comparisons, serialized ho
 
 Start with this README, the recording script and coverage audit. Report verified achievements first, then attach each scope or open question to its specific result. Read original receipts rather than promoting stale labels or summaries. Preserve frozen data and completed evidence; never rewrite commitments to admit mismatched answers. Use isolated worktrees, preserve other contributors’ edits, and serialize shared-GPU workloads.
 
-## Licensing
+## Licensing and public access
 
-Original software: [Apache-2.0](LICENSE). Original non-code materials: [CC BY-NC-ND 4.0](LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt). Third-party materials retain their own rights: [NOTICE](NOTICE), [third-party notices](docs/THIRD_PARTY_NOTICES.md). Repository visibility and redistribution review are separate from these license declarations.
+**This repository is public.** Original software is licensed under [Apache-2.0](LICENSE); original non-software material under [CC BY-NC-ND 4.0](LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt). For exact file-type coverage, including executable versus narrative notebook cells, read the [license scope](LICENSES.md), [NOTICE](NOTICE), and [third-party notices](docs/THIRD_PARTY_NOTICES.md). The licenses do not grant rights to confidential responses, third-party works, model artifacts or external systems. The existing judge-friendly [sanitized dashboard snapshot](judges/index.html) is not a live GPU service. Whole-history security and upstream redistribution reviews remain open; public visibility does **not** certify that those reviews were completed.
 
 [Historical Lane A setup](docs/HISTORICAL_LANE_A_README.md) · [Execution runbook](docs/CONCURRENCY_EXECUTION_RUNBOOK.md)

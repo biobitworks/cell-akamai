@@ -33,4 +33,4 @@ Deterministic means repeatable data reconstruction, hashing and declared arithme
 
 ## Licensing and access
 
-Original code: [Apache-2.0](../LICENSE). Original non-code: [CC BY-NC-ND 4.0](../LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt). [Third-party exceptions](THIRD_PARTY_NOTICES.md). Private raw responses, credentials and the complete recovery backup are excluded. Repository was last verified private; judges need authorized repository access until redistribution review is resolved.
+**The repository is publicly accessible for judges.** Original code: [Apache-2.0](../LICENSE); original non-code: [CC BY-NC-ND 4.0](../LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt). Read the [file-type license scope](../LICENSES.md), [NOTICE](../NOTICE), and [third-party exceptions](THIRD_PARTY_NOTICES.md) before redistribution. Private raw responses, credentials, and complete recovery backups are not part of the public judge package. Public visibility does not establish that the full Git-history secrets audit or every third-party redistribution review is complete. The dashboard snapshot is read-only and requires no private GPU credentials.
