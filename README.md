@@ -1,77 +1,51 @@
-## Workshop extensions and demo
+# Cell-Akamai — auditable scientific agent evaluation
 
-[What we added, with evidence limits](docs/WORKSHOP_ADDITIONS.md) · [Three-minute walkthrough](docs/FINAL_DEMO_SCRIPT.md)
+We extended Akamai’s inference workshop with a Strands role-separated design, real local/cloud evaluation, reproducible data representations and inspectable evidence.
 
-# cell-akamai · Lane A — Verified inference telemetry
+## Verified achievements
 
-This is a **standalone integration package** for the existing MagicPro directory `/Users/byron/projects/active/cell-akamai` and the **CPU-only hosted Akamai JupyterLab**. It does not modify Kubernetes manifests or provision GPUs. The vLLM service already runs on the workshop GPU node.
+- **First experiment: tokens/s and tokens/s².** EXP-AKAMAI-TOKEN-001 measured four sequential requests. Three throughput-change calculations independently reproduce: **0.19004143, 0.00768947, 0.00554005 tokens/s²**. [Calculation receipt](evidence/20261012/TOKEN001_RECOMPUTED.json).
+- **Real GPU concurrency.** The original Module 7 short concurrency-eight experiment recorded approximately **269 output tokens/s, 1,262 ms p95 latency and zero HTTP failures**. These are serving measurements.
+- **Local and cloud pilots.** Local Ollama Llama 3.2 3B and Akamai vLLM Qwen3-4B were exercised with the evaluation harness; small canonical scored panels preserve observed negative task outcomes. Different models and hardware remain separate comparison families.
+- **Strands compatibility.** Actor, challenger, randomized control and adjudicator roles are implemented and fixture-tested. A tool-free Strands call to Akamai succeeded. The measured scientific pilots used the plain OpenAI-compatible client.
+- **Deterministic data custody.** Thirty-two frozen synthetic ECA tasks reconstruct exactly across original records and FCO/FCG representations, preserving hashes and declared relationships. These are paired representations of the same tasks.
+- **Tested evidence handling.** Strict answer parsing, commitment/configuration/coverage checks, partial-failure accounting and dashboard checks make evidence reviewable. A short Module 8 tuning pilot preserved its negative finding.
 
-## What works
+## Demo and review
 
-- Runs bounded, sequential streaming OpenAI-compatible requests against `VLLM_HOST` / `MODEL_NAME` (starting with Qwen3-4B).
-- Preserves exact Prometheus `/metrics` sample bytes, SHA-256 digests, timestamps, labels, and parsed metrics.
-- Preserves SHA-256 identities of prompt/request and response bytes, model IDs, stream-chunk hashes, observed completion-token counts, monotonic timing, and source IDs.
-- Derives request tokens/s and **inter-request** tokens/s² using a versioned, deterministic algorithm. Missing usage returns null, never invented token counts.
-- Builds addressable local FCO/FCG **projections**, distinct content/occurrence identities, typed edges, and independent file reread/arithmetic checks.
-- Produces `lane_a_dashboard.html` as a single self-contained HTML file: model comparison, token curves, KV gauge, run selection and FCO drill-down. The dashboard includes Lane B rows when supplied.
-- Includes `notebooks/10_token_kinetics.ipynb` (live) and `notebooks/11_replay_offline.ipynb` (offline), plus `pytest` tests.
+[Recording script](docs/FINAL_DEMO_SCRIPT.md) · [Workshop additions](docs/WORKSHOP_ADDITIONS.md) · [Modules 1–9 and local coverage audit](docs/EVIDENCE_COVERAGE_AUDIT.md) · [Recovered execution context](docs/RECOVERED_PUBLICATION_README.md)
 
-## Start in Akamai hosted JupyterLab
+Start the loopback dashboard from a checkout containing saved run summaries:
 
-1. Execute the workshop's **`00_prerequisites/00_connect_and_verify.ipynb`** once. Confirm model call passes; it checks `VLLM_HOST`, namespace, vLLM health and chat completions.
-2. Upload the companion **`cell_akamai_lane_a.zip`** into JupyterLab, then in its terminal run:
+```bash
+python3 tools/concurrency/serve_dashboard.py --runs /path/to/private/runs/concurrency --port 8771
+```
 
-   ```bash
-   python - <<'PY'
-   import zipfile
-   with zipfile.ZipFile('cell_akamai_lane_a.zip') as z:
-       for name in z.namelist():
-           if name.startswith('/') or '..' in name.split('/'):
-               raise ValueError('unsafe archive path')
-       z.extractall('.')
-   PY
-   cd cell_akamai_lane_a
-   ```
-3. Open `notebooks/10_token_kinetics.ipynb`, select the installed Python 3.11+ kernel, and run its cells. Notebook 0/1 setup does not install anything; live experiment makes **4 requests** and lightly polls `/metrics`.
-4. Open generated `lane_a_dashboard.html` from JupyterLab file browser (or transfer it for a read-only local browser preview).
-5. For offline replay on a copied run, execute `notebooks/11_replay_offline.ipynb` or `python -m pytest tests -q`.
+Open http://127.0.0.1:8771/ for current aggregate summaries and the first tokens/s² experiment; `/evidence` replays the imported catalog with historical-label explanations. This repository omits private raw responses and credentials. A fresh clone needs actual saved summaries to populate current local/cloud panels.
 
-The archive's folder is deliberately separate from the workshop's source checkout; don't copy new files into `00_prerequisites/` or edit the shared vLLM deployment to run this experiment.
+## What deterministic means here
 
-## Scientific/evidence constraints
+1. Identical frozen input bytes have identical SHA-256 identities.
+2. Original/FCO/FCG fixture reconstruction reproduces the same records.
+3. The declared rate formula reproduces the recorded arithmetic from the same numeric inputs.
+4. Commitment checks deterministically accept matching bytes or reject mismatches.
 
-- Stream chunks are **not equivalent to tokenizer tokens**. `ttfc_s` measures arrival of first nonempty content/reasoning chunk, **not server-side TTFT**.
-- Request tokens/s = `usage.completion_tokens` / request wall duration (prefill + decode + network). This differs from vLLM's aggregate `/metrics` rate and decode-only TPOT.
-- tokens/s² uses difference between **request-average rates** divided by difference of request **midpoint times**. It is inter-request kinetic variation, **not a per-token derivative** and **not epistemic gain**.
-- Prometheus KV-cache ratio is occupancy of GPU-serving cache blocks, not scientific model quality; it is usually a fraction 0–1.
-- SHA-256 deduplicates contents but is not signing or truth. All FCOs here are explicitly **`UNADMITTED_LOCAL_PROJECTION`**. No project MMR commitment is computed.
-- Output files may expose research model names / source references; do not push raw `runs/`, `.env`, credentials, or restricted data to public GitHub.
-- **No real Akamai run was executed in this package authoring environment**. Tests are synthetic or purely mathematical and are separately labeled.
+These establish data identity, transformation fidelity and calculation reproducibility. Model answers can vary. A signature or Merkle root establishes covered-artifact integrity under its verification assumptions, rather than answer correctness or scientific improvement.
 
-## GitHub integration (after Gum Doctor isolates Git root)
+**Units:** request throughput = completion tokens / request wall duration [tokens/s]. Sequential rate change = difference in request throughput / request-midpoint separation [tokens/s²]. Aggregate concurrency throughput uses total completion tokens / measured batch wall time [tokens/s]. Streaming chunks are not tokens; first-chunk latency is distinct from server TTFT.
 
-The target repository is `biobitworks/cell-akamai`. This package was prepared before the GitHub repository existed. Consult current GitHub branches, issues and PRs for publication state. Never `git add .` while `cell-akamai` resolves to the unrelated parent MobiDB-lite repository.
+## Outcome interpretation and next validation
 
-From a verified independent repo root, import this package preserving its relative paths, create lane `lane/a-akamai-telemetry`, run `pytest`, commit/push, open a PR, and comment the exact branch/contract path on Claude's Lane B GitHub Issue. See `docs/LANE_B_HANDOFF.md`.
+Recorded measurements, negative task results, failed operations, missing metrics and unrun configurations are different outcomes. The evidence catalog preserves older labels; later M08/M09 receipts are described in its execution update. Some recovered answer files fail their commitments, so affected bundled scores remain excluded pending reconciliation. Zero correct answers makes tokens/correct undefined; it does not erase throughput observations.
 
-## Outputs
+Next: sufficient answer budgets, independent repeated comparisons, serialized hour-scale runs and complete project MMR integration. Prior Anticube and graph/state-change ΔG* calculations are being reconciled to run receipts and are excluded from measured demo claims. The current work establishes infrastructure and evidence integrity; training, quality gains and agent speedup require their own evidence.
 
-Each run creates `runs/akamai-<timestamp>-<random>/` with:
+## Guidance for agents
 
-- `inference_observations.jsonl`: streamed chunk hashes, timing, usage, derived rates
-- `telemetry_samples.jsonl`: timestamps, parsed gauges/counters, raw-file pointer and digest
-- `metrics/raw/*.prom`: exact Prometheus samples
-- `fco.jsonl`: content and occurrence identity, local context
-- `fcg.jsonl`: typed links (relationships only, no causality)
-- `verification.json`: local arithmetic/source integrity result and explicit verification limits
-- `run_summary.json`: source fingerprints and model provenance gaps
+Start with this README, the recording script and coverage audit. Report verified achievements first, then attach each scope or open question to its specific result. Read original receipts rather than promoting stale labels or summaries. Preserve frozen data and completed evidence; never rewrite commitments to admit mismatched answers. Use isolated worktrees, preserve other contributors’ edits, and serialize shared-GPU workloads.
 
-**Lane B exchange:** `schemas/lane_b_results.schema.json`, documented in `docs/LANE_B_HANDOFF.md`.
+## Licensing
 
-**Model comparison:** run notebook separately for each actually served model, freezing prompt, sampler interval, max completion tokens, and recording weight/tokenizer IDs if available. Do not assume switching the notebook's `MODEL_NAME` switches the GPU server model.
+Original software: [Apache-2.0](LICENSE). Original non-code materials: [CC BY-NC-ND 4.0](LICENSE-NONCODE-CC-BY-NC-ND-4.0.txt). Third-party materials retain their own rights: [NOTICE](NOTICE), [third-party notices](docs/THIRD_PARTY_NOTICES.md). Repository visibility and redistribution review are separate from these license declarations.
 
-## Recovered execution evidence
-
-[Module 7–9 receipts and original publication context](docs/RECOVERED_PUBLICATION_README.md) · [Coverage and custody audit](docs/EVIDENCE_COVERAGE_AUDIT.md)
-
-Recovered answer commitment discrepancies remain unresolved; bundled scores are not admitted by this audit. Private raw outputs and recovery archives are excluded.
+[Historical Lane A setup](docs/HISTORICAL_LANE_A_README.md) · [Execution runbook](docs/CONCURRENCY_EXECUTION_RUNBOOK.md)
