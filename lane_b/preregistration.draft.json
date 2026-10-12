@@ -1,0 +1,58 @@
+{
+  "alpha": 0.05,
+  "anticube": "NOT_COMPUTED",
+  "arms": [
+    "B0_FIXED",
+    "B1_GENESIS",
+    "B2_GENESIS_DAISY",
+    "B3_RANDOM_CONTROL"
+  ],
+  "claim_ceiling": "synthetic deterministic ECA control only",
+  "delta_g_star": "NOT_COMPUTED",
+  "delta_g_star_reason": "no validated calculation contract; GIBBS_SCORING_STATE=PARTIAL",
+  "experiment_id": "EXP-LANEB-GDAISY-001-DRAFT",
+  "multiplicity": "Holm",
+  "primary_contrast": "B2_GENESIS_DAISY vs B3_RANDOM_CONTROL",
+  "primary_metric": "exact_match_accuracy_primary",
+  "project_mmr": "NOT_COMMITTED",
+  "recovered_refs": {
+    "fixture_sha256": "eb36c766cbf76353f9981cb3a3aa32137622d1de53b29d861c483742bcd4dec7",
+    "policy_root": "b5c2d02b4afd999fc2a589bb178bd70dec1b3944c2fdd349cbee0c6ec006aa83",
+    "run001_time_series_sha256": "a6d2b169e71d7946aaac35fd9bff268280b31fd113a07dabe034551d57be5a28",
+    "run_policy_freeze_sha256": "b43685f37e0ae0d3d9babbda111487dca557c82fdb163a26c3805ec0c1304a8a"
+  },
+  "schema": "cell_akamai.lane_b.preregistration.v0",
+  "sided": "two",
+  "signature": "NOT_SIGNED",
+  "status": "DRAFT_UNFROZEN",
+  "task": {
+    "excluded_calibration_seeds": [
+      41031,
+      41032,
+      41033,
+      41034
+    ],
+    "family": "ECA_NEXT_ROW",
+    "oracle": "deterministic_independent",
+    "rules": [
+      30,
+      90,
+      110,
+      184
+    ],
+    "scored_seed_range": "UNFROZEN",
+    "width": 8
+  },
+  "test": "exact_McNemar_paired",
+  "unfrozen": [
+    "scored_seed_range",
+    "N_items",
+    "per_item_token_cap_K",
+    "per_item_call_cap",
+    "temperature_and_seeds",
+    "genesis_policy_binding",
+    "model_ids_and_revisions",
+    "anticube_predicates",
+    "host_selection"
+  ]
+}

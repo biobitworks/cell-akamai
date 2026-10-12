@@ -1,0 +1,2 @@
+{"basis": "GIBBS_DISCOVERY.json PARTIAL; RUN001 canonical_G_star NOT_COMPUTED", "by": "operator_review_requested", "decision": "\u0394G* reported NOT_COMPUTED; no validated formula", "id": "DEC-001", "state": "needs_review"}
+{"basis": "operator Lane B brief; RUN_POLICY_FREEZE.json", "decision": "Task family = recovered ECA oracle; arms per operator spec", "id": "DEC-002", "state": "needs_review"}
