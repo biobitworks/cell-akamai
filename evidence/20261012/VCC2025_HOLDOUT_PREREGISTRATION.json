@@ -1,0 +1,60 @@
+{
+  "run_id": "AKAMAI-GENESIS-VCC2025-CPU-HOLDOUT-20261012",
+  "source_sha": "3a35f0fcb348d3b0ff4613e6f347e8476fdb74f6",
+  "seed": 20261012,
+  "heldout_rows": 256,
+  "selection": "Original R3 held-out batches; select 256 rows by SHA256(runtime_id|holdout_<original row index>)",
+  "checkpoint_sha256": "41687cd29fbb8a102352b617fdf38c7df27df9ffeeee201c35e917c813adf8ca",
+  "predictors": [
+    "no_change",
+    "train_only_fixed_prior",
+    "frozen_genesis_r3"
+  ],
+  "metric": "uniform row/gene mean squared error on log1p(per-cell pseudobulk) residual relative to batch control",
+  "scoring": "Commit all three predictions before reading selected holdout X",
+  "official_vcc_score": false,
+  "training": false,
+  "claim_scope": "Independent heldout evaluation within public VCC2025 proxy, not official VCC2026 scoring",
+  "bootstrap": "1000 paired batch-cluster bootstrap replicates; 2.5/97.5 percentile interval; small cluster count limitation",
+  "data_preflight": {
+    "control_batch_pseudobulk.h5ad": {
+      "bytes": 2674136,
+      "sha256": "10b8ccaddb52f73d36c926e1a2ab1cf8098e91254e6c592e947c17f98fd0ffcd",
+      "X_shape": [
+        48,
+        18080
+      ],
+      "gene_count": 18080,
+      "gene_axis_sha256": "164ea967d28dc4b0ebe07f491a8211a367a572f201e63f7681e1ea8fc64924e4",
+      "obs_columns": [
+        "_index",
+        "batch",
+        "cells",
+        "series"
+      ]
+    },
+    "target_batch_pseudobulk.h5ad": {
+      "bytes": 395858848,
+      "sha256": "9cf09d6cd617c20ab2a083efc640016113af9b90c544d5a1d6851862688929ec",
+      "X_shape": [
+        14322,
+        18080
+      ],
+      "gene_count": 18080,
+      "gene_axis_sha256": "164ea967d28dc4b0ebe07f491a8211a367a572f201e63f7681e1ea8fc64924e4",
+      "obs_columns": [
+        "_index",
+        "batch",
+        "cells",
+        "group_id",
+        "series",
+        "split",
+        "target_gene"
+      ]
+    },
+    "gene_order_equal": true,
+    "unique_genes": true,
+    "no_expression_values_read": true
+  },
+  "evaluation_script_sha256": "ba534b72ab67841ade0259479cc81c87bfa39894c4e966e83d0ddbe38e70a938"
+}

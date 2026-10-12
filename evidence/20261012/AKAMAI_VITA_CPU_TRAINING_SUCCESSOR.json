@@ -1,0 +1,231 @@
+{
+  "config": {
+    "batch_size": 64,
+    "claim_scope": "bounded optimizer/custody engineering experiment; biological provenance not established for this view; no VCC quality claim",
+    "comparison": "before/after on same 320 development validation rows; not independent improvement evidence",
+    "device": "cpu",
+    "lr": 5e-05,
+    "module8_9_scope": "separate future vLLM generation epochs; do not apply vLLM serving knobs to this CPU model",
+    "optimizer_steps": 8,
+    "parent_checkpoint": "step_0008_model.pt",
+    "parent_sha256": "b5d109a8636c1f3c6e839e6621d96d8597101e4eb12790b80dcf700cc86bea6f",
+    "requested_generation_metrics": "not applicable to three-head encoder; measure input ID positions/s with explicit padding-inclusive denominator",
+    "row_selection": "first 512 train rows sorted by row_id, reused development training; no test access",
+    "run_id": "AKAMAI-VITA-DAISY-CPU-SUCCESSOR-20261012T232000Z",
+    "seed": 20261012,
+    "source_sha": "1a160b3088b4d815b85a0fb2a33ac2157b3a0ba0",
+    "threads": 2,
+    "view_sha256": "74ba95e12bf7c01ca8155e77e8866a8589f598619347966733182a12edcd7786"
+  },
+  "config_sha256": "bb466850b976b8411edd6a83073b23405848d780e2b097f1a1c33c7ba4e5bd69",
+  "executed_optimizer_steps": 8,
+  "finished_at_utc": "2026-10-12T23:18:46.213468+00:00",
+  "gpu_used": false,
+  "merkle_root": "40bcf7a7ab6a87edd9c576280c61dd6bf8912745972f010e4fb01f8e9a45494a",
+  "python": "3.12.15",
+  "run_id": "AKAMAI-VITA-DAISY-CPU-SUCCESSOR-20261012T232000Z",
+  "started_at_utc": "2026-10-12T23:18:42.828653+00:00",
+  "status": "COMPLETED",
+  "steps": [
+    {
+      "checkpoint_sha256": "ef1e7cf0cc5beed57c5f417e17641e26a216de7e1dd7c2ed7c1b0abf9d162383",
+      "duration_s": 0.45982768799876794,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 1391.8257136393117,
+      "input_id_positions_per_s2": null,
+      "metrics": {
+        "anticube_accuracy": 0.4375,
+        "anticube_ce": 1.5353941917419434,
+        "deltagstar_mse": 0.7348676323890686,
+        "evidence_weight_l1": 0.2710128426551819,
+        "loss": 1.6359822750091553
+      },
+      "rows": 64,
+      "step": 1
+    },
+    {
+      "checkpoint_sha256": "706695df8a2d476b09d24eed103be6d32dc6ddf6838d52e1da8967db395772f3",
+      "duration_s": 0.29570606199558824,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 2164.3113965298026,
+      "input_id_positions_per_s2": 1593.7158602341885,
+      "metrics": {
+        "anticube_accuracy": 0.375,
+        "anticube_ce": 1.4501696825027466,
+        "deltagstar_mse": 0.19600799679756165,
+        "evidence_weight_l1": 0.2333500236272812,
+        "loss": 1.493105411529541
+      },
+      "rows": 64,
+      "step": 2
+    },
+    {
+      "checkpoint_sha256": "8a3fcf98891b2035421b3cdb15d27de189e1bc9154e8760b9ba3aa0ebc25f3ab",
+      "duration_s": 0.23655816400423646,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 2705.4657052061766,
+      "input_id_positions_per_s2": 1485.2616019342909,
+      "metrics": {
+        "anticube_accuracy": 0.375,
+        "anticube_ce": 1.6008501052856445,
+        "deltagstar_mse": 1.0304309129714966,
+        "evidence_weight_l1": 0.25,
+        "loss": 1.7288931608200073
+      },
+      "rows": 64,
+      "step": 3
+    },
+    {
+      "checkpoint_sha256": "b06062a463b8c9f8fec8759c04d181efea1bcc35f213e384aefb3d7425da162f",
+      "duration_s": 0.17801931699796114,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 3595.1154672014045,
+      "input_id_positions_per_s2": 2841.06397127822,
+      "metrics": {
+        "anticube_accuracy": 0.4375,
+        "anticube_ce": 1.8065181970596313,
+        "deltagstar_mse": 0.3817501366138458,
+        "evidence_weight_l1": 0.2517414093017578,
+        "loss": 1.8698673248291016
+      },
+      "rows": 64,
+      "step": 4
+    },
+    {
+      "checkpoint_sha256": "d152882015dc8b8bbbd1d36fb6c90f292149a640288003715e3d93d526211e58",
+      "duration_s": 0.19243810798798222,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 3325.744607923333,
+      "input_id_positions_per_s2": -546.7613377644609,
+      "metrics": {
+        "anticube_accuracy": 0.625,
+        "anticube_ce": 1.1790146827697754,
+        "deltagstar_mse": 0.4542026221752167,
+        "evidence_weight_l1": 0.3016400933265686,
+        "loss": 1.2545989751815796
+      },
+      "rows": 64,
+      "step": 5
+    },
+    {
+      "checkpoint_sha256": "4b1e69ba67dc5edc4956a7f673c426f0980ff04eb7758c6bdcf41616fe73ebbc",
+      "duration_s": 0.13863851099449676,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 4616.321939763222,
+      "input_id_positions_per_s2": 5263.0874199946775,
+      "metrics": {
+        "anticube_accuracy": 0.6875,
+        "anticube_ce": 1.0335347652435303,
+        "deltagstar_mse": 1.0905030965805054,
+        "evidence_weight_l1": 0.3106018006801605,
+        "loss": 1.173645257949829
+      },
+      "rows": 64,
+      "step": 6
+    },
+    {
+      "checkpoint_sha256": "fd90b2f840062402818f237e5bcfa133ecd86b62088fbb94b9b0ae1d337d6965",
+      "duration_s": 0.1753008929954376,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 3650.8656006484616,
+      "input_id_positions_per_s2": -3739.9428913721504,
+      "metrics": {
+        "anticube_accuracy": 0.5,
+        "anticube_ce": 1.3573429584503174,
+        "deltagstar_mse": 0.1489727944135666,
+        "evidence_weight_l1": 0.2583902180194855,
+        "loss": 1.3980791568756104
+      },
+      "rows": 64,
+      "step": 7
+    },
+    {
+      "checkpoint_sha256": "5e2500e96ed458e8dc8e47f0eec3c05f864119792136d0e97e136803d682466d",
+      "duration_s": 0.13821459500468336,
+      "failures_count": 0,
+      "input_id_positions": 640,
+      "input_id_positions_per_s": 4630.480594168176,
+      "input_id_positions_per_s2": 3867.9736655722613,
+      "metrics": {
+        "anticube_accuracy": 0.3125,
+        "anticube_ce": 2.0411627292633057,
+        "deltagstar_mse": 0.3645121455192566,
+        "evidence_weight_l1": 0.2105644941329956,
+        "loss": 2.098670244216919
+      },
+      "rows": 64,
+      "step": 8
+    }
+  ],
+  "test_set_evaluated": false,
+  "torch": "2.14.1+cpu",
+  "units": {
+    "anticube_accuracy": "fraction",
+    "delta_g_star_mse": "squared project target units",
+    "input_id_positions_per_s": "input ID positions/s; includes padding if present",
+    "input_id_positions_per_s2": "input ID positions/s\u00b2; difference of per-step rates over midpoint separation"
+  },
+  "validation": [
+    {
+      "answer_commitment": "1f9e4895a4ebec310fa494754d9243c31ae9528299b98634324455254d699d26",
+      "anticube_accuracy": 0.5249999761581421,
+      "anticube_ce": 1.3633538484573364,
+      "delta_g_star_mse": 0.5084877014160156,
+      "duration_s": 0.30697929998859763,
+      "evidence_weight_l1": 0.2897520959377289,
+      "label": "baseline",
+      "loss": 1.443177828192711,
+      "rows": 320
+    },
+    {
+      "answer_commitment": "9c253e20311afe25bbb24010557012ee29cc1eadc8e47e282b0ab76775893e07",
+      "anticube_accuracy": 0.5249999761581421,
+      "anticube_ce": 1.401747465133667,
+      "delta_g_star_mse": 0.5652320981025696,
+      "duration_s": 0.21592359300120734,
+      "evidence_weight_l1": 0.2784039378166199,
+      "label": "step-0004",
+      "loss": 1.486111068725586,
+      "rows": 320
+    },
+    {
+      "answer_commitment": "bc6207025bb5f47e033b3bcd624929b58e696b8f5b1908027f70374e3e2c69ea",
+      "anticube_accuracy": 0.5249999761581421,
+      "anticube_ce": 1.4169930219650269,
+      "delta_g_star_mse": 0.5622905492782593,
+      "duration_s": 0.22836629500670824,
+      "evidence_weight_l1": 0.27047958970069885,
+      "label": "step-0008",
+      "loss": 1.5002700358629226,
+      "rows": 320
+    }
+  ],
+  "execution_source_sha": "3a35f0fcb348d3b0ff4613e6f347e8476fdb74f6",
+  "recovery_verification": {
+    "checkpoints_verified": 8,
+    "prediction_commitments_verified": 3,
+    "merkle_root_verified": true,
+    "private_archive_sha256": "9d93e4fa005893916b1e6ec90bb107d8e324bd44b1ccceb51204ab850b65d60a"
+  },
+  "decision": "RETAIN_PARENT_VALIDATION_LOSS_WORSENED",
+  "tokens_per_s": null,
+  "tokens_per_s2": null,
+  "reason": "Non-generative encoder; input ID positions/s and input ID positions/s\u00b2 are reported explicitly.",
+  "ollarma_watch_receipt": {
+    "watcher_model": "qwen2.5:1.5b",
+    "receipt_hash": "sha256:f45e2316afdf65f7d322ba889e4eb3e637cbae7c07604c40f7cb588e7d7f1172",
+    "deterministic_verified": true,
+    "fmo_root": "40bcf7a7ab6a87edd9c576280c61dd6bf8912745972f010e4fb01f8e9a45494a",
+    "canonical_merkle_proof": "deferred:seedgraph_ingest",
+    "trust": "PROVISIONAL",
+    "claim_ceiling": "internal_governance_only"
+  },
+  "operator_decision": "Retain parent; worsened development loss and delta-G-star MSE. Ollarma local review agreed."
+}
