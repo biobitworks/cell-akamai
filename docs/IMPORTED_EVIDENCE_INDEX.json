@@ -1,0 +1,39 @@
+{
+  "schema": "cell_akamai.evidence_index.v1",
+  "source_archive": "CELL_AKAMAI_EVIDENCE_EXPORT.zip",
+  "sha256": "sha256:d268897462440f5cf19f75762d26ed1dca7cc7a102d7ce55c25350fe00896a73",
+  "export_manifest_file_count": 27,
+  "export_manifest_digest_checks_passed": 27,
+  "independent_host_remote_execution": "NOT_TESTED",
+  "runs": [
+    {
+      "experiment_id": "EXP-AKAMAI-TOKEN-001",
+      "run_id": "akm-57de3a4a14c9",
+      "model": "Qwen/Qwen3-4B",
+      "records": 4,
+      "completion_tokens": 272,
+      "state": "IMPORTED_OBSERVED_RECEIPT; CHECKS_NEEDED_FOR_SCIENCE",
+      "role": "ORIGINAL_TOKEN_SMOKE; NOT CONCURRENCY"
+    },
+    {
+      "experiment_id": "EXP-AKAMAI-SPEC-001",
+      "run_id": "d69ad4d0e37d",
+      "model": "Qwen/Qwen3-4B",
+      "phase": "qwen_original_reference",
+      "records": 4,
+      "completion_tokens": 451,
+      "mean_request_tokens_per_s": 39.54445922884304,
+      "reported_precision": "UNKNOWN",
+      "speculative_config": [],
+      "local_rate_digest_counter_checks": "PASS",
+      "role": "ORIGINAL_NO_DRAFTER_REFERENCE; NOT FP8, NOT SPECULATIVE, NOT CONCURRENCY"
+    }
+  ],
+  "raw_prometheus_committed_to_git": false,
+  "anticube": "NOT_COMPUTED",
+  "delta_g_star": "NOT_COMPUTED",
+  "mmr": "NOT_COMMITTED",
+  "signature": "NOT_SIGNED",
+  "source_class": "USER_EXPORTED_RECEIPTS; LOCAL_RECOMPUTATION",
+  "next_action": "Execute matched concurrency run against verified server; preserve independent scientific score."
+}

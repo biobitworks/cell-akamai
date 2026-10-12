@@ -1,0 +1,16 @@
+{
+  "experiment_id": "EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY",
+  "mode": "PILOT_NONCONFIRMATORY",
+  "base_url": "http://vllm:8000/v1",
+  "model": "Qwen/Qwen3-4B",
+  "api_key_env": "VLLM_API_KEY",
+  "temperature": 0,
+  "decode_seed": 20261012,
+  "max_tokens_per_call": 256,
+  "item_token_cap": 768,
+  "item_call_cap": 3,
+  "seed_start": 50000,
+  "per_rule": 8,
+  "timeout_s": 180,
+  "_note": "PILOT ONLY. Runner uses a balanced subset of the frozen 32-item dataset. Real model revisions and precision must be recorded separately. The existing Claude cap is post hoc, not an in-flight reservation."
+}

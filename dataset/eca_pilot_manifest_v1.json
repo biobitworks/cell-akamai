@@ -1,0 +1,31 @@
+{
+  "anti_leakage": "Oracle truth must be evaluated in separate scorer only after answer digest receipt",
+  "calibration_seeds_excluded": [
+    41031,
+    41032,
+    41033,
+    41034
+  ],
+  "dataset_id": "ECA_NEXT_ROW_W8_R30_R90_R110_R184_20261012_PILOT",
+  "items_per_rule": 8,
+  "labels_in_dataset": false,
+  "mmr_root": "NOT_COMPUTED",
+  "n_items": 32,
+  "numpy_version": "2.3.5",
+  "oracle_not_included": true,
+  "path": "dataset/eca_pilot_inputs_v1.jsonl",
+  "rules": [
+    30,
+    90,
+    110,
+    184
+  ],
+  "schema": "cell_akamai.dataset_manifest.v1",
+  "seed_end_inclusive": 50031,
+  "seed_start": 50000,
+  "sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+  "signed": false,
+  "source": "Claude Lane B PR #5 item-generation contract, independent replicated on NumPy default_rng",
+  "status": "PILOT_NONCONFIRMATORY",
+  "task": "one-step elementary cellular automaton, periodic boundary, Wolfram neighborhood L*4+C*2+R"
+}
