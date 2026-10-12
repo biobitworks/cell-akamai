@@ -1,0 +1,60 @@
+{
+  "run_id": "AKAMAI-VITA-R4-CPU-VALIDATION-20261012",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "torch": "2.14.1+cpu",
+  "input_hashes": {
+    "view.jsonl": "74ba95e12bf7c01ca8155e77e8866a8589f598619347966733182a12edcd7786",
+    "step_0008_model.pt": "b5d109a8636c1f3c6e839e6621d96d8597101e4eb12790b80dcf700cc86bea6f",
+    "step_0012_model.pt": "6dda16d51c20b5966523cde530a8ad9de03f2858209a95c38e5b0a2411301496",
+    "recovered_r4.py": "742cd51c26d733c6f9a638c301eedb3e6cc88e43212c88c09d696cf7688a49fb"
+  },
+  "test_set_evaluated": false,
+  "training_performed": false,
+  "cells": [
+    {
+      "checkpoint": "step_0008_model.pt",
+      "answer_commitment": "1f9e4895a4ebec310fa494754d9243c31ae9528299b98634324455254d699d26",
+      "rows": 320,
+      "duration_s": 0.41673931300465483,
+      "rows_per_s": 767.8661216116793,
+      "anticube_accuracy": 0.5249999761581421,
+      "anticube_ce": 1.3633538484573364,
+      "delta_g_star_mse": 0.5084877014160156,
+      "evidence_weight_l1": 0.2897520959377289,
+      "loss": 1.443177828192711,
+      "failures_count": 0
+    },
+    {
+      "checkpoint": "step_0012_model.pt",
+      "answer_commitment": "875f18e5db4a1235441c25064dc208175f4d18477c28bc6eb25c96bb445eca8b",
+      "rows": 320,
+      "duration_s": 0.1908454869990237,
+      "rows_per_s": 1676.7491075208764,
+      "anticube_accuracy": 0.5249999761581421,
+      "anticube_ce": 1.3921695947647095,
+      "delta_g_star_mse": 0.5581027865409851,
+      "evidence_weight_l1": 0.2771354615688324,
+      "loss": 1.4756934195756912,
+      "failures_count": 0
+    }
+  ],
+  "recovered_at_utc": "2026-10-12T23:13:27.013917+00:00",
+  "source_sha": "10b72b302e1e231c2dd1c609e78f66bf01539de3",
+  "execution_scope": "Akamai workshop-s05 ws-05 CPU; no vLLM/GPU traffic",
+  "interpretation": "Descriptive validation replay; same frozen 320 rows. Neither independent test evidence nor training. CPU timings include first-pass effects; not a speedup comparison.",
+  "units": {
+    "anticube_accuracy": "fraction",
+    "anticube_ce": "nats/item",
+    "delta_g_star_mse": "squared target units; project-defined dimensionless target",
+    "loss": "weighted composite",
+    "rows_per_s": "rows/s",
+    "duration_s": "s"
+  },
+  "tokens_per_s": null,
+  "tokens_per_s2": null,
+  "token_metric_reason": "Non-autoregressive three-head model; no generated token stream. Input-ID throughput requires separate explicit measurement.",
+  "p95_latency_ms": null,
+  "raw_archive_sha256": "8d4a12586a657694e721cc9b5ab32ae8ed23277e77de72f8963e025fd438aad6",
+  "raw_prediction_commitments_verified": true
+}

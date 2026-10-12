@@ -1,6 +1,6 @@
 # Vita/DAISY longevity and virtual-cell evaluation: starting tracks
 
-Status: SOURCES_PINNED_DESIGN_ONLY. No Hugging Face model deployment or biological benchmark execution is claimed. See hf_longevity_source_registry.json for exact current revisions.
+Status: Hugging Face tracks remain SOURCES_PINNED_DESIGN_ONLY. Separately, recovered Kaggle Vita DAISY R4 checkpoints have now completed an Akamai CPU validation replay: [receipt](../evidence/20261012/AKAMAI_VITA_R4_CPU_REPLAY.json). This is a structured three-head model evaluation, separate from longevity text generation or official VCC scoring. See hf_longevity_source_registry.json for pinned Hugging Face revisions.
 
 ## First experiment: structured answer revision
 
@@ -10,7 +10,7 @@ Primary comparisons: Qwen/Qwen3-0.6B versus insilicomedicine/Qwen3-0.6B-Longevit
 
 Within each model compare B0fixed, B1Genesis-proxy, B2Genesis+DAISYchallenge and B3randomizedchallenge. Freeze call/token budgets and include a token-matched useful-information-free extra-inference control. Commit actor/challenger/adjudicator outputs before independent scoring. Track correction vs harmful reversal, task-specific deterministic accuracy/error, abstention, coverage, parse/truncation failures, calibration when actual confidence is collected, tokens/correct and stage-level latency. Subject/cohort/task-block bootstrap, not repeated-request pseudo-replication. No training claim.
 
-Genesis policy code/hash must be bound. MSM semantics/schema must be bound to the existing project contract before adding features; do not invent an acronym expansion or composite scientific score. Antigence may provide operational admission predicates only after freezing tests for schema, provenance, budget, leakage and unsafe admission. Its gate must not read evaluation truth. Anticube operational predicates and ΔG* remain NOT_COMPUTED until frozen implementations pass independent tests; no arbitrary scalarization or substitution of KL/divergence/throughput for ΔG*.
+Genesis policy code/hash must be bound. MSM semantics/schema must be bound to the existing project contract before adding features; do not invent an acronym expansion or composite scientific score. Antigence may provide operational admission predicates only after freezing tests for schema, provenance, budget, leakage and unsafe admission. Its gate must not read evaluation truth. For this proposed longevity actor experiment, Anticube operational predicates and ΔG* need a bound implementation and tests. The separate recovered Vita MSMTiny model already computes five-class Anticube accuracy/cross-entropy and ΔG* target MSE; its Akamai replay receipt records those values. These task-specific metrics must not be substituted for physical Gibbs energy, biological VCC scores or the proposed actor experiment.
 
 ## Second independent track: URSA plausibility
 
