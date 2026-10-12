@@ -1,0 +1,154 @@
+[
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_EVIDENCE_EXPORT_d26889746244",
+    "manifest_checks": [
+      {
+        "declared": 27,
+        "manifest": "EVIDENCE_MANIFEST.json",
+        "mismatches": [],
+        "missing": [],
+        "unexpected": [],
+        "verified": 27
+      }
+    ],
+    "members": 28,
+    "mtime_utc": "2026-10-12T19:29:34.587632+00:00",
+    "path": "/home/coder/workshop/CELL_AKAMAI_EVIDENCE_EXPORT.zip",
+    "sha256": "d268897462440f5cf19f75762d26ed1dca7cc7a102d7ce55c25350fe00896a73",
+    "size": 216284,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_HANDOFF_20261012_a974e8a30ef4",
+    "manifest_checks": [
+      {
+        "declared": 7,
+        "manifest": "PACKAGE_MANIFEST.json",
+        "mismatches": [],
+        "missing": [],
+        "unexpected": [],
+        "verified": 7
+      }
+    ],
+    "members": 8,
+    "mtime_utc": "2026-10-12T20:19:59.347923+00:00",
+    "path": "/home/coder/workshop/CELL_AKAMAI_M08_M09_HANDOFF_20261012.zip",
+    "sha256": "a974e8a30ef47e227ddd3d1adcdcb4f61e0867aa773d92de4a013ff866366bf0",
+    "size": 26176,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_SIX_DATASETS_20261012_cc319eccd4e2",
+    "manifest_checks": [
+      {
+        "declared": 21,
+        "manifest": "PACKAGE_MANIFEST.json",
+        "mismatches": [],
+        "missing": [],
+        "unexpected": [],
+        "verified": 21
+      }
+    ],
+    "members": 22,
+    "mtime_utc": "2026-10-12T20:31:50.632217+00:00",
+    "path": "/home/coder/workshop/CELL_AKAMAI_M08_M09_SIX_DATASETS_20261012.zip",
+    "sha256": "cc319eccd4e27e506443e10a694412906c9c6d79fc9c73f6fe1aea7d2d0cbd48",
+    "size": 66826,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_akamai_run_001_73c2c4ff7deb",
+    "manifest_checks": [],
+    "members": 12,
+    "mtime_utc": "2026-10-12T19:29:14.939293+00:00",
+    "path": "/home/coder/workshop/akamai_run_001.zip",
+    "sha256": "73c2c4ff7deb5c3e30b16f73ef6754c3b102cb0da8e4705a7ac8d485b7d38dad",
+    "size": 509642,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d_2866f1ea0466",
+    "manifest_checks": [],
+    "members": 12,
+    "mtime_utc": "2026-10-12T20:36:34.261121+00:00",
+    "path": "/home/coder/workshop/cell_akamai_recovery_20261012/CELL_AKAMAI_EVIDENCE_EXPORT_d26889746244/cell_akamai_results/EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d.zip",
+    "sha256": "2866f1ea0466f5c752e4acb5646a500e0da7eb125101909d1567f36db3a84eed",
+    "size": 48350,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z_b2ea8c60dea5",
+    "manifest_checks": [
+      {
+        "declared": 57,
+        "manifest": "ARCHIVE_MANIFEST.json",
+        "mismatches": [],
+        "missing": [],
+        "unexpected": [],
+        "verified": 57
+      }
+    ],
+    "members": 58,
+    "mtime_utc": "2026-10-12T20:57:56.359343+00:00",
+    "path": "/home/coder/workshop/cell_akamai_recovery_20261012/executed_successor_v1/CELL_AKAMAI_M08_M09_RESULTS_20261012T205756Z.zip",
+    "sha256": "b2ea8c60dea5588aa4655a037eb12279fe458d0ee6645f548951b4fc4df9bd2d",
+    "size": 90776,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d_2866f1ea0466",
+    "manifest_checks": [],
+    "members": 12,
+    "mtime_utc": "2026-10-12T19:22:29.720284+00:00",
+    "path": "/home/coder/workshop/cell_akamai_results/EXP-AKAMAI-SPEC-001_qwen_original_reference_d69ad4d0e37d.zip",
+    "sha256": "2866f1ea0466f5c752e4acb5646a500e0da7eb125101909d1567f36db3a84eed",
+    "size": 48350,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  },
+  {
+    "exists": true,
+    "extracted_path": "/home/coder/workshop/cell_akamai_recovery_20261012/archive_codex_bf16_execution_bundle_7f397c869443",
+    "manifest_checks": [
+      {
+        "declared": 0,
+        "manifest": "bundle/pr7/dataset/eca_pilot_manifest_v1.json",
+        "mismatches": [],
+        "missing": [],
+        "unexpected": [],
+        "verified": 0
+      },
+      {
+        "declared": 27,
+        "manifest": "bundle/pr3/PACKAGE_MANIFEST.json",
+        "mismatches": [
+          "README.md",
+          "docs/LANE_B_HANDOFF.md"
+        ],
+        "missing": [],
+        "unexpected": [],
+        "verified": 25
+      },
+      {
+        "declared": 0,
+        "manifest": "bundle/SOURCE_MANIFEST.json",
+        "mismatches": [],
+        "missing": [],
+        "unexpected": [],
+        "verified": 0
+      }
+    ],
+    "members": 143,
+    "mtime_utc": "2026-10-12T20:26:12.770377+00:00",
+    "path": "/home/coder/workshop/codex_bf16_execution_bundle.zip",
+    "sha256": "7f397c86944317b4dcbe640f25db6854ee2a097b4fd7c4be1c024da89a372881",
+    "size": 1583184,
+    "state": "RECOVERED_INTEGRITY_PASS"
+  }
+]

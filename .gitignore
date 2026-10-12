@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+.pytest_cache/
+.venv/
+runs/
+private/
+*.zip
+*.kubeconfig
+kubeconfig*
+.env*
+*.pem
+*.key
+checkpoints/
+*.safetensors
+*.bin

@@ -1,0 +1,36 @@
+{
+  "args": [
+    "--model=Qwen/Qwen3-4B",
+    "--download-dir=/models",
+    "--tensor-parallel-size=1",
+    "--gpu-memory-utilization=0.7",
+    "--max-model-len=8192",
+    "--max-num-seqs=32",
+    "--host=0.0.0.0",
+    "--port=8000",
+    "--reasoning-parser=qwen3",
+    "--enable-auto-tool-choice",
+    "--tool-call-parser=hermes"
+  ],
+  "args_sha256": "30f69e26daad450a363c1cebf02dda87d484375758d2c63b832969f5d1be8314",
+  "image": "vllm/vllm-openai:v0.20.2",
+  "mmr": "NOT_COMMITTED",
+  "model_revision": "UNKNOWN",
+  "namespace": "workshop-s05",
+  "other_workloads_observed": 0,
+  "permissions": {
+    "get": "yes",
+    "patch": "yes"
+  },
+  "precision": "torch.bfloat16",
+  "ready_replicas": 1,
+  "served_model": "Qwen/Qwen3-4B",
+  "signed": "NOT_SIGNED",
+  "source_shas": {
+    "pr3": "d52ccc6b28b405e0b5af55daab83db121b55c710",
+    "pr5": "73001e73eeada4aee4f3b32fa4a0671cca255601",
+    "pr7": "d9fd0629e61b4ada5a6750b78fa0a801dc33dd4e",
+    "workshop": "454b43269216c1f92dd8d7e2711649e38cb888cb"
+  },
+  "state": "PREFLIGHT_PASS"
+}
