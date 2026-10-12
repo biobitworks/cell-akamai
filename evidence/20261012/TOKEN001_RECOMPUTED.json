@@ -1,0 +1,42 @@
+{
+  "experiment_id": "EXP-AKAMAI-TOKEN-001",
+  "source_receipt_sha256": "a402975a43b0b9c6656bd4cda396b5b301610bb4d4991bd7dddc03d27bdb5bbc",
+  "scope": "sequential request throughput; not individual token dynamics or concurrent-workload acceleration",
+  "formula": "(throughput_i - throughput_previous) / ((midpoint_ns_i - midpoint_ns_previous) / 1e9)",
+  "units": {
+    "tokens_per_s": "tokens/s",
+    "throughput_change_tokens_per_s2": "tokens/s\u00b2"
+  },
+  "verification": "RECOMPUTED_MATCH",
+  "first_derivative_null_reason": "No preceding request",
+  "rows": [
+    {
+      "run": 1,
+      "tokens_per_s": 39.23397824575491,
+      "midpoint_ns": 72063213005615.5,
+      "midpoint_separation_s": null,
+      "throughput_change_tokens_per_s2": null
+    },
+    {
+      "run": 2,
+      "tokens_per_s": 39.56497398778675,
+      "midpoint_ns": 72064954708677.0,
+      "midpoint_separation_s": 1.7417030615,
+      "throughput_change_tokens_per_s2": 0.19004143091232567
+    },
+    {
+      "run": 3,
+      "tokens_per_s": 39.57833912654482,
+      "midpoint_ns": 72066692817189.0,
+      "midpoint_separation_s": 1.738108512,
+      "throughput_change_tokens_per_s2": 0.007689473163381206
+    },
+    {
+      "run": 4,
+      "tokens_per_s": 39.5879545502477,
+      "midpoint_ns": 72068428436867.0,
+      "midpoint_separation_s": 1.735619678,
+      "throughput_change_tokens_per_s2": 0.005540052250365595
+    }
+  ]
+}
