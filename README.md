@@ -13,6 +13,14 @@ We extended Akamai’s inference workshop with a Strands role-separated design, 
 - **Deterministic data custody.** Thirty-two frozen synthetic ECA tasks reconstruct exactly across original records and FCO/FCG representations, preserving hashes and declared relationships. These are paired representations of the same tasks.
 - **Tested evidence handling.** Strict answer parsing, commitment/configuration/coverage checks, partial-failure accounting and dashboard checks make evidence reviewable. A short Module 8 tuning pilot preserved its negative finding.
 
+## New Akamai CPU results (after the recorded demo)
+
+- **Vita DAISY:** recovered real Kaggle R4 checkpoints, replayed Anticube/ΔG* validation, then completed an eight-step CPU optimizer segment with eight verified checkpoint hashes, three verified answer commitments and a verified experiment Merkle root. The parent remains preferred because development loss worsened. [Training receipt](evidence/20261012/AKAMAI_VITA_CPU_TRAINING_SUCCESSOR.json).
+- **Genesis public VCC 2025 proxy:** 256 held-out rows × 18,080 exactly aligned genes. Predictions committed before truth access. MSE: no-change **0.02036715**, train-only prior **0.01739340**, Genesis **0.01737874**. The observed reduction against the prior is about **0.084%**; a paired eight-batch bootstrap interval favors Genesis on this subset. This is one public-proxy holdout evaluation, distinct from official VCC 2026 scoring. [Holdout receipt](evidence/20261012/AKAMAI_GENESIS_VCC2025_HOLDOUT.json).
+- **Recovery and local review:** the first proxy attempt exceeded the notebook container’s 1 GiB limit. Compact inference completed after recovery; private evidence was downloaded and checked. Ollarma’s local `qwen2.5:1.5b` reviewed actual training aggregates; its custody leaf verifies. The SeedGraph outbound queue validates, while canonical ingest remains pending. [Custody status](evidence/20261012/OLLARMA_SEEDGRAPH_CUSTODY_STATUS.json).
+
+These checkpoints are numerical/encoder models, separate from Pythia-style generation. Report input-ID positions/s for the encoder; generated tokens/s applies to actual generation runs. [Metric definitions and custody](docs/VITA_DAISY_CUSTODY_CHAIN.md) · [Fragmentum v2 recovery](docs/FRAGMENTUM_V2_RECOVERY_STATUS.md).
+
 ## Demo and review
 
 [Recording script](docs/FINAL_DEMO_SCRIPT.md) · [Workshop additions](docs/WORKSHOP_ADDITIONS.md) · [Modules 1–9 and local coverage audit](docs/EVIDENCE_COVERAGE_AUDIT.md) · [Recovered execution context](docs/RECOVERED_PUBLICATION_README.md)
@@ -40,7 +48,7 @@ These establish data identity, transformation fidelity and calculation reproduci
 
 Recorded measurements, negative task results, failed operations, missing metrics and unrun configurations are different outcomes. The evidence catalog preserves older labels; later M08/M09 receipts are described in its execution update. Some recovered answer files fail their commitments, so affected bundled scores remain excluded pending reconciliation. Zero correct answers makes tokens/correct undefined; it does not erase throughput observations.
 
-Next: sufficient answer budgets, independent repeated comparisons, serialized hour-scale runs and complete project MMR integration. Prior Anticube and graph/state-change ΔG* calculations are being reconciled to run receipts and are excluded from measured demo claims. The current work establishes infrastructure and evidence integrity; training, quality gains and agent speedup require their own evidence.
+Next: sufficient answer budgets, independent repeated comparisons, serialized hour-scale runs and complete project MMR integration. Prior Anticube and graph/state-change ΔG* calculations are being reconciled to run receipts and are excluded from measured demo claims. The recorded demo establishes infrastructure and evidence integrity. The later bounded training and public-proxy holdout results above have their own receipts; broader biological quality and agent speedup remain separate evaluations.
 
 ## Guidance for agents
 

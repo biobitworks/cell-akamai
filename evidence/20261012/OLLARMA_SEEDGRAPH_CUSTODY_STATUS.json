@@ -1,0 +1,12 @@
+{
+  "status": "VALIDATED_DEFERRED_QUEUE",
+  "findings": [],
+  "queue_sha256": "743e63cb15eecd70b0bc9e954c6d80b33690cef15b54421551a814e062da2957",
+  "payload_sha256": "d8ca4859ccf155772aeec2bb602a3630633a99714371930100e87ec78ba6cfe6",
+  "live_writeback_performed": false,
+  "mutation_performed": false,
+  "canonical_anchoring": "PENDING",
+  "reason": "Validated outbound receipt package; no canonical SeedGraph ingest/proof hydration performed",
+  "ollarma_model": "qwen2.5:1.5b",
+  "watch_custody_hash": "sha256:f45e2316afdf65f7d322ba889e4eb3e637cbae7c07604c40f7cb588e7d7f1172"
+}

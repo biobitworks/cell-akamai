@@ -3,9 +3,125 @@
 import argparse
 import json
 import hashlib
+import math
 import subprocess
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+
+_VITA_RECEIPTS = (
+    ('AKAMAI_VITA_R4_CPU_REPLAY.json', 'Vita R4 CPU validation replay'),
+    ('AKAMAI_VITA_CPU_TRAINING_SUCCESSOR.json', 'Vita CPU training successor validation'),
+    ('AKAMAI_GENESIS_VCC2025_HOLDOUT.json', 'Genesis public proxy holdout'),
+)
+_vita_cache = {}
+_vita_cache_lock = threading.Lock()
+
+
+def _finite_scalar(value):
+    try:
+        return value if type(value) in (int, float) and math.isfinite(value) else None
+    except (OverflowError, TypeError, ValueError):
+        return None
+
+
+def _safe_hash(value):
+    if not isinstance(value, str):
+        return None
+    value = value.removeprefix('sha256:')
+    return value.lower() if len(value) == 64 and all(c in '0123456789abcdefABCDEF' for c in value) else None
+
+
+def _safe_source_hash(value):
+    if isinstance(value, str) and len(value) == 40 and all(c in '0123456789abcdefABCDEF' for c in value):
+        return value.lower()
+    return _safe_hash(value)
+
+
+def _vita_record(name, label, raw, receipt):
+    """Project a receipt onto an explicit dashboard-safe schema."""
+    source_sha = receipt.get('execution_source_sha') if name == 'AKAMAI_VITA_CPU_TRAINING_SUCCESSOR.json' else receipt.get('source_sha')
+    record = {'id': name.removesuffix('.json'), 'label': label,
+              'receipt_sha256': hashlib.sha256(raw).hexdigest(),
+              'status': receipt.get('status') if receipt.get('status') in ('COMPLETED', 'SCORED_PUBLIC_PROXY_HOLDOUT') else 'UNKNOWN',
+              'device': receipt.get('device') if receipt.get('device') in ('cpu', 'CPU') else 'UNKNOWN',
+              'source_sha256': _safe_source_hash(source_sha),
+              'metrics': {}}
+    m = record['metrics']
+    if name == 'AKAMAI_VITA_R4_CPU_REPLAY.json':
+        m.update({'test_set_evaluated': receipt.get('test_set_evaluated') is True,
+                  'training_performed': receipt.get('training_performed') is True,
+                  'cells': []})
+        for cell in receipt.get('cells', []) if isinstance(receipt.get('cells'), list) else []:
+            if isinstance(cell, dict):
+                m['cells'].append({k: _finite_scalar(cell.get(k)) for k in
+                    ('rows', 'duration_s', 'rows_per_s', 'anticube_accuracy', 'anticube_ce',
+                     'delta_g_star_mse', 'loss', 'failures_count')})
+    elif name == 'AKAMAI_VITA_CPU_TRAINING_SUCCESSOR.json':
+        m.update({'test_set_evaluated': receipt.get('test_set_evaluated') is True,
+                  'training_performed': bool(_finite_scalar(receipt.get('executed_optimizer_steps'))),
+                  'executed_optimizer_steps': _finite_scalar(receipt.get('executed_optimizer_steps')),
+                  'decision': receipt.get('decision') if receipt.get('decision') in ('RETAIN_PARENT_VALIDATION_LOSS_WORSENED', 'UNKNOWN') else 'UNKNOWN',
+                  'config_sha256': _safe_hash(receipt.get('config_sha256')),
+                  'merkle_root': _safe_hash(receipt.get('merkle_root')),
+                  'validation': []})
+        for row in receipt.get('validation', []) if isinstance(receipt.get('validation'), list) else []:
+            if isinstance(row, dict):
+                m['validation'].append({'label': row.get('label') if isinstance(row.get('label'), str) else 'UNKNOWN'} | {
+                    k: _finite_scalar(row.get(k)) for k in
+                    ('rows', 'duration_s', 'anticube_accuracy', 'anticube_ce', 'delta_g_star_mse', 'loss')})
+    else:
+        mse = receipt.get('mse') if isinstance(receipt.get('mse'), dict) else {}
+        interval = receipt.get('paired_batch_bootstrap_95_interval')
+        interval = [_finite_scalar(x) for x in interval[:2]] if isinstance(interval, list) else []
+        m.update({'rows': _finite_scalar(receipt.get('rows')),
+                  'genes': _finite_scalar(receipt.get('genes')),
+                  'duration_s': _finite_scalar(receipt.get('duration_s')),
+                  'failures_count': _finite_scalar(receipt.get('failures_count')),
+                  'mse': {k: _finite_scalar(mse.get(k)) for k in
+                          ('no_change', 'train_only_fixed_prior', 'frozen_genesis_r3')},
+                  'paired_mse_delta_genesis_minus_prior': _finite_scalar(receipt.get('paired_mse_delta_genesis_minus_prior')),
+                  'paired_batch_bootstrap_95_interval': interval if len(interval) == 2 else None,
+                  'official_vcc_score': False})
+    return record
+
+
+def _vita_receipt_complete(name, receipt):
+    source_sha = receipt.get('execution_source_sha') if name == 'AKAMAI_VITA_CPU_TRAINING_SUCCESSOR.json' else receipt.get('source_sha')
+    if _safe_source_hash(source_sha) is None:
+        return False
+    if name == 'AKAMAI_VITA_R4_CPU_REPLAY.json':
+        return isinstance(receipt.get('cells'), list)
+    if name == 'AKAMAI_VITA_CPU_TRAINING_SUCCESSOR.json':
+        return (isinstance(receipt.get('validation'), list) and
+                _safe_hash(receipt.get('config_sha256')) is not None and
+                _safe_hash(receipt.get('merkle_root')) is not None)
+    return (isinstance(receipt.get('mse'), dict) and
+            isinstance(receipt.get('paired_batch_bootstrap_95_interval'), list))
+
+
+def load_vita_experiments(evidence_root=None):
+    """Load only the three approved receipts; retain last valid snapshots on read/parse errors."""
+    folder = Path(evidence_root) if evidence_root else Path(__file__).resolve().parents[2] / 'evidence' / '20261012'
+    records = []
+    for name, label in _VITA_RECEIPTS:
+        path = folder / name
+        key = (str(folder.resolve()), name)
+        try:
+            raw = path.read_bytes()
+            parsed = json.loads(raw)
+            if not isinstance(parsed, dict) or not _vita_receipt_complete(name, parsed):
+                raise ValueError('receipt is incomplete')
+            snapshot = _vita_record(name, label, raw, parsed)
+            with _vita_cache_lock:
+                _vita_cache[key] = snapshot
+        except (OSError, ValueError, TypeError):
+            with _vita_cache_lock:
+                snapshot = _vita_cache.get(key)
+            if snapshot is None:
+                continue
+        records.append(snapshot)
+    return {'schema': 'cell_akamai.vita_experiments.v1', 'experiments': records}
 
 
 def attestation_status(folder=None):
@@ -42,6 +158,7 @@ HTML = '''<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport
 <div class="section"><div class="grid"><div class="metric">Evaluation evidence <strong id="state">LOADING</strong></div><div class="metric">Aggregate run rows <strong id="cells">—</strong></div><div class="metric">Checkpoint signature <strong id="signature">VERIFYING</strong></div><div class="metric">Deterministic reconstruction <strong id="deterministic">VERIFYING</strong></div></div><p><small>Imported Akamai Qwen reference receipts are separate, not concurrency or FP8/speculative results. Tokens/s uses actual endpoint usage. Streamed chunks are never tokenizer tokens. First experiment TOKEN-001: sequential request throughput change was computed and reproduced as 0.19004143, 0.00768947 and 0.00554005 tokens/s². Formula: change in request tokens/s divided by request-midpoint separation [s]. This is rate variation, not learning. Concurrent-workload derivative: NOT_COMPUTED.</small></p></div>
 <div class="section" id="token-rate-change"><h2>First experiment · tokens/second/second [tokens/s²]</h2><p><b>Definition:</b> (request throughput − previous request throughput) / request-midpoint separation [s]. All three recorded calculations independently reproduced.</p><table><tr><th>Sequential request</th><th>Throughput [tokens/s]</th><th>Midpoint separation [s]</th><th>Rate change [tokens/s²]</th></tr><tr><td>1</td><td>39.23397825</td><td>—</td><td>NULL: no preceding request</td></tr><tr><td>2</td><td>39.56497399</td><td>1.74170306</td><td><strong>0.19004143</strong></td></tr><tr><td>3</td><td>39.57833913</td><td>1.73810851</td><td><strong>0.00768947</strong></td></tr><tr><td>4</td><td>39.58795455</td><td>1.73561968</td><td><strong>0.00554005</strong></td></tr></table><p>EXP-AKAMAI-TOKEN-001 · sequential request-rate variation. Arithmetic reproduction establishes the calculation; independent host reexecution remains a next step. Source: TOKEN001_RECOMPUTED.json in the repository. Concurrent workload derivative is a separate measurement.</p></div><div class="section" id="contributions"><h2>What we added to the workshop</h2><div class="grid"><div class="metric"><strong>1 · Problem</strong><p>Can scientific agents improve an answer at a measurable cost, with evidence someone else can check?</p></div><div class="metric"><strong>2 · Tech stack</strong><p>Strands role separation; Akamai vLLM / Qwen3-4B; Python notebooks, tests, commitment checks and aggregate dashboards.</p></div><div class="metric"><strong>3 · Demo + code</strong><p>Compare actual local/cloud pilot summaries below; inspect frozen data, strict scoring and failure accounting in the repository.</p></div></div><ul><li><b>Local + cloud pilots:</b> local Ollama Llama 3.2 3B and Akamai Qwen3-4B through an OpenAI-compatible harness. Different models/hardware; no causal platform advantage claimed.</li><li><b>Deterministic data:</b> 32 frozen synthetic ECA tasks; exact original/FCO/FCG reconstruction and hashes. Representations are paired, not independent biological datasets.</li><li><b>Agent controls:</b> B0 single call, B1 voting proxy, B2 challenge, B3 randomized control. Different call budgets prevent a compute-matched causal claim.</li><li><b>Evidence custody:</b> answer SHA-256 commitments before scoring, configuration/coverage checks, explicit refusal on mismatch and sanitized summaries. Recovered archive commitment discrepancies remain under reconciliation.</li><li><b>Measurement corrections:</b> server-usage tokens, not chunks; tokens/s and latency [ms]. Missing values and zero-correct denominators stay unavailable. Independent-repeat error bars are not yet available.</li><li><b>Verified successes:</b> real GPU concurrency measurements; a tool-free Strands canary; deterministic reconstruction; local/cloud scored pilots; a short tuning pilot preserving a negative result.</li></ul><p><b>What we established:</b> a reproducible evaluation framework joining frozen ECA records, exact original/FCO/FCG reconstruction, role-separated agent policies, local/cloud pilots and checkable evidence. Our first experiment’s sequential tokens/s² calculations reproduce exactly. A tool-free Strands call reached Akamai successfully, and the dashboard preserves measured outcomes alongside their provenance.</p><details><summary>Next validation steps and evidence scope</summary><p>Extend the short pilots with independent repeats and hour-scale checkpoints; complete project MMR integration; reconcile prior Anticube and ΔG* calculations to specific run receipts; refresh the older evidence index. Current results establish infrastructure and data integrity. Training, quality improvement and a Strands speedup require separate evidence.</p></details></div>
 <div class="section"><h2>What this evidence establishes</h2><p id="claim_reason">Loading signed checkpoint verification…</p><p>Signed local checkpoint verifies receipt integrity under a self-issued key; it does not independently attest identity. Project MMR is not integrated. Model quality improvement and controlled speedup remain unestablished.</p></div>
+<div class="section" id="vita-experiments"><h2>Vita CPU validation and Genesis public proxy holdout</h2><p><small>Receipt-backed CPU measurements. Vita replay and successor are validation; Genesis is a public proxy holdout. These records do not provide an official VCC score.</small></p><div id="vita_receipts" class="empty">Loading allowlisted experiment receipts…</div></div>
 <div class="section"><h2>Aggregate completion-token throughput (tokens/s) versus concurrency</h2><div id="throughput" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
 <div class="section"><h2>Item latency p95 (ms) versus concurrency</h2><div id="latency" class="empty">NOT_TESTED · No concurrent GPU receipts</div></div>
 <div class="section"><h2>Backend, model stage and evaluation controls</h2><div class="scroll"><table><thead><tr><th>Run / module</th><th>Backend / stage</th><th>Arm</th><th>c</th><th>Items</th><th>Calls</th><th>Completion tok/s</th><th>Latency p95 ms</th><th>Failures</th><th>Evidence</th></tr></thead><tbody id="rows"></tbody></table></div></div>
@@ -62,7 +179,8 @@ for(const p of s.panels.filter(p=>p.state!=='SCORED'))html+='<tr><td colspan="9"
 html+='</tbody></table></div>';const cs=runs.flatMap(s=>s.contrasts.map(c=>Object.assign({run:s.run_id},c)));
 if(cs.length)html+='<div class="scroll"><table><thead><tr><th>Run</th><th>c</th><th>Contrast</th><th>A only</th><th>B only</th><th>Both right</th><th>Both wrong</th><th>McNemar p (Holm)</th></tr></thead><tbody>'+cs.map(c=>'<tr><td>'+e(c.run)+'</td><td>'+e(c.concurrency)+'</td><td>'+e(c.A)+' vs '+e(c.B)+'</td><td>'+e(c.A_only_correct)+'</td><td>'+e(c.B_only_correct)+'</td><td>'+e(c.both_correct)+'</td><td>'+e(c.both_wrong)+'</td><td>'+fmt(c.p_holm)+'</td></tr>').join('')+'</tbody></table></div>'}
 if(pendingHtml)html+=pendingHtml;$('science').innerHTML=html+'<p><small>PILOT_NONCONFIRMATORY. Exact-match is scored only after each answers.jsonl SHA-256 commitment verifies; refused panels stay listed. Pending/unscored runs are shown separately from scored results.</small></p>'}
-async function refresh(){try{const r=await fetch('/data.json',{cache:'no-store'});let data=await r.json();const att=data.attestation||{};$('signature').textContent=att.signature||'UNVERIFIED';$('deterministic').textContent=att.deterministic_reconstruction||'UNVERIFIED';$('claim_reason').textContent=att.reason||'Verification unavailable';let rr=data.rows||[],pending=data.pending||[],ss=data.science||[],scored=(ss.flatMap(s=>s.panels||[]).filter(p=>String(p.state||'').startsWith('SCORED')).length),active=pending.filter(p=>p.score_state==='PENDING').length,stopped=pending.filter(p=>p.score_state==='STOPPED_UNSCORED').length;$('state').textContent=scored?'SCORED PANELS: '+scored+(active?' · '+active+' PENDING':'')+(stopped?' · '+stopped+' STOPPED':''):active?'PENDING: '+active:stopped?'STOPPED, UNSCORED: '+stopped:pending.length?'UNSCORED: '+pending.length:ss.length?'NO VERIFIED SCORED PANELS':rr.length?'AGGREGATES ONLY':'NO RUN DATA';$('cells').textContent=String(rr.length);$('rows').innerHTML=rr.map(r=>'<tr><td>'+e(r.run_id)+' / '+e(r.module)+'</td><td>'+e(r.backend)+' / '+e(r.stage)+'</td><td>'+e(r.arm)+'</td><td>'+e(r.concurrency)+'</td><td>'+e(r.items)+'</td><td>'+e(r.model_calls_observed)+'</td><td>'+fmt(r.aggregate_completion_tokens_per_s)+'</td><td>'+fmt(r.latency_p95_ms)+'</td><td>'+e(r.failed_or_abstained_or_over_budget)+'</td><td>'+e(r.state)+'</td></tr>').join('');plot('throughput',rr,'aggregate_completion_tokens_per_s','throughput (tokens/s)');science(ss,pending,rr);plot('latency',rr,'latency_p95_ms','latency p95 (ms)')}catch(err){$('state').textContent='READ_FAILED'}}refresh();setInterval(refresh,4000);
+function renderVita(data){const xs=data.experiments||[];if(!xs.length){$('vita_receipts').innerHTML='<div class="empty">No valid allowlisted Vita receipts are available.</div>';return}const n=v=>v===null||v===undefined?'—':fmt(v),pct=v=>v===null||v===undefined?'—':(100*v).toFixed(1)+'%';let h='';for(const x of xs){const m=x.metrics||{};h+='<h3>'+e(x.label)+' · '+e(x.status)+' · '+e(x.device)+'</h3>';if(x.id==='AKAMAI_VITA_R4_CPU_REPLAY'){h+='<p>CPU validation replay · test set evaluated: '+e(m.test_set_evaluated)+' · training performed: '+e(m.training_performed)+'</p><div class="scroll"><table><thead><tr><th>Validation cell</th><th>Anticube [%]</th><th>ΔG target MSE</th><th>Loss</th><th>Rows/s</th><th>Rows</th></tr></thead><tbody>'+(m.cells||[]).map((c,i)=>'<tr><td>'+e(i+1)+'</td><td>'+pct(c.anticube_accuracy)+'</td><td>'+n(c.delta_g_star_mse)+'</td><td>'+n(c.loss)+'</td><td>'+n(c.rows_per_s)+'</td><td>'+n(c.rows)+'</td></tr>').join('')+'</tbody></table></div>'}else if(x.id==='AKAMAI_VITA_CPU_TRAINING_SUCCESSOR'){h+='<p>CPU training successor · validation only · optimizer steps: '+n(m.executed_optimizer_steps)+' · decision: '+e(m.decision)+'</p><div class="scroll"><table><thead><tr><th>Validation</th><th>Anticube [%]</th><th>ΔG target MSE</th><th>Loss</th><th>Rows</th></tr></thead><tbody>'+(m.validation||[]).map(c=>'<tr><td>'+e(c.label)+'</td><td>'+pct(c.anticube_accuracy)+'</td><td>'+n(c.delta_g_star_mse)+'</td><td>'+n(c.loss)+'</td><td>'+n(c.rows)+'</td></tr>').join('')+'</tbody></table></div>'}else{const z=m.mse||{},iv=m.paired_batch_bootstrap_95_interval;h+='<p>CPU public proxy holdout · rows: '+n(m.rows)+' · genes: '+n(m.genes)+' · failures: '+n(m.failures_count)+'</p><div class="scroll"><table><thead><tr><th>Genesis baseline MSE</th><th>Candidate MSE (frozen Genesis)</th><th>Paired Δ MSE (Genesis − prior)</th><th>95% interval</th><th>Official VCC score</th></tr></thead><tbody><tr><td>'+n(z.train_only_fixed_prior)+'</td><td>'+n(z.frozen_genesis_r3)+'</td><td>'+n(m.paired_mse_delta_genesis_minus_prior)+'</td><td>'+(iv?('['+n(iv[0])+', '+n(iv[1])+']'):'—')+'</td><td>NOT PROVIDED</td></tr></tbody></table></div>'}h+='<p><small>Receipt SHA-256: '+e(x.receipt_sha256)+' · Source SHA-256: '+e(x.source_sha256)+'</small></p>'}$('vita_receipts').innerHTML=h}
+async function refresh(){try{const r=await fetch('/data.json',{cache:'no-store'});let data=await r.json();fetch('/experiments.json',{cache:'no-store'}).then(x=>x.json()).then(renderVita).catch(()=>{$('vita_receipts').textContent='Experiment receipts unavailable.'});const att=data.attestation||{};$('signature').textContent=att.signature||'UNVERIFIED';$('deterministic').textContent=att.deterministic_reconstruction||'UNVERIFIED';$('claim_reason').textContent=att.reason||'Verification unavailable';let rr=data.rows||[],pending=data.pending||[],ss=data.science||[],scored=(ss.flatMap(s=>s.panels||[]).filter(p=>String(p.state||'').startsWith('SCORED')).length),active=pending.filter(p=>p.score_state==='PENDING').length,stopped=pending.filter(p=>p.score_state==='STOPPED_UNSCORED').length;$('state').textContent=scored?'SCORED PANELS: '+scored+(active?' · '+active+' PENDING':'')+(stopped?' · '+stopped+' STOPPED':''):active?'PENDING: '+active:stopped?'STOPPED, UNSCORED: '+stopped:pending.length?'UNSCORED: '+pending.length:ss.length?'NO VERIFIED SCORED PANELS':rr.length?'AGGREGATES ONLY':'NO RUN DATA';$('cells').textContent=String(rr.length);$('rows').innerHTML=rr.map(r=>'<tr><td>'+e(r.run_id)+' / '+e(r.module)+'</td><td>'+e(r.backend)+' / '+e(r.stage)+'</td><td>'+e(r.arm)+'</td><td>'+e(r.concurrency)+'</td><td>'+e(r.items)+'</td><td>'+e(r.model_calls_observed)+'</td><td>'+fmt(r.aggregate_completion_tokens_per_s)+'</td><td>'+fmt(r.latency_p95_ms)+'</td><td>'+e(r.failed_or_abstained_or_over_budget)+'</td><td>'+e(r.state)+'</td></tr>').join('');plot('throughput',rr,'aggregate_completion_tokens_per_s','throughput (tokens/s)');science(ss,pending,rr);plot('latency',rr,'latency_p95_ms','latency p95 (ms)')}catch(err){$('state').textContent='READ_FAILED'}}refresh();setInterval(refresh,4000);
 </script></body></html>'''
 
 
@@ -130,7 +248,7 @@ def load_sanitized(root):
     return {"schema":"cell_akamai.concurrent_summary.v1","rows":rows,"science":science,"pending":pending}
 
 
-def serve(root, host='127.0.0.1', port=8765):
+def serve(root, host='127.0.0.1', port=8765, evidence_root=None):
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):
             if self.path == '/':
@@ -145,6 +263,8 @@ def serve(root, host='127.0.0.1', port=8765):
             elif self.path == '/data.json':
                 data=load_sanitized(root);data['attestation']=attestation_status()
                 body=json.dumps(data).encode();typ='application/json'
+            elif self.path == '/experiments.json':
+                body=json.dumps(load_vita_experiments(evidence_root)).encode();typ='application/json'
             else:
                 self.send_error(404);return
             self.send_response(200);self.send_header('Content-Type',typ)

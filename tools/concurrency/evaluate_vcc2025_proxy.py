@@ -31,7 +31,9 @@ with h5py.File(R/'control_batch_pseudobulk.h5ad','r') as fc,h5py.File(R/'target_
  bb=col(ft['obs'],'batch');tt=col(ft['obs'],'target_gene');cells=np.asarray(ft['obs']['cells'][:],dtype=np.float32);groups=sorted(set(bb),key=hv);test=set(groups[:8]);train=set(groups[12:]);valid=set(groups[8:12]);assert not test&(train|valid)
  tr=sorted(np.flatnonzero(np.isin(bb,list(train))).tolist(),key=lambda i:hv('train_'+str(i)))[:2500];te=sorted(np.flatnonzero(np.isin(bb,list(test))).tolist(),key=lambda i:hv('holdout_'+str(i)))[:C['heldout_rows']];assert not set(tr)&set(te)
  targets=sorted(set(tt));tid={v:i for i,v in enumerate(targets)};ng=ft['X'].shape[1];sums=np.zeros((len(targets),ng),dtype=np.float64);counts=np.zeros(len(targets),dtype=np.int64)
- ix=sorted(tr);x=np.asarray(ft['X'][ix],dtype=np.float32);y=np.log1p(x/np.maximum(cells[ix,None],1))-cm[[cmap[bb[i]] for i in ix]];t=np.array([tid[tt[i]] for i in ix]);np.add.at(sums,t,y);np.add.at(counts,t,1);prior=(sums/np.maximum(counts[:,None],1)).astype(np.float32)
+ train_ix=sorted(tr)
+ for begin in range(0,len(train_ix),32):
+  ix=train_ix[begin:begin+32];x=np.asarray(ft['X'][ix],dtype=np.float32);y=np.log1p(x/np.maximum(cells[ix,None],1))-cm[[cmap[bb[i]] for i in ix]];t=np.array([tid[tt[i]] for i in ix]);np.add.at(sums,t,y);np.add.at(counts,t,1);prior=(sums/np.maximum(counts[:,None],1)).astype(np.float32)
  checkpoint=torch.load(R/'BEST_MODEL.pt',map_location='cpu',weights_only=True);model=Adapter(len(targets),ng);model.load_state_dict(checkpoint['model'],strict=True);model.eval();ix=sorted(te);t=np.array([tid[tt[i]] for i in ix])
  with torch.no_grad():pred=model(torch.tensor(t),torch.tensor(prior)).numpy()
  arrays={'no_change':np.zeros_like(pred),'train_only_fixed_prior':prior[t],'frozen_genesis_r3':pred};commit={}

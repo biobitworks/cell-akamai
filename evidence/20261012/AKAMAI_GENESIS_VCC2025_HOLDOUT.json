@@ -1,0 +1,86 @@
+{
+  "run_id": "AKAMAI-GENESIS-VCC2025-CPU-HOLDOUT-20261012-RECOVERY-01",
+  "status": "SCORED_PUBLIC_PROXY_HOLDOUT",
+  "prediction_commitments": {
+    "no_change": {
+      "sha256": "9bed9f1b12fb44a054e2323b70d676f3e5b604761da68c268d47746ddf0eb888",
+      "shape": [
+        256,
+        18080
+      ]
+    },
+    "train_only_fixed_prior": {
+      "sha256": "f568b0f74562a807d4a0fabec0cf806bee1c4e5e380ed50d0e75e8e6e87f2dda",
+      "shape": [
+        256,
+        18080
+      ]
+    },
+    "frozen_genesis_r3": {
+      "sha256": "4e4f9b5df2b49b6320ce7563c5b085c257fe5eb74276ed108d0f9b9e44e69f08",
+      "shape": [
+        256,
+        18080
+      ]
+    }
+  },
+  "input_manifest": {
+    "prior.npy": "31d0c71ef63e54a6944a1589d39a2e7d69ed754f811c3dce72cc2addd0f2d29e",
+    "target_ids.npy": "b49487052dd7bdf45d2725eb4358c15cade0037b6ca9e4990ca1d5819427b151",
+    "BEST_MODEL.pt": "41687cd29fbb8a102352b617fdf38c7df27df9ffeeee201c35e917c813adf8ca",
+    "PREPROCESSING.json": "d0e3935a187d7642fa23e987c50a169a9da695bdbddde6776b7f441f3e942374"
+  },
+  "duration_s": 0.08502847800264135,
+  "device": "cpu",
+  "torch": "2.14.1+cpu",
+  "heldout_X_available_to_predictor": false,
+  "failures_count": 0,
+  "memory_limit_bytes": 1073741824,
+  "rows": 256,
+  "genes": 18080,
+  "source_sha": "e4a916b12b22e16cef9e6a8dede441830025a61b",
+  "mse": {
+    "no_change": 0.020367146281688658,
+    "train_only_fixed_prior": 0.017393402560802452,
+    "frozen_genesis_r3": 0.017378737835360775
+  },
+  "paired_mse_delta_genesis_minus_prior": -1.466472544167345e-05,
+  "paired_batch_bootstrap_95_interval": [
+    -1.9706652228196694e-05,
+    -9.599524732382028e-06
+  ],
+  "bootstrap_seed": 20261012,
+  "bootstrap_replicates": 1000,
+  "batches": 8,
+  "gene_axis_exact_match": true,
+  "predictions_verified_before_holdout_truth": true,
+  "holdout_row_ids_sha256": "00c5646d0461e7ad573fcfec3e3c64b2d7fe42349ed60f213c525fe2bd9fa215",
+  "uncovered_targets": 0,
+  "scoring_device": "local CPU",
+  "dataset_source": "antoninadolgorukova/vcc-2025-analysis-ready-perturbation-data",
+  "official_vcc_score": false,
+  "training_performed": false,
+  "metric_units": "squared log1p per-cell pseudobulk residual",
+  "timing_scope": "Akamai model forward pass only; excludes preprocessing, transfer, loading and scoring; no warmed throughput comparison",
+  "tokens_per_s": null,
+  "tokens_per_s2": null,
+  "previous_attempt": {
+    "state": "FAILED_OOM",
+    "ws05_memory_limit": "1Gi",
+    "restart_count_delta": 1,
+    "predictions_committed": false
+  },
+  "private_archive_sha256": "c21d5f803bb3050c0ee63e975fca662030f9b6e3abcd7f5c41f93e94ac026094",
+  "limitations": [
+    "256 rows from 8 held-out proxy batches; not official VCC2026 scoring",
+    "Cluster-bootstrap interval uses only 8 clusters",
+    "Numerical residual adapter; not a causal text-generation model",
+    "One recovered checkpoint, one new holdout evaluation; independent repeat pending"
+  ],
+  "original_training_row_identity_verified": true,
+  "original_training_row_ids_sha256": "20a0c40c2ed661c0ad99247bcfbe2bcbe646ef4c1948f14e90d3ad8b7e484bdb",
+  "training_row_hash_encoding": "Recovered R3 canonical JSON with terminal newline",
+  "execution_script_sha256": "93d03898bcf092553c9d853c68a0cfb1934e69e742ad06de39fdf2652909a8c6",
+  "recovery_preregistration_sha256": "f9b77b26b6637749060ec40049f89e4e6dab6ad18956be1515f69e7418e995e5",
+  "relative_mse_reduction_vs_prior_percent": 0.08431199927911032
+}
