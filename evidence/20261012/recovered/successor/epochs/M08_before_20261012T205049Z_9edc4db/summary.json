@@ -1,0 +1,129 @@
+{
+  "cells": [
+    {
+      "aggregate_completion_tokens_per_s": 38.227388230227156,
+      "batch_wall_s": 15.146208695005043,
+      "concurrency": 1,
+      "failed": 0,
+      "label": "before",
+      "latency_p50_ms": 989.2088000051444,
+      "latency_p95_ms": 995.1173300069058,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 579.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.0071428571428571175,
+      "peak_running": 1.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 38.23110917271131,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 579,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    },
+    {
+      "aggregate_completion_tokens_per_s": 146.63603985426144,
+      "batch_wall_s": 3.893994958998519,
+      "concurrency": 4,
+      "failed": 0,
+      "label": "before",
+      "latency_p50_ms": 1006.0637350106845,
+      "latency_p95_ms": 1033.710985997459,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 571.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.025630252100840356,
+      "peak_running": 4.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 36.8284935834924,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 571,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    },
+    {
+      "aggregate_completion_tokens_per_s": 273.25211708721986,
+      "batch_wall_s": 2.0896452919987496,
+      "concurrency": 8,
+      "failed": 0,
+      "label": "before",
+      "latency_p50_ms": 1023.6878190044081,
+      "latency_p95_ms": 1061.307622003369,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 571.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.05126050420168071,
+      "peak_running": 8.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 35.94838370401198,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 571,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    },
+    {
+      "aggregate_completion_tokens_per_s": 516.8810996989292,
+      "batch_wall_s": 1.120180251004058,
+      "concurrency": 16,
+      "failed": 0,
+      "label": "before",
+      "latency_p50_ms": 1077.7545279997867,
+      "latency_p95_ms": 1108.978782009217,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 579.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.09747899159663864,
+      "peak_running": 16.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 34.52194787069125,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 579,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    }
+  ],
+  "config": {
+    "args": [
+      "--model=Qwen/Qwen3-4B",
+      "--download-dir=/models",
+      "--tensor-parallel-size=1",
+      "--gpu-memory-utilization=0.7",
+      "--max-model-len=8192",
+      "--max-num-seqs=32",
+      "--host=0.0.0.0",
+      "--port=8000",
+      "--reasoning-parser=qwen3",
+      "--enable-auto-tool-choice",
+      "--tool-call-parser=hermes"
+    ],
+    "generation": 1,
+    "image": "vllm/vllm-openai:v0.20.2",
+    "image_status": "DECLARED_NOT_DIGEST_ATTESTED",
+    "model_flag": "Qwen/Qwen3-4B",
+    "namespace": "workshop-s05",
+    "resource_version": "137636",
+    "resources": {
+      "limits": {
+        "nvidia.com/gpu": "1"
+      },
+      "requests": {
+        "cpu": "2",
+        "memory": "8Gi",
+        "nvidia.com/gpu": "1"
+      }
+    }
+  },
+  "model": "Qwen/Qwen3-4B",
+  "namespace": "workshop-s05",
+  "phase": "before",
+  "workload": {
+    "levels": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "max_tokens": 96,
+    "per_level": 16,
+    "prompt_version": "CAKM_M08_FIXED_V1"
+  }
+}

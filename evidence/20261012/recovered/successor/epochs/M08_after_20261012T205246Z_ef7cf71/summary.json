@@ -1,0 +1,129 @@
+{
+  "cells": [
+    {
+      "aggregate_completion_tokens_per_s": 37.221383530623285,
+      "batch_wall_s": 15.555574379002792,
+      "concurrency": 1,
+      "failed": 0,
+      "label": "after",
+      "latency_p50_ms": 991.6772679862333,
+      "latency_p95_ms": 1202.6520409999648,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 579.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.007234042553191489,
+      "peak_running": 1.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 37.41865502200849,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 579,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    },
+    {
+      "aggregate_completion_tokens_per_s": 146.66079844339257,
+      "batch_wall_s": 3.893337593006436,
+      "concurrency": 4,
+      "failed": 0,
+      "label": "after",
+      "latency_p50_ms": 1005.6222199928015,
+      "latency_p95_ms": 1033.6539540003287,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 571.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.025957446808510642,
+      "peak_running": 4.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 36.836512745204985,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 571,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    },
+    {
+      "aggregate_completion_tokens_per_s": 265.0535525403053,
+      "batch_wall_s": 2.1542816330038477,
+      "concurrency": 8,
+      "failed": 0,
+      "label": "after",
+      "latency_p50_ms": 1019.6275409980444,
+      "latency_p95_ms": 1130.4555700044148,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 571.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.0514893617021277,
+      "peak_running": 8.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 34.98344960219289,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 571,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    },
+    {
+      "aggregate_completion_tokens_per_s": 505.80665684239165,
+      "batch_wall_s": 1.1170276079938048,
+      "concurrency": 16,
+      "failed": 0,
+      "label": "after",
+      "latency_p50_ms": 1070.352383001591,
+      "latency_p95_ms": 1113.429018005263,
+      "metric_counter_status": "OBSERVED_WITH_COUNTER_AGREEMENT",
+      "metric_generation_delta": 565.0,
+      "n_requests": 16,
+      "ok": 16,
+      "peak_kv_fraction": 0.1025531914893617,
+      "peak_running": 16.0,
+      "peak_waiting": 0.0,
+      "request_avg_tok_s_mean": 34.46238408992117,
+      "tokens_per_s2": "NOT_COMPUTED_FOR_CONCURRENT_REQUESTS",
+      "total_completion_tokens": 565,
+      "ttft_ms": "NOT_COMPUTED_WITHOUT_SCOPED_HISTOGRAM"
+    }
+  ],
+  "config": {
+    "args": [
+      "--model=Qwen/Qwen3-4B",
+      "--download-dir=/models",
+      "--tensor-parallel-size=1",
+      "--gpu-memory-utilization=0.7",
+      "--max-model-len=8192",
+      "--max-num-seqs=64",
+      "--host=0.0.0.0",
+      "--port=8000",
+      "--reasoning-parser=qwen3",
+      "--enable-auto-tool-choice",
+      "--tool-call-parser=hermes"
+    ],
+    "generation": 2,
+    "image": "vllm/vllm-openai:v0.20.2",
+    "image_status": "DECLARED_NOT_DIGEST_ATTESTED",
+    "model_flag": "Qwen/Qwen3-4B",
+    "namespace": "workshop-s05",
+    "resource_version": "1358157",
+    "resources": {
+      "limits": {
+        "nvidia.com/gpu": "1"
+      },
+      "requests": {
+        "cpu": "2",
+        "memory": "8Gi",
+        "nvidia.com/gpu": "1"
+      }
+    }
+  },
+  "model": "Qwen/Qwen3-4B",
+  "namespace": "workshop-s05",
+  "phase": "after",
+  "workload": {
+    "levels": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "max_tokens": 96,
+    "per_level": 16,
+    "prompt_version": "CAKM_M08_FIXED_V1"
+  }
+}

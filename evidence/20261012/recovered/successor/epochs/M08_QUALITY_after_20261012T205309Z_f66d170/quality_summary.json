@@ -1,0 +1,12 @@
+{
+  "claim_ceiling": "Small frozen ECA quality panel; no inference causality from phase change",
+  "completion_tokens_total": 393,
+  "dataset_sha256": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+  "exact_match_count": 0,
+  "exact_match_fraction": 0.0,
+  "n": 8,
+  "phase": "after",
+  "source_class": "OBSERVED_IF_ENDPOINT_VERIFIED",
+  "split": "PILOT_NONCONFIRMATORY",
+  "status": "EXECUTED_OPERATOR_HOST_IF_RECEIPT_VALID"
+}
