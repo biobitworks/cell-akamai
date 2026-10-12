@@ -12,5 +12,21 @@
   "hour_scale_cells_completed": 0,
   "known_test_count": 36,
   "next_action": "Create isolated implementation worktree; review runner and add meaningful failing tests",
-  "ollarma_availability": "UNREACHABLE_OR_TIMEOUT_LOCAL_PROBES"
+  "ollarma_availability": "UNREACHABLE_OR_TIMEOUT_LOCAL_PROBES",
+  "experiment_id": "EXP-CAKM-MULTIMODEL-6DATA-LONGRUN-001",
+  "authoritative_protocol": "docs/LONG_DURATION_PROTOCOL.md",
+  "protocol_sha256": "21130bd52b9a8fbfb55b32212d1da6e4dccc03ce2649c37a1184bba8997335d8",
+  "window_duration_s": 300,
+  "windows_per_representation_configuration": 12,
+  "concurrency": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "repetitions": 3,
+  "cluster_provisioning_from_laptop_authorized": false,
+  "deployment_execution_path": "EXISTING_HOSTED_WORKSHOP_ONLY",
+  "evaluator_inference_admission": "BLOCKED_PENDING_LEAKAGE_SAFE_WORKLOAD_CONTRACT",
+  "supersedes_measured_gpu_hours": 184
 }

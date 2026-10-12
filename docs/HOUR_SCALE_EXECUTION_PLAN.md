@@ -1,3 +1,7 @@
+# Superseded plan — preserved for provenance
+
+The authoritative protocol is LONG_DURATION_PROTOCOL.md, experiment EXP-CAKM-MULTIMODEL-6DATA-LONGRUN-001. The older184-hour per-concurrency allocation below is superseded by twelve300-second windows per representation/configuration. No hour-scale traffic was executed under the old plan.
+
 # Hour-scale evaluation declaration
 
 Declared before any hour-scale traffic. Prior short pilot runs are preserved and do not satisfy this study.

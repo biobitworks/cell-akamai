@@ -1,3 +1,19 @@
+# Authoritative update — read before the older handoff below
+
+Read docs/LONG_DURATION_PROTOCOL.md in full. Experiment EXP-CAKM-MULTIMODEL-6DATA-LONGRUN-001 supersedes the184-hour allocation. Each representation/configuration now uses12 valid300-second active measurement windows: c1,2,4,8 ×3repetitions, counterbalanced with a recorded seed. Warm-up, idle, interruptions and rollouts do not count. Baseline plus one justified single-flag tuning allocation is12hours for six admitted representations, with the evaluator admission caveat below. Preserve completed windows and resumable predecessor IDs.
+
+EXECUTION BOUNDARY: no cluster provisioning/deployment from laptop. All Kubernetes/vLLM deployment changes must use the EXISTING hosted workshop path in workshop-s05, with explicit authorization for each change. Laptop port-forward is transport to the existing service only. Claude remains implementation/offline-tests owner and must not run GPU workloads or deployment changes.
+
+EVAL-RAW/EVAL-FCG contain oracle targets. Do not send evaluator records to actors/challengers. Define a leakage-safe evaluator workload and independent scorer boundary; until verified, record these inference conditions NOT_ADMITTED_ORACLE_LEAKAGE_RISK, not successful hour cells. Offline oracle evaluation is not GPU inference time. Do not silently count four valid inference representations as six.
+
+Add Prometheus generation-counter sampling with scoped model/config identity,10s/30s windows, tokens/s and midpoint-differentiated tokens/s²; handle resets, missing/out-of-order samples and report negative/zero values. This is serving kinetics, never learning. Add per-module00–09 test mapping, real integration-test entrypoints kept separate from mocked/offline tests, Strands/plain matched-runtime adapters, matched-budget policy controls and per-stage latencies. Strands SDK integration and optional namespaced service must remain NOT_TESTED until actual receipts exist.
+
+Before suggesting tuning, check bottleneck evidence. Raising max-num-seqs32→64 when observed client concurrency<=16 does not establish that limit was a bottleneck. The prior short tuning pilot is preserved; choose no new value without measured justification and explicit deployment-change authorization.
+
+Checkpoint publication cadence and ownership remain unchanged. No hour-scale run has started. Return compact reviewable implementation commits and handoff JSON; Codex integrates, executes and publishes results. Do not merge the old184-hour design into the new protocol.
+
+---
+
 # Claude: finish hour-scale runner, tests and live checkpoint support
 
 You own implementation and local deterministic verification. Codex owns live workshop GPU execution, deployment changes, evidence intake and results-branch publication. You are not alone in this codebase: do not revert others' edits. Do not send any inference requests, patch Kubernetes or start benchmark workloads. Do not modify frozen datasets or prior receipts. Never expose raw responses, credentials or kubeconfig.
