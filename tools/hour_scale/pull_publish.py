@@ -33,6 +33,8 @@ while True:
     p=TARGET/name
     if p.exists() and name.startswith('checkpoint-'):assert p.read_bytes()==data
     tmp=p.with_suffix('.tmp');tmp.write_bytes(data);tmp.replace(p)
+  if not (TARGET/'STATE.json').exists():
+   time.sleep(30);continue
   state=json.loads((TARGET/'STATE.json').read_text());key=(state.get('completed_windows'),state.get('state'),(TARGET/'FAILURE.json').exists())
   if key!=last:
    subprocess.run(['python3','-m','pytest','-q','tests/hour_scale'],cwd=ROOT,env=dict(env,PYTEST_DISABLE_PLUGIN_AUTOLOAD='1'),check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
