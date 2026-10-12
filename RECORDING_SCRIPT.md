@@ -10,7 +10,7 @@ During the workshop, we implemented a Strands OpenAIModel bridge for OpenAI-comp
 
 Seven local fixture tests passed for the Strands integration, and its review notebook executed offline. These tests check the scaffolding; they do not prove a real networked Strands request or tool call against Akamai. Those integration steps remain untested in our verified evidence.
 
-[Show the sanitized dashboard at http://127.0.0.1:8766]
+[Show the sanitized dashboard at http://127.0.0.1:8771]
 
 Separately, we did execute real inference workloads on the existing Akamai Qwen3-4B vLLM service. We ran sixteen BF16 concurrency cells across four policy arms and concurrency levels one, two, four and eight. These endpoint results validate execution and accounting, but they are not Strands runtime measurements.
 
@@ -18,7 +18,7 @@ We preserved negative results: all 128 pilot items failed the parsing or answer-
 
 [Show PR #12 evidence and test index]
 
-We also verified exact reconstruction of three synthetic datasets across original, FCO and FCG representations, passed 42 additional offline tests, and published sanitized evidence and a dashboard. The synthetic fixtures are not biological observations. Local-model attempts are a separate track, not a matched hardware comparison.
+We also verified exact reconstruction of three synthetic datasets across original, FCO and FCG representations, passed 42 additional offline tests, and published sanitized evidence and a dashboard. The synthetic fixtures are not biological observations. Claude’s scored local llama3.2:3b pilot on the MAGICPRO_OLLAMA backend is shown alongside separate Akamai Qwen3-4B panels. Each scored arm has zero exact matches on four items, but local Hamming errors differ between arms. McNemar comparisons show no discordant correct pairs, with adjusted p-values of one. This small pilot does not establish equivalence or a benefit. Tokens per correct answer is undefined because zero answers were correct. These are different models and serving configurations, not a controlled hardware comparison.
 
 Our next milestone is a real Strands request, followed by equal-budget plain-versus-Strands experiments and independent scoring of committed answers. Long-duration runs are incomplete. FP8, speculative decoding, Anticube and delta G star remain unverified or uncomputed. We have not trained weights.
 
