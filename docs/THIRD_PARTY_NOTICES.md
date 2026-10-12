@@ -33,6 +33,10 @@ license texts cannot supersede third-party conditions or trademarks.
 
 ## Dependencies and model services
 
+The [dated third-party licensing inventory](THIRD_PARTY_LICENSE_INVENTORY_20261012.md)
+records pinned SDK metadata and separately licensed inference models. It is not a
+resolved transitive dependency SBOM or model-redistribution grant.
+
 Python dependencies are declared separately in `pyproject.toml` and module
 requirements; dependencies are not licensed by Cell-Akamai's root Apache-2.0
 notice. Review and retain upstream licenses and notices in distributed
