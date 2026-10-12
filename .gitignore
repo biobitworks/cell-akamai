@@ -1,0 +1,12 @@
+# Raw telemetry, prompts, secrets, vLLM response metadata: do not auto-publish.
+runs/
+data/*.jsonl
+*.ipynb_checkpoints/
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+*.pem
+*.key
+*.kubeconfig
+kubeconfig*

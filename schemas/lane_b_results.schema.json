@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lane B scientific evaluation exchange record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "experiment_id", "arm", "metric", "unit", "status", "evidence_ref", "evaluation_split", "source_class"],
+  "properties": {
+    "schema_version": {"const": "cell_akamai.lane_b_result.v1"},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "arm": {"enum": ["B0_FIXED", "B1_GENESIS", "B2_GENESIS_DAISY", "B3_RANDOM_CONTROL"]},
+    "model": {"type": ["string", "null"]},
+    "dataset_ref": {"type": ["string", "null"]},
+    "model_revision": {"type": ["string", "null"]},
+    "metric": {"type": "string"},
+    "unit": {"type": "string"},
+    "value": {"type": ["number", "null"]},
+    "status": {"enum": ["OBSERVED", "FAILED", "NOT_TESTED", "UNKNOWN", "NOT_COMPUTED"]},
+    "evidence_ref": {"type": "string"},
+    "evaluation_split": {"type": "string"},
+    "source_class": {"enum": ["OBSERVED", "SYNTHETIC_FIXTURE", "DERIVED_EVIDENCE", "UNKNOWN"]},
+    "preregistration_ref": {"type": ["string", "null"]},
+    "commit_sha": {"type": ["string", "null"]},
+    "fco_occurrence_id": {"type": ["string", "null"]},
+    "claim_ceiling": {"type": ["string", "null"]}
+  },
+  "allOf": [{"if": {"properties": {"status": {"const": "OBSERVED"}}}, "then": {"required": ["value"], "properties": {"value": {"type": "number"}}}}]
+}

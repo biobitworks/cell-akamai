@@ -1,0 +1,37 @@
+{
+  "schema": "cell_akamai.conversation_breakpoint.v1",
+  "project": "cell-akamai",
+  "repo_binding": "biobitworks/cell-akamai (NOT_FOUND at last authenticated GitHub check)",
+  "parent_state": "UNKNOWN_REMOTE_REPO_PREDECESSOR",
+  "lane": "A",
+  "date": "2026-10-12",
+  "decisions": [
+    "Hosted Akamai workshop vLLM remains unchanged",
+    "Per-stream-chunk times are never asserted to be exact per-token times",
+    "Compute request-average tokens/s and inter-request midpoint-based tokens/s^2",
+    "FCO and FCG remain unadmitted local projections pending project verification",
+    "Lane B exchanges schema-validated JSONL via GitHub PR"
+  ],
+  "implemented": [
+    "Read-only vLLM OpenAI streaming collector",
+    "Raw Prometheus snapshot collection and digest preservation",
+    "Context-distinct FCO projection and typed FCG edges",
+    "Deterministic local recomputation and source digest readback",
+    "Self-contained HTML model dashboard and evidence drill-down",
+    "Human/machine Jupyter live and offline replay notebooks",
+    "Lane B result contract with rejection states"
+  ],
+  "executed": ["7 local pytest tests PASS", "Offline Jupyter replay executed", "Dashboard JavaScript syntax check PASS"],
+  "observed_real_akamai_inference": "NOT_TESTED",
+  "external_git_push": "NOT_EXECUTED",
+  "github_pull_request": "NOT_CREATED",
+  "github_issue": "NOT_CREATED",
+  "independent_host_verification": "NOT_TESTED",
+  "anticube": "NOT_COMPUTED",
+  "delta_g_star": "NOT_COMPUTED",
+  "mmr_root": "NOT_COMPUTED",
+  "mmr_committed": false,
+  "signed": false,
+  "failures": ["Authenticated GitHub repository lookup returned HTTP 404", "MagicPro Remote Desktop Commander usage exhausted previously"],
+  "next_action": "Upload Lane A zip to Akamai JupyterLab, execute Module 0 and live notebook; Gum Doctor must isolate MagicPro Git root before gh repo create/push/PR"
+}

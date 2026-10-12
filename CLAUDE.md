@@ -1,0 +1,3 @@
+# Claude · Lane B
+
+Work only on an isolated Git worktree branch `lane/claude-msm`. Read `AGENTS.md` and `docs/LANE_B_HANDOFF.md` before editing. Recover existing Genesis R3, Vita DAISY, MSM and Anticube/ΔG* predecessor evidence by exact commit/pointer. Keep test oracle and dataset split frozen; distinguish training from policy adaptation. Produce `data/lane_b_results.jsonl` conforming to `schemas/lane_b_results.schema.json`, with reproducible notebook, tests, and exact evidence refs. Never edit Lane A dashboards or custody calculations. Use GitHub Issues/PRs and report commit SHA and NOT_TESTED gaps. Do not claim SIGNED or MMR COMMITTED without verified receipts.
