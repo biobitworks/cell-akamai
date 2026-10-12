@@ -46,7 +46,7 @@ def main():
  assert kube('auth','can-i','get','deployments').strip()=='yes'
  pod=next(x['metadata']['name'] for x in json.loads(kube('get','pods','-o','json'))['items'] if x['metadata']['name'].startswith('vllm-') and x['status']['phase']=='Running')
  hardware=kube('exec',pod,'--','nvidia-smi','--query-gpu=name,memory.total,driver_version','--format=csv,noheader').strip()
- logs=kube('logs',pod,'--tail=500');assert 'bfloat16' in logs,'BF16 precision not freshly attested'
+ logs=kube('logs',pod);assert 'dtype=torch.bfloat16' in logs,'BF16 precision not freshly attested'
  for _ in range(3):
   m=metrics();assert m['running']==0 and m['waiting']==0,'Endpoint not idle';time.sleep(2)
  plan={'run_id':rid,'parent_run_id':'concurrency-07-bf16_fullmatrix_reference-20261012T203417Z-225f0b49','source_commit':source,'model_id':MODEL,'model_revision':'UNKNOWN_UNPINNED_WORKSHOP_CACHE','precision':'BF16_LOG_VERIFIED','hardware':hardware,'namespace':NAMESPACE,'serving_config':config,'serving_config_sha256':config_hash,'runtime':'PLAIN_CLIENT','policy_arm':'DIRECT_FIXTURE_PROMPT_NOT_LANE_B_POLICY','max_tokens':256,'temperature':0,'enable_thinking':False,'seed':20261012,'windows_per_dataset':12,'target_active_s_per_window':300,'warmup_s_per_window':15,'datasets':['GEN-RAW','GEN-FCG','DAISY-RAW','DAISY-FCG'],'expected_windows':48,'expected_measured_hours':4,'max_requests_per_dataset':100000,'max_completion_tokens_per_dataset':25600000,'EVAL_RAW':'NOT_ADMITTED_ORACLE_TARGETS','EVAL_FCG':'NOT_ADMITTED_ORACLE_TARGETS','anticube':'NOT_COMPUTED_NO_VALIDATED_IMPLEMENTATION','delta_g_star':'NOT_COMPUTED_NO_VALIDATED_FORMULA','claim_ceiling':'OBSERVED_INFERENCE_ONLY_NO_IMPROVEMENT','start_utc':dt.datetime.now(dt.timezone.utc).isoformat(),'execution_path':'EXISTING_HOSTED_WORKSHOP_NO_CLUSTER_PROVISIONING'}
@@ -117,4 +117,11 @@ def main():
   atomic(pub/'STATE.json',dict(state='COMPLETED_UNSCORED',completed_windows=seq,expected_windows=48,run_id=rid,source_commit=source))
  except Exception as e:
   atomic(pub/'FAILURE.json',dict(state='STOPPED_WITH_RETAINED_WINDOWS',exception_type=type(e).__name__,completed_windows=seq,run_id=rid,source_commit=source,when_utc=dt.datetime.now(dt.timezone.utc).isoformat()));raise
-if __name__=='__main__':main()
+if __name__=='__main__':
+ try:main()
+ except Exception as e:
+  p=Path(os.environ['CAKM_RUN_ROOT'])/'public';p.mkdir(parents=True,exist_ok=True)
+  if not (p/'FAILURE.json').exists():
+   atomic(p/'FAILURE.json',dict(state='FAILED_PREFLIGHT_NO_INFERENCE',exception_type=type(e).__name__,run_id=p.parent.name,completed_windows=0))
+   atomic(p/'STATE.json',dict(state='FAILED_PREFLIGHT_NO_INFERENCE',run_id=p.parent.name,completed_windows=0,expected_windows=48))
+  raise
