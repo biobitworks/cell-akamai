@@ -1,0 +1,16 @@
+{
+  "experiment_id": "EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY-MAGICPRO",
+  "mode": "PILOT_NONCONFIRMATORY",
+  "base_url": "http://127.0.0.1:11434/v1",
+  "model": "qwen2.5:7b",
+  "api_key_env": "OLLAMA_NO_KEY",
+  "temperature": 0,
+  "decode_seed": 20261012,
+  "max_tokens_per_call": 256,
+  "item_token_cap": 768,
+  "item_call_cap": 3,
+  "seed_start": 50000,
+  "per_rule": 8,
+  "timeout_s": 180,
+  "_note": "Local magicPRO Ollama pilot. Same caps as dataset/eca_pilot_config.example.json except endpoint/model. Model revision and quantization UNKNOWN (Ollama tag only). Not an Akamai configuration."
+}
