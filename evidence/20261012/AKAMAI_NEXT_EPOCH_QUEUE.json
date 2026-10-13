@@ -1,0 +1,43 @@
+{
+  "status": "PREVIEW_VERIFIED_QUEUED_AFTER_HOUR",
+  "parent_run": "hour-20261013T003345Z-adbc9669",
+  "runtimes": [
+    "plain",
+    "strands"
+  ],
+  "levels": [
+    1,
+    2
+  ],
+  "items_per_arm": 4,
+  "model_calls_per_runtime_max": 80,
+  "output_tokens_per_call_cap": 1024,
+  "output_token_budget_max": 163840,
+  "dataset_kind": "SYNTHETIC_ECA_FIXTURE",
+  "actual_policy": "GENESIS_PROXY_NOT_PRIVATE_GENESIS_WEIGHTS",
+  "training": false,
+  "preview": "PASS_ZERO_INFERENCE",
+  "queue_source_sha256": "0885828707b9d3cff2ba08b38713b1acb8921eea6d45db3371167c1cb728295f",
+  "source_hashes": {
+    "module9_antigents/run_capstone.py": "0c620b3775d36a89dc364807d0680b583ae270528f3e28833c73cd5e8fa50513",
+    "module9_antigents/bridge.py": "9b3d9c293db71a943bc60b4d81369c41a92f03df751fecbfcadce4f4e9be3a12",
+    "tools/concurrency/run_concurrency.py": "219137835e651c5e0ce7f4ced8bb5bd9e9f92f592e2a763a50fee999451382d7",
+    "lane_b/harness/run_lane_b.py": "ce894c73fda91fa4ee92a31e602eadb4f77a71c3b4a64c12476fcdda53ea663c",
+    "lane_b/harness/items.py": "cea9c07a00d1ab47d353c7dfcf48c73ce866e29d4483a402d19a4121e9ba07e7",
+    "dataset/eca_pilot_inputs_v1.jsonl": "69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+    "dataset/eca_pilot_manifest_v1.json": "bdf7e9bbca8e553027c2bad02d57f66616e29b49a71702d7a1c7c728ab5dddd4"
+  },
+  "precision": "BF16_LOG_CHECK_BEFORE_EACH_EPOCH",
+  "next_epochs": [
+    "FP8_NO_DRAFTER_PENDING_COMPATIBILITY",
+    "FP8_DRAFTER_PENDING_COMPATIBILITY"
+  ],
+  "stopping_rules": [
+    "parent incomplete",
+    "source drift",
+    "endpoint not idle",
+    "deployment identity mismatch",
+    "process failure",
+    "operator STOP file"
+  ]
+}
