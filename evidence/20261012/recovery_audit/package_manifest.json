@@ -1,0 +1,20 @@
+{
+  "file_count": 1,
+  "files": [
+    {
+      "path": "RECOVERY_RECEIPT.json",
+      "sha256": "24aaf742bf0d2cd2f27988aadd61cd307a55246f7f71a6207132f881ab5aaecd",
+      "size_bytes": 989
+    }
+  ],
+  "generator": "gsigmad execution-discipline write-manifest",
+  "ignored": [
+    ".DS_Store",
+    "__pycache__",
+    "package_manifest.json"
+  ],
+  "manifest_name": "package_manifest.json",
+  "package_id": "cell-akamai-recovery-20261013",
+  "package_sha256": "cfed2d229d0fecce6f1d5336e421300bc687b9ef81a60d6f116a85aab714a8e6",
+  "schema_version": "1.0.0"
+}

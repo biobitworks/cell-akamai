@@ -1,0 +1,32 @@
+{
+  "content_sha256": "bc09d0ffcc9f1f2f8b434e4f9b2bcd69fd9e82ddc797b59d5a0588a54f33fcd3",
+  "generator": "gsigmad execution-discipline verify-manifest",
+  "kind": "manifest_verification",
+  "payload": {
+    "checked": [
+      "manifest file list",
+      "file sha256 values",
+      "package sha256",
+      "missing files",
+      "extra files",
+      "changed files"
+    ],
+    "manifest_path": "evidence/20261012/recovery_audit/package_manifest.json",
+    "not_checked": [
+      "semantic correctness of package contents",
+      "claim ceiling",
+      "external writeback state"
+    ],
+    "package_dir": "evidence/20261012/recovery_audit",
+    "package_id": "cell-akamai-recovery-20261013",
+    "verification": {
+      "changed": [],
+      "extra": [],
+      "missing": [],
+      "package_sha256_match": true,
+      "pass": true
+    }
+  },
+  "schema_version": "1.0.0",
+  "status": "COMPLETE"
+}

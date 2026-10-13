@@ -1,0 +1,22 @@
+{
+  "archive_bytes": 414998670,
+  "archive_members": 44493,
+  "archive_sha256": "c21dee12aafe9dd82f5d59d9460bd2ea5e2c4f2252dd41f7752dcc6412b772bd",
+  "checked_at_utc": "2026-10-13T00:59:54.463936+00:00",
+  "deleted_before_snapshots": "NOT_PROVABLE",
+  "deleted_upload_count": 7,
+  "deletion_absence_verified": true,
+  "deletion_state": "SEVEN_VERIFIED_UPLOAD_INPUTS_DELETED",
+  "experiment_file_mismatches": 0,
+  "experiment_files_verified": 13,
+  "gzip_crc": "PASS",
+  "old_archive_crc": "PASS",
+  "old_archive_sha256": "26165f881a752b2655444db63b480bb0d405f936fb65cd3e2179024a9d63b19e",
+  "outside_workspace": "NOT_CHECKED",
+  "prediction_outputs_retained": true,
+  "private_backup_retained": true,
+  "scope": "/home/coder/workshop only; live non-atomic filesystem; hidden files and Git metadata included if present",
+  "signature_scope": "Self-issued local Ed25519 recovery manifest; no external identity attestation",
+  "unsaved_state": "NOT_CAPTURED",
+  "upload_inputs_verified": 7
+}
