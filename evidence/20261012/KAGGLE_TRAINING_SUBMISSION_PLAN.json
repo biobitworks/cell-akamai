@@ -1,0 +1,29 @@
+{
+  "created_at_utc": "2026-10-13T00:39:02.230210+00:00",
+  "runs": [
+    {
+      "kernel": "biobitworks/vita-daisy-r5-lr1e5-20261013",
+      "is_private": true,
+      "parent_kernel": "biobitworks/vita-daisy-r4-daily-successor-20261011",
+      "parent_source_sha256": "742cd51c26d733c6f9a638c301eedb3e6cc88e43212c88c09d696cf7688a49fb",
+      "submitted_source_sha256": "321e14003bcf8fa06af987b0f171099d9da07e57a4e8c5123b61d272c3a99ab3",
+      "configuration_change": "learning_rate 0.00005 -> 0.00001 only",
+      "status": "PREPARED_NOT_SUBMITTED",
+      "weights_public": false,
+      "holdout_evaluation": false
+    },
+    {
+      "kernel": "biobitworks/genesis-vcc2025-r3-replica-20261013",
+      "is_private": true,
+      "parent_kernel": "biobitworks/genesis-vcc2025-r3-longtrain-20261010",
+      "parent_source_sha256": "e780dbcfaa795bf772fbe583702e4e47e4cc334375d73a87b0584fbfd55b10e8",
+      "submitted_source_sha256": "49ba9f72cd5e8092dfe253ab2499f23f18ab5212aeea92864eda61bdd42aabcd",
+      "configuration_change": "independent execution; unchanged training and split parameters",
+      "status": "PREPARED_NOT_SUBMITTED",
+      "weights_public": false,
+      "holdout_evaluation": false
+    }
+  ],
+  "parallelism": "Separate Kaggle jobs, subject to account GPU quota; no competing Akamai workload",
+  "claim_ceiling": "Training execution/validation only; no official score or improvement until measured"
+}
