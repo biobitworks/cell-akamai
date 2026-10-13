@@ -1,0 +1,7 @@
+{
+  "snapshot_sha256": "1e25105bb3b1d7efc583116b37c55a8759767f38695e252f54b46d21b3ee827d",
+  "status": "RUNNING_PROVISIONAL",
+  "module8_max_num_seqs": 64,
+  "strands": "TOOL_FREE_CANARY_PASSED_FULL_WORKFLOW_PENDING",
+  "next_action": "Complete current hour cell before matched plain/Strands agentic-antigentic epochs; private training remains separate."
+}
