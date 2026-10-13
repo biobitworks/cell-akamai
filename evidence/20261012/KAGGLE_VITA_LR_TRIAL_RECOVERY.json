@@ -1,0 +1,47 @@
+{
+  "checked_at_utc": "2026-10-13T01:03:43.174155+00:00",
+  "kernel": "biobitworks/vita-daisy-r5-lr1e5-20261013",
+  "status": "COMPLETE_RECOVERED",
+  "executed_optimizer_steps": 8,
+  "parent_validation_loss": 1.4773590564727783,
+  "best_validation_loss": 1.4391531229019165,
+  "component_guardrails": {
+    "anticube_accuracy": true,
+    "anticube_ce": true,
+    "deltagstar_mse": true,
+    "evidence_weight_l1": true
+  },
+  "checkpoints_verified": [
+    {
+      "step": 12,
+      "sha256": "054a92a3459c16e1569d0cadd91b03a1ad17ca174ceea0dde4cac29311a4f977",
+      "validation": {
+        "anticube_accuracy": 0.525,
+        "anticube_ce": 1.3569963932037354,
+        "deltagstar_mse": 0.5277876913547516,
+        "evidence_weight_l1": 0.2937795341014862,
+        "loss": 1.4391531229019165,
+        "prediction_root": "ec0f6b73879c03e242346b0e3849ba6f5ab44b9cbc7b06f582110aea2b0c1c64",
+        "row_count": 320
+      }
+    },
+    {
+      "step": 8,
+      "sha256": "be9b9ffc117af6e4873cadc65c0299f46cc01def4c6c4ce0a6c89c723bf12a25",
+      "validation": {
+        "anticube_accuracy": 0.525,
+        "anticube_ce": 1.3687122821807862,
+        "deltagstar_mse": 0.5637418448925018,
+        "evidence_weight_l1": 0.29520625472068784,
+        "loss": 1.454607105255127,
+        "prediction_root": "0860229d24eadc92736bc2deda4dec4435f8d5c5f326fbc240e3a44cfb435eee",
+        "row_count": 320
+      }
+    }
+  ],
+  "test_set_evaluated": false,
+  "vcc_adapter_executed": false,
+  "vcc_submission_executed": false,
+  "claim_ceiling": "Validation-only development result; independent generalization not established",
+  "next_action": "Evaluate through private VCC bridge with frozen independent holdout; no automatic promotion."
+}
