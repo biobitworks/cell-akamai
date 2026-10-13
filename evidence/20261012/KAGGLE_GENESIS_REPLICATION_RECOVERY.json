@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-13T00:46:52.350034+00:00",
+  "kernel": "biobitworks/genesis-vcc2025-r3-replica-20261013",
+  "kaggle_status": "COMPLETE",
+  "terminal_receipt_sha256": "5aeb21ce049d84668cf960174ce0101993e4ddacc8e9e37cf1c8c3a6b24b3067",
+  "optimizer_steps": 1600,
+  "best_step": 200,
+  "best_validation_loss": 0.01884524135675747,
+  "fixed_prior_validation_mse": 0.018863411620259285,
+  "checkpoint_verified": true,
+  "best_checkpoint_sha256": "41687cd29fbb8a102352b617fdf38c7df27df9ffeeee201c35e917c813adf8ca",
+  "same_bytes_as_prior_checkpoint": true,
+  "recovered_file_count": 39,
+  "heldout_evaluation": false,
+  "official_vcc_score": false,
+  "claim_ceiling": "Reproduced deterministic checkpoint/validation; not an independent seed or new holdout result",
+  "vita_status_at_check": "RUNNING",
+  "akamai_status": "RUNNING",
+  "akamai_completed_requests_at_check": 30,
+  "akamai_measured_requests_at_check": 27,
+  "akamai_transport_usage_failures_at_check": 0,
+  "next_action": "Recover Vita on completion and Akamai first 15-minute measured checkpoint; keep weights private."
+}
