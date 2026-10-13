@@ -1,0 +1,18 @@
+{
+  "active_benchmark_data": "Laptop-private; not deleted",
+  "archive_file_hash_matches": 13,
+  "archive_integrity": "PASS",
+  "archive_sha256": "c21dee12aafe9dd82f5d59d9460bd2ea5e2c4f2252dd41f7752dcc6412b772bd",
+  "checked_at_utc": "2026-10-13T01:07:44.851091+00:00",
+  "file_count": 13,
+  "not_claimed": [
+    "All files outside declared artifact scope",
+    "Unsaved state",
+    "Files deleted before backup"
+  ],
+  "remote_absence_verified": true,
+  "scope": "13 non-runtime experiment files inventoried under workshop/private/vcc_proxy_recovery: seven uploaded inputs/scripts/manifests, four prediction outputs, two logs",
+  "server_runtime_retained": true,
+  "signature_identity": "Self-issued local Ed25519 recovery key",
+  "status": "VERIFIED_RECOVERED_AND_DELETED_FOR_DECLARED_ARTIFACT_SCOPE"
+}
