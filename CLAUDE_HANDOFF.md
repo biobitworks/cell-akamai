@@ -32,3 +32,7 @@ Do not reset Claude's dashboard branch, external narration or canonical uncommit
 ## Active resumption supersedes old idle status
 
 Run hour-20261013T003345Z-adbc9669 is active, source 6608d78f1077f8022693119bc5226eb5a632bc28, one BF16 workload at c=1. Private monitor root: /Users/byron/projects/active/cell-akamai-worktrees/publication/private/hour_resume; sanitized/latest.json and raw_runs/<run>/public/checkpoint-*.json. Target 3600 measured seconds after 60 warm-up. Recover/publish sanitized checkpoints, preserve raw ledger privately; do not launch competing jobs. Repo main includes integrated release/security updates.
+
+## Private Kaggle training now submitted
+
+Both version 1 kernels verified RUNNING: biobitworks/vita-daisy-r5-lr1e5-20261013 and biobitworks/genesis-vcc2025-r3-replica-20261013. Sources and outputs private under publication/private/kaggle_recovery/submissions_20261013. Monitor these exact kernels, recover completed outputs atomically and verify checkpoint/prediction hashes before scoring. Vita varies LR only (5e-5 → 1e-5), Genesis repeats original split/settings. Separate Kaggle GPU resources; Akamai hour run continues (13 completed requests / 10 measured / zero failures at submission check). Never publish weights or raw predictions.
