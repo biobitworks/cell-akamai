@@ -28,3 +28,7 @@ Do not reset Claude's dashboard branch, external narration or canonical uncommit
 3. Resolve release provenance; integrate reviewed branches via PR, then verify public visibility only after audit.
 4. Resume authorized serialized inference only after frozen preview, preflight and idle checks pass; privately recover checkpoints while keeping raw outputs off GitHub.
 5. Check HackerSquad recording/submission confirmation; saved project details are not a submitted video.
+
+## Active resumption supersedes old idle status
+
+Run hour-20261013T003345Z-adbc9669 is active, source 6608d78f1077f8022693119bc5226eb5a632bc28, one BF16 workload at c=1. Private monitor root: /Users/byron/projects/active/cell-akamai-worktrees/publication/private/hour_resume; sanitized/latest.json and raw_runs/<run>/public/checkpoint-*.json. Target 3600 measured seconds after 60 warm-up. Recover/publish sanitized checkpoints, preserve raw ledger privately; do not launch competing jobs. Repo main includes integrated release/security updates.

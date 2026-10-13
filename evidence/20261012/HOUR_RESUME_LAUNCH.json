@@ -1,0 +1,15 @@
+{
+  "observed_at_utc": "2026-10-13T00:34:28.760073+00:00",
+  "state": "RUNNING_WARMUP",
+  "run_id": "hour-20261013T003345Z-adbc9669",
+  "source_sha": "6608d78f1077f8022693119bc5226eb5a632bc28",
+  "concurrency": 1,
+  "target_measured_seconds": 3600,
+  "warmup_seconds": 60,
+  "server_active_requests_at_check": 1,
+  "server_waiting_requests": 0,
+  "completed_requests_at_check": 1,
+  "failures_at_check": 0,
+  "raw_records_private": true,
+  "next_action": "Keep workload running; recover private/hour_resume/sanitized checkpoints every 15 minutes. Do not launch another GPU job."
+}
