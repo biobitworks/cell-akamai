@@ -36,3 +36,7 @@ Run hour-20261013T003345Z-adbc9669 is active, source 6608d78f1077f8022693119bc52
 ## Private Kaggle training now submitted
 
 Both version 1 kernels verified RUNNING: biobitworks/vita-daisy-r5-lr1e5-20261013 and biobitworks/genesis-vcc2025-r3-replica-20261013. Sources and outputs private under publication/private/kaggle_recovery/submissions_20261013. Monitor these exact kernels, recover completed outputs atomically and verify checkpoint/prediction hashes before scoring. Vita varies LR only (5e-5 → 1e-5), Genesis repeats original split/settings. Separate Kaggle GPU resources; Akamai hour run continues (13 completed requests / 10 measured / zero failures at submission check). Never publish weights or raw predictions.
+
+## Module 9 queue active
+
+Private queue /Users/byron/projects/active/cell-akamai-worktrees/publication/private/akamai_module9_queue/queue.py is waiting for hour parent completion; STATE.json is authoritative. It will execute plain then Strands, c=1,2, four items per arm, 80 calls/runtime max. Check source/ledger hashes and exclusive lock before execution. Recover new runs from its runs/ directory, publish aggregate-only snapshots and commitments. STOP file prevents queued start. FP8/drafter phases remain pending; never infer they ran from the queue plan. Verified plan commit 32405a9af2557eec94578da6f83cb4a1d21e338e.
