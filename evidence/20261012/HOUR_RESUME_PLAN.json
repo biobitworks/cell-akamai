@@ -1,0 +1,55 @@
+{
+  "status": "PREREGISTERED",
+  "epoch": "BF16_1024_RESUME",
+  "first_cell": {
+    "role": "genesis",
+    "representation": "original",
+    "concurrency": 1
+  },
+  "planned_bf16_cells": 24,
+  "matrix": {
+    "roles": [
+      "genesis",
+      "vita_daisy"
+    ],
+    "representations": [
+      "original",
+      "fco",
+      "fcg"
+    ],
+    "concurrency": [
+      1,
+      2,
+      4,
+      8
+    ]
+  },
+  "target_measured_seconds_per_cell": 3600,
+  "warmup_seconds_per_cell": 60,
+  "estimated_gpu_hours_excluding_overhead": 24,
+  "max_requests_per_cell_including_warmup": 100000,
+  "max_completion_tokens_per_cell": 102400000,
+  "max_requests_matrix": 2400000,
+  "max_completion_tokens_matrix": 2457600000,
+  "actual_budget_note": "Hard upper bounds, not predicted consumption. Only first cell launched; remaining cells pending fresh preflight.",
+  "stop_rules": [
+    "access loss",
+    "process error",
+    "request budget exhaustion",
+    "manual stop",
+    "configuration drift requires operator monitoring"
+  ],
+  "private_weights_used": false,
+  "claim_ceiling": "Repeated synthetic ECA inference throughput; not independent biology or training",
+  "dataset_hashes": {
+    "data/fcg/evaluator.jsonl": "16efa87454f510e46e3366ff64d514c45cec2c2c6f17d7b02ff640fe8e352a38",
+    "data/fcg/genesis.jsonl": "5e6785925bc2a2e3caa087ddbabc289458962846dd4c4e121f9c00eb9fd09d9e",
+    "data/fcg/vita_daisy.jsonl": "04f51ddb5660bee1cd07969da0ed4c6bb82b7025bfeccb457a75973938cd7575",
+    "data/fco/evaluator.jsonl": "b66eb57b31bc84ad0482fe798585afd7051c0d210b7c55b3c7d54ea486260b8f",
+    "data/fco/genesis.jsonl": "75f89dc1638800c9d073fcb3cf7c9401374c44d9d3d0ee2c8a2f4a30cecd026e",
+    "data/fco/vita_daisy.jsonl": "b54e23a2b7a834efa8a374bcf2d45a21bbce466b4ee43fdd51b19859bdce237b",
+    "data/original/evaluator.jsonl": "8b269181d9c8e7f759c262d4357652192b28d6aa4b4635aa19b9862d8489938b",
+    "data/original/genesis.jsonl": "c32ac8a241e9ed18c06c6c2c654ea0a1060ac5aa8287c2c484099362700e84f3",
+    "data/original/vita_daisy.jsonl": "83be6187b2975524234a13bcf8cbab54e861224d0e1ac6fb1aa4476a3b1ea800"
+  }
+}
