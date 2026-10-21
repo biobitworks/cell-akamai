@@ -1,0 +1,21 @@
+{
+  "experiment_id": "EXP-LANEB-GDAISY-001-PILOT-CONCURRENCY-AKAMAI-MATCHED-L3B-NOTHINK",
+  "mode": "PILOT_NONCONFIRMATORY",
+  "base_url": "http://127.0.0.1:8019/v1",
+  "model": "Qwen/Qwen3-4B",
+  "api_key_env": "VLLM_NO_KEY",
+  "temperature": 0,
+  "decode_seed": 20261012,
+  "max_tokens_per_call": 256,
+  "item_token_cap": 768,
+  "item_call_cap": 3,
+  "seed_start": 50000,
+  "per_rule": 8,
+  "timeout_s": 180,
+  "_note": "Matched to config.magicpro_ollama_pilot_l3b.json: same items (4, c=1,2), caps, temperature, seed and harness; only endpoint and model differ. Reached via kubectl port-forward svc/vllm 8019:8000 (ports 8000 Watchtower and 8010 OrbStack are in use locally). Precision recorded from deployment metadata only if verified. Successor of the -MATCHED-L3B run (dcd42dc0), whose 40/40 calls returned empty content after 256 tokens of server-side reasoning; the only change is enable_thinking=false, applied identically to every call of every arm.",
+  "extra_body": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  }
+}
