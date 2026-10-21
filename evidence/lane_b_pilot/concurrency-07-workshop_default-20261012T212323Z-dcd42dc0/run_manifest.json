@@ -1,0 +1,32 @@
+{
+  "_sanitized": "copy of runs/concurrency/<run>/run_manifest.json with host redacted for git",
+  "anticube": "NOT_COMPUTED",
+  "backend": "AKAMAI_VLLM",
+  "concurrency": [
+    1,
+    2
+  ],
+  "config_sha256": "sha256:1bf86af87dbd92a2ff7bf425d20550bc76cee1d211827685964408de6005987a",
+  "dataset_sha256": "sha256:69ced0ca1cf77a00446e2b3db03564eb487b2f2b15e68c34590ee8e96b07c274",
+  "declared_max_model_calls": 80,
+  "delta_g_star": "NOT_COMPUTED",
+  "deployment_args_sha": "UNKNOWN",
+  "host": "REDACTED_LOCAL_HOST (magicPRO)",
+  "independent_host_verification": "NOT_TESTED",
+  "items_per_arm": 4,
+  "mmr": "NOT_COMMITTED",
+  "model_revision": "UNKNOWN",
+  "module": "07",
+  "oracle_access": "NONE",
+  "precision_verified": "UNKNOWN",
+  "preregistration": "PILOT_NONCONFIRMATORY",
+  "run_id": "concurrency-07-workshop_default-20261012T212323Z-dcd42dc0",
+  "self_training": "NOT_TESTED",
+  "served_model_requested": "Qwen/Qwen3-4B",
+  "signature": "NOT_SIGNED",
+  "source_class": "OBSERVED_IF_ENDPOINT_SUCCESS",
+  "source_claude_harness_sha256": "sha256:6ab89cd9526d4f96e943da33c138b88381921543b17a0b27785ee0f1e4b4257a",
+  "stage": "workshop_default",
+  "state": "COMPLETED_WITH_RESULT_OR_FAILURE_ROWS",
+  "workshop_baseline_sha": "454b43269216c1f92dd8d7e2711649e38cb888cb"
+}
